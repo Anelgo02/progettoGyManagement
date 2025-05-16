@@ -12,5 +12,10 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
 
+  {
+    path: 'prova',
+    loadComponent: () => import('./components/header/header.component').then((m) => m.HeaderComponent),
+  },
+
   
 ];
