@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" href="./login-page.component.scss">
+        <link rel="icon" href="account.png" type="image/png">
+    </head>
+
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><!--carica la libreria per i pop-up modificabili
+        va caricato prima del file .js che lo utilizza perché quando deve essere utiizzato il browser deve già conoscere il comando swal.fire ad esempio-->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        
+        <script src="script.js"></script>
+
+        <div class="container">
+            <h2>Login</h2>
+            <div class="email-wrapper">
+                <label for="email">Email</label><!--l'attributo for serve a collegare la label ad un elemento tramite l'id-->
+                <input type="text" id="email" name="Email" placeholder="inserisci qui la tua mail" required><br>
+            </div>
+            
+        
+            <div class="password-wrapper">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="Password" placeholder="e qui la tua password" required>
+                <span id="togglePassword" class="toggle-password">👁️</span>
+            </div>
+
+            <button id="Login_button">Accedi</button>
+
+            <p class="reg">Non hai ancora un account?<a href="#">Registrati</a></p>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </body>
+
+
+
+
+</html>
