@@ -4,24 +4,26 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../header/header.component';
+
 
 @Component({
   selector: 'app-login-page',
-  standalone: true,
+ 
   imports: [
     IonicModule,
     FormsModule,
     RouterModule,
-    HeaderComponent
+  
 ],
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  templateUrl: './login-page.html',
+  styleUrls: ['./login-page.scss'],
+  standalone: true,
 })
-export class LoginPageComponent {
+export class LoginPage{
   email: string = '';
   password: string = '';
   showPassword = false;
+  
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;

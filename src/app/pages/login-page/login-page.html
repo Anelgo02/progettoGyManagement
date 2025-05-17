@@ -1,0 +1,31 @@
+<ion-content class="ion-padding" fullscreen="true">
+
+  <div class="login-container">
+    <h2>Login</h2>
+
+    <div class="email-wrapper">
+      <ion-label>Email</ion-label>
+      <ion-input type="email" placeholder="Inserisci qui la tua mail" [(ngModel)]="email" required></ion-input>
+    </div>
+
+    <div class="password-wrapper">
+      <ion-label>Password</ion-label>
+      <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="E qui la tua password" [(ngModel)]="password"
+        required>
+        <ion-button fill="clear" size="small" (click)="togglePasswordVisibility()" slot="end">
+          <ion-icon class="pwdIcon" [name]="showPassword ? 'eye-off-outline' : 'eye-outline'" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-input>
+
+
+    </div>
+
+    <ion-button class="btnLogin" expand="block" (click)="login()">Accedi</ion-button>
+
+    <p class="reg">
+      Non hai ancora un account?
+      <a [routerLink]="['/register']">Registrati</a>
+    </p>
+  </div>
+
+</ion-content>

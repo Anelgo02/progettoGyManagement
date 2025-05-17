@@ -50,3 +50,14 @@
   pointer-events: all !important;
   background-color: rgba(0, 0, 0, 0.4) !important;
 }
+
+:root {
+  --ion-font-family: 'Poppins', sans-serif;
+}
+
+.title {
+  font-weight: 700; // Bold
+}
+.label {
+  font-weight: 400; // Regular
+}
