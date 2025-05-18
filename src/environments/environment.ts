@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+    /** URL del mock-server json-server oppure dell’API reale in locale */
+  apiBase: 'http://localhost:3000'
 };
 
 /*

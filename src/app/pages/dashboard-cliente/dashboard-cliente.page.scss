@@ -7,3 +7,53 @@ ion-title {
 ion-button {
   margin-top: 10px;
 }
+
+.menu-flex-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.menu-flex-container ion-list {
+  flex: 1 1 auto;
+}
+
+.logoutBtn {
+  margin: 16px;
+  margin-top: auto;
+}
+
+.workouts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.no-workouts {
+  text-align: center;
+  color: #888;
+  margin-top: 2rem;
+}
+
+.menu-flex-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.menu-flex-container ion-list {
+  flex: 1 1 auto;
+}
+
+.logoutBtn {
+  margin: 16px;
+  margin-top: auto;
+}
+
+.menu-footer {
+  margin: 16px 0 8px 0;
+  font-size: 0.85rem;
+  color: #888;
+  text-align: center;
+  line-height: 1.2;
+}

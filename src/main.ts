@@ -3,9 +3,13 @@ import { RouteReuseStrategy, provideRouter, withPreloading, PreloadAllModules } 
 import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { homeOutline, barbellOutline, searchOutline, notificationsOutline, settingsOutline } from 'ionicons/icons';
-
+import { InjectionToken } from '@angular/core';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
+import { provideHttpClient } from '@angular/common/http';
+import { environment } from './environments/environment';
+
+export const API_BASE = new InjectionToken<string>('API_BASE');
 
 addIcons({
   'home-outline': homeOutline,
@@ -20,5 +24,7 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
+    provideHttpClient(),
+    { provide: API_BASE, useValue: environment.apiBase }   // "http://localhost:3000"
   ],
 });
