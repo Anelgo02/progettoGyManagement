@@ -1,0 +1,24 @@
+
+
+<ion-header [translucent]="true" >
+  <ion-toolbar color="primary">
+
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-title>Home</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="vaiAlProfilo()">
+
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+        
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <p *ngFor="let i of [].constructor(50)">Contenuto di test {{i}}</p>
+</ion-content>
