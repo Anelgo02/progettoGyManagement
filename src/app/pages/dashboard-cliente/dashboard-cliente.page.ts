@@ -63,4 +63,8 @@ export class DashboardClientePage implements OnInit {
   logout() {
     console.log('Logout eseguito');
   }
+
+  recensisci(){
+    console.log('Recensisci eseguito');
+  }
 }

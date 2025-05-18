@@ -2,27 +2,28 @@
 <ion-menu side="start" menuId="main-menu" contentId="main-content">
   <ion-header>
     <ion-toolbar color="primary">
-      <ion-title>Menu</ion-title>
+      <ion-title >Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-
   <ion-content>
-    <ion-list>
-      <ion-item routerLink="/recensisci">
-        <ion-icon name="star-outline" slot="start"></ion-icon>
-        <ion-label>Recensisci</ion-label>
-      </ion-item>
-    </ion-list>
-
-    <ion-button expand="block" color="danger" (click)="logout()">
-      <ion-icon name="log-out-outline" slot="start"></ion-icon>
-      Logout
-    </ion-button>
-
-    <div class="menu-footer">
-        Gruppo studio Gulo-Cipo-Cost:<br>
-        Progetto Università degli Studi di Palermo
+    <div class="menu-flex-container">
+      <ion-list>
+        <ion-item routerLink="/recensisci" (click)="recensisci()">
+          <ion-icon name="star-outline" slot="start"></ion-icon>
+          <ion-label>Recensisci</ion-label>
+        </ion-item>
+      </ion-list>
+      <div class="menu-bottom">
+        <ion-button expand="block" color="danger" class="logoutBtn" (click)="logout()">
+          <ion-icon name="log-out-outline" slot="start"></ion-icon>
+          Logout
+        </ion-button>
+        <div class="menu-footer">
+          Gruppo studio Gulo-Cipo-Cost:<br>
+          Progetto Università degli Studi di Palermo
+        </div>
       </div>
+    </div>
   </ion-content>
 </ion-menu>
 
@@ -30,9 +31,9 @@
 <ion-header translucent>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-menu-button menu="main-menu"></ion-menu-button>
+      <ion-menu-button menu="main-menu" ></ion-menu-button>
     </ion-buttons>
-    <ion-title style="color: aliceblue;">GyManagement</ion-title>
+    <ion-title style="color: aliceblue;" >GyManagement</ion-title>
   </ion-toolbar>
 </ion-header>
 

@@ -1,17 +1,41 @@
 ion-title {
+  flex: 1 1 auto !important;
+  text-align: center;
+  margin: 0 !important;
+  color: antiquewhite;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+  display: block;
+}
+
+ion-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-menu-button {
+  --icon-font-size: 2.2rem; /* aumenta la dimensione dell'icona */
+  width: 48px;
+  height: 48px;
 }
 
 ion-button {
   margin-top: 10px;
 }
 
+ion-item {
+  --background: none;
+  --color: #ffffff;
+  padding: 0.5rem;
+}
+
 .menu-flex-container {
   display: flex;
   flex-direction: column;
   height: 100%;
+  background: grey;
 }
 
 .menu-flex-container ion-list {
@@ -19,8 +43,7 @@ ion-button {
 }
 
 .logoutBtn {
-  margin: 16px;
-  margin-top: auto;
+  margin: 0 0 8px 0;
 }
 
 .workouts-container {
@@ -35,25 +58,50 @@ ion-button {
   margin-top: 2rem;
 }
 
-.menu-flex-container {
+.menu-bottom {
+  margin-top: auto;
   display: flex;
   flex-direction: column;
-  height: 100%;
-}
-
-.menu-flex-container ion-list {
-  flex: 1 1 auto;
-}
-
-.logoutBtn {
-  margin: 16px;
-  margin-top: auto;
+  align-items: stretch;
+  padding: 1rem;
+  background-color: black;
 }
 
 .menu-footer {
-  margin: 16px 0 8px 0;
   font-size: 0.85rem;
   color: #888;
   text-align: center;
   line-height: 1.2;
 }
+
+ion-content {
+  --background: none;
+  background: linear-gradient(135deg, #2370ff 0%, #00e0ff 100%);
+}
+
+ion-toolbar {
+  display: flex;
+  align-items: center;
+  min-height: 72px; // o il valore che preferisci
+}
+
+ion-toolbar ion-title {
+  flex: 1 1 auto !important;
+  text-align: center;
+  margin: 0 !important;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+ion-menu ion-title {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  padding-top: 1rem;
+  align-items: center;
+}
+
+
+
