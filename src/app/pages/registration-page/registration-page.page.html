@@ -1,0 +1,36 @@
+<ion-content class="ion-padding" fullscreen="true">
+  <div class="register-container">
+    <h2>Registrazione</h2>
+
+    <div class="email-wrapper">
+      <ion-label>Email</ion-label>
+      <ion-input type="email" placeholder="Inserisci la tua email" [(ngModel)]="email" required></ion-input>
+    </div>
+
+    <div class="password-wrapper">
+      <ion-label>Password</ion-label>
+      <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="Crea una password" [(ngModel)]="password" required>
+        <ion-button fill="clear" size="small" (click)="togglePasswordVisibility()" slot="end">
+          <ion-icon class="pwdIcon" [name]="showPassword ? 'eye-off-outline' : 'eye-outline'" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-input>
+    </div>
+
+    <div class="password-wrapper">
+      <ion-label>Conferma Password</ion-label>
+      <ion-input [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Ripeti la password" [(ngModel)]="confirmPassword" required>
+        <ion-button fill="clear" size="small" (click)="toggleConfirmPasswordVisibility()" slot="end">
+          <ion-icon class="pwdIcon" [name]="showConfirmPassword ? 'eye-off-outline' : 'eye-outline'" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-input>
+    </div>
+
+    <ion-button class="btnRegister" expand="block" (click)="register()">Registrati</ion-button>
+
+    <p class="reg">
+      Hai già un account?
+      <a [routerLink]="['/login']">Accedi</a>
+    </p>
+  </div>
+</ion-content>
+

@@ -1,0 +1,82 @@
+
+:host {
+  display: block;
+  background: linear-gradient(135deg, #3090dfe2, #8fb3fbe6);
+  color: #fff;
+  height: 100vh;
+  overflow: visible !important;
+  position: relative;
+  z-index: 1;
+}
+
+ion-content {
+  --background: transparent;
+  --overflow: visible;
+}
+
+.register-container {
+  max-width: 400px;
+  margin: 5% auto;
+  padding: 2rem;
+  background: rgba(30, 161, 255, 0.584);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  text-align: center;
+}
+
+.register-container h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #efefef;
+  font-weight: 600;
+}
+
+.password-wrapper,
+.email-wrapper {
+  --border-radius: 10px;
+  margin-bottom: 1.5rem;
+  position: relative;
+  text-align: left;
+  color: #ffffff;
+}
+
+ion-label {
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+ion-input {
+  --background: rgba(255, 255, 255, 0.2);
+  --color: #ffffff;
+  --padding-start: 12px;
+  border-radius: 20px;
+  font-size: 1rem;
+}
+
+.pwdIcon {
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.btnRegister {
+  --background: rgba(16, 192, 135, 0.8);
+  margin-top: 1rem;
+  height: 3rem;
+  --border-radius: 100px;
+}
+
+.reg {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+.reg a {
+  color: #ffd700;
+  text-decoration: none;
+  margin-left: 4px;
+}
