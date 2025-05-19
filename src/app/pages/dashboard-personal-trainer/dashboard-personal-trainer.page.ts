@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './dashboard-personal-trainer.page.html',
   styleUrls: ['./dashboard-personal-trainer.page.scss'],
   standalone: true,
-  imports: [IonButtons, IonButton, IonTabButton, IonLabel, IonIcon, IonTabBar, IonTabs, IonTab, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonButtons, IonButton, IonIcon, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class DashboardPersonalTrainerPage implements OnInit {
 

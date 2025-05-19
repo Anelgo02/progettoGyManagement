@@ -109,5 +109,20 @@ ion-card {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+.recensisci-item {
+  --color: #2370ff; /* blu acceso della tua palette */
+  --background: rgba(255, 255, 255, 0);
+  border-radius: 16px;
+  margin: 0 8px 8px 8px;
+
+  ion-icon {
+    color: #2370ff;
+  }
+  ion-label {
+    color: #2370ff;
+    font-weight: 600;
+  }
+}
+
 
 

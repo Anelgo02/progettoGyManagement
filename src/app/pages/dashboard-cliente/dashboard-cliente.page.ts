@@ -31,6 +31,7 @@ import { Observable } from 'rxjs';
 import { Allenamento } from '../../models/allenamento';
 import { WorkoutService } from '../../services/workout.service';
 import { AuthService } from '../../core/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-cliente',
@@ -54,17 +55,28 @@ export class DashboardClientePage implements OnInit {
   /** Stream degli allenamenti (arriva dal service) */
   allenamenti$!: Observable<Allenamento[]>;
 
-  constructor(private workoutSvc: WorkoutService, private auth: AuthService) {}
+  constructor(private workoutSvc: WorkoutService, private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.allenamenti$ = this.workoutSvc.list();
+    if (!this.auth.uid) {
+      this.router.navigate(['/login']);
+
+    }
+
+    this.auth.user$.subscribe(user => {
+    if (user) {
+      this.allenamenti$ = this.workoutSvc.list(user.uid);
+    }
+  });
   }
 
   logout() {
+    this.auth.logout();
+    this.router.navigate(['/login']);
     console.log('Logout eseguito');
   }
 
-  recensisci(){
-    console.log('Recensisci eseguito');
+  recensisci() {
+
   }
 }

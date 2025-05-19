@@ -13,10 +13,8 @@ export class WorkoutService {
   private auth: AuthService                   // ← inietta
 ) {}
 
-list(): Observable<Allenamento[]> {
-  const uid = this.auth.uid;                  // uid corrente
-  const url = `${this.baseUrl}/allenamenti?userId=${uid}`;
-
+list(userId: string): Observable<Allenamento[]> {
+  const url = `${this.baseUrl}/allenamenti?userId=${userId}`;
   return this.http.get<Allenamento[]>(url).pipe(
     map(arr => arr.map(a => ({ ...a, data: new Date(a.data).toISOString() }))),
     shareReplay(1)

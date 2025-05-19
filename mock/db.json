@@ -18,6 +18,25 @@
       "data": "2025-05-21",
       "ora": "18:00"
     }
+  ],
+
+  "users": [
+    {
+      "uid": "u123",
+      "email": "cliente@example.com",
+      "password": "password123",
+      "nome": "Mario",
+      "cognome": "Rossi",
+      "ruolo": "cliente"
+    },
+    {
+      "uid": "u34",
+      "email": "admin@example.com",
+      "password": "adminpass",
+      "nome": "Admin",
+      "cognome": "User",
+      "ruolo": "admin"
+    }
   ]
 
   
