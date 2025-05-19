@@ -40,7 +40,7 @@ import { AuthService } from '../../core/auth.service';
   imports: [
     // Ionic UI
     IonContent, IonHeader, IonTitle, IonToolbar, IonIcon, IonLabel, IonButtons,
-    IonButton, IonAvatar, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle,
+    IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle,
     IonCardContent, IonChip, IonMenu, IonMenuButton, IonList, IonItem,
     IonFooter, IonTabBar, IonTabButton, IonSkeletonText,
     // Angular common
