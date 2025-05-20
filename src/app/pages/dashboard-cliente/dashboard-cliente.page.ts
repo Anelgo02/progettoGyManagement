@@ -35,6 +35,6 @@ export class DashboardClientePage implements OnInit {
   }
 
   recensisci() {
-    // apri pagina recensione
+    this.router.navigate(['/review-page']);
   }
 }
