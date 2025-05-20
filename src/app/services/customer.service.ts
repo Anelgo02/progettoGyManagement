@@ -36,4 +36,11 @@ export class CustomerService {
   rateTrainer(trainerId: number, rating: number, review?: string): Observable<any> {
     return this.http.post(`${this.api}/rate`, { trainer_id: trainerId, rating, review }, { withCredentials: true });
   }
+
+  getCustomerInfo(): Observable<any> {
+  return this.http.get<any>(`${this.api}/dashboard`, { withCredentials: true }).pipe(
+    map(res => res.data.customer_info)
+  );
+}
+
 }

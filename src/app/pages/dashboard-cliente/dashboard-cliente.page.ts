@@ -27,19 +27,21 @@ export class DashboardClientePage implements OnInit {
   constructor(private menuCtrl: MenuController, private customerSvc: CustomerService, private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
-
-    this.auth.user$.subscribe(user => {
-      if (!user) {
-        this.router.navigate(['/login']);
-      }
-    });
-
-    this.upcomingBookings$ = this.customerSvc.getUpcomingBookings();
-  }
+  this.auth.user$.subscribe(user => {
+    if (!user) {
+      this.router.navigate(['/login']);
+    } else {
+      // Carica solo quando l’utente è pronto
+      this.upcomingBookings$ = this.customerSvc.getUpcomingBookings();
+    }
+  });
+}
 
   ionViewWillEnter() {
     this.menuCtrl.close(); // forza la chiusura ogni volta che entri nella pagina
   }
+
+  
 
   logout() {
     this.menuCtrl.close().then(() => {

@@ -44,26 +44,26 @@
 <ion-content id="main-content" fullscreen class="ion-padding">
 
   <!-- LISTA / LOADING / VUOTO con async pipe -->
-  <ng-container *ngIf="upcomingBookings$ | async as allenamenti">
+  <ng-container *ngIf="upcomingBookings$ | async as allenamenti; else loading">
 
-    
     <ion-card *ngFor="let a of allenamenti">
       <ion-card-header>
-        <ion-card-title>{{ a.titolo }}</ion-card-title>
+        <ion-card-title>allenamento con {{ a.trainer_name }}</ion-card-title>
         <ion-card-subtitle>
-          {{ a.data | date:'dd/MM/yyyy' }} - {{ a.ora }}
+          {{ a.start_time | date:'dd/MM/yyyy' }} - {{ a.start_time | date:'HH:mm' }}
         </ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>
-        <p>{{ a.descrizione }}</p>
-        <ion-chip
-          [color]="a.tipo === 'Cardio' ? 'danger' : 'primary'">{{ a.tipo }}</ion-chip>
+        <p><strong>Specializzazione:</strong> {{ a.specialization }}</p>
+        <ion-chip color="primary">
+          Slot #{{ a.id }}
+        </ion-chip>
       </ion-card-content>
     </ion-card>
 
     <div *ngIf="!allenamenti.length" class="no-workouts">
-      Nessun allenamento schedulato.
+      Nessuna sessione prenotata.
     </div>
 
   </ng-container>
