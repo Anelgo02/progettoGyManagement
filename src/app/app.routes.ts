@@ -30,6 +30,10 @@ export const routes: Routes = [
   {
     path: 'userprofile-page',
     loadComponent: () => import('./pages/userprofile-page/userprofile-page.page').then( m => m.ProfilePage)
+  },
+  {
+    path: 'review-page',
+    loadComponent: () => import('./pages/review-page/review-page.page').then( m => m.ReviewPage)
   }
 
 

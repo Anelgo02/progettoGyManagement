@@ -1,0 +1,35 @@
+
+<ion-content class="ion-padding" fullscreen="true">
+  <div class="review-container">
+    <h2>Recensisci il tuo Personal Trainer</h2>
+
+    <!-- Valutazione a stelle -->
+    <div class="star-rating">
+      <ion-icon
+        *ngFor="let star of [1, 2, 3, 4, 5]"
+        [name]="star <= rating ? 'star' : 'star-outline'"
+        (click)="setRating(star)"
+        class="star"
+      ></ion-icon>
+    </div>
+
+    <!-- Campo recensione -->
+    <ion-label>Scrivi la tua recensione</ion-label>
+    <ion-textarea
+      auto-grow="true"
+      placeholder="Inserisci qui la tua recensione..."
+      [(ngModel)]="reviewText"
+    ></ion-textarea>
+
+    <!-- Campo data recensione -->
+    <ion-label>Data della recensione</ion-label>
+    <ion-datetime
+      presentation="date"
+      display-format="DD/MM/YYYY"
+      [(ngModel)]="reviewDate"
+    ></ion-datetime>
+
+    <!-- Pulsante pubblica -->
+    <ion-button class="btnPublish" expand="block" (click)="publishReview()">Pubblica</ion-button>
+  </div>
+</ion-content>

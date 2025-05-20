@@ -1,0 +1,82 @@
+
+:host {
+  display: block;
+  background: linear-gradient(135deg, #3090dfe2, #8fb3fbe6);
+  color: #fff;
+  height: 100vh;
+  overflow: visible !important;
+  position: relative;
+  z-index: 1;
+}
+
+ion-content {
+  --background: transparent;
+  --overflow: visible;
+}
+
+.review-container {
+  max-width: 400px;
+  margin: 5% auto;
+  padding: 2rem;
+  background: rgba(30, 161, 255, 0.584);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  text-align: center;
+}
+
+.review-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #efefef;
+  font-weight: 600;
+}
+
+.star-rating {
+  margin: 1rem 0 1.5rem;
+}
+
+.star-rating ion-icon.star {
+  font-size: 2rem;
+  color: #ffd700;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.star-rating ion-icon.star:hover {
+  transform: scale(1.2);
+}
+
+ion-label {
+  display: block;
+  text-align: left;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+ion-textarea,
+ion-datetime {
+  --background: rgba(255, 255, 255, 0.2);
+  --color: #ffffff;
+  --padding-start: 12px;
+  border-radius: 20px;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  min-height: 100px;
+  width: 100%;
+}
+
+ion-datetime {
+  min-height: auto;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.btnPublish {
+  --background: rgba(35, 112, 255, 0.584);
+  --border-radius: 100px;
+  height: 3rem;
+  font-weight: 600;
+}
