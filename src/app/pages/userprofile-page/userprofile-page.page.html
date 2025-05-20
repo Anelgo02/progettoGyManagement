@@ -1,32 +1,72 @@
+
 <ion-content class="ion-padding" fullscreen="true">
   <div class="profile-container">
     <h2>Profilo Utente</h2>
 
-    <div class="profile-picture-wrapper">
-      <img *ngIf="user.foto; else placeholder" [src]="user.foto" alt="Foto profilo" class="profile-picture" />
-      <ng-template #placeholder>
-        <div class="profile-placeholder">Nessuna foto</div>
-      </ng-template>
-
-      <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+    <!-- Immagine del profilo -->
+    <div class="profile-image-wrapper">
+      <img [src]="userData.photo || 'assets/default-profile.png'" class="profile-image" />
+      <input type="file" #fileInput hidden (change)="onFileSelected($event)" />
+      <ion-button fill="clear" size="small" (click)="apriFilePicker()">Cambia Foto</ion-button>
     </div>
 
-    <div class="user-info">
-      <ion-label>Nome</ion-label>
-      <ion-input [(ngModel)]="user.nome" placeholder="Nome"></ion-input>
+    <!-- Dati utente -->
+    <form (ngSubmit)="salvaModifiche()" #form="ngForm" novalidate>
+      <ion-item>
+        <ion-label position="stacked">Nome</ion-label>
+        <ion-input [value]="userData.nome" readonly></ion-input>
+      </ion-item>
 
-      <ion-label>Cognome</ion-label>
-      <ion-input [(ngModel)]="user.cognome" placeholder="Cognome"></ion-input>
+      <ion-item>
+        <ion-label position="stacked">Cognome</ion-label>
+        <ion-input [value]="userData.cognome" readonly></ion-input>
+      </ion-item>
 
-      <ion-label>Username</ion-label>
-      <ion-input [(ngModel)]="user.username" placeholder="Username"></ion-input>
+      <ion-item>
+        <ion-label position="stacked">Username</ion-label>
+        <ion-input [(ngModel)]="userData.username" name="username"></ion-input>
+      </ion-item>
 
-      <ion-label>Ruolo</ion-label>
-      <ion-select [(ngModel)]="user.ruolo">
-        <ion-select-option *ngFor="let ruolo of ruoliDisponibili" [value]="ruolo">{{ ruolo }}</ion-select-option>
-      </ion-select>
-    </div>
+      <ion-item>
+        <ion-label position="stacked">Numero di telefono</ion-label>
+        <ion-input [(ngModel)]="userData.telefono" name="telefono"></ion-input>
+      </ion-item>
 
-    <ion-button class="btnSave" expand="block" (click)="salvaModifiche()">Salva Modifiche</ion-button>
+      <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input
+          [type]="showPassword ? 'text' : 'password'"
+          [(ngModel)]="userData.password"
+          name="password"
+        ></ion-input>
+        <ion-button fill="clear" size="small" slot="end" (click)="togglePasswordVisibility()">
+          <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Conferma Password</ion-label>
+        <ion-input
+          [type]="showPassword ? 'text' : 'password'"
+          [(ngModel)]="confirmPassword"
+          name="confirmPassword"
+        ></ion-input>
+      </ion-item>
+
+      <!-- Ruolo (non modificabile) -->
+      <ion-item>
+        <ion-label position="stacked">Ruolo</ion-label>
+        <ion-input [value]="userData.ruolo" readonly></ion-input>
+      </ion-item>
+
+      <!-- Messaggio di errore -->
+      <div *ngIf="errore" class="errore">
+        <ion-icon name="close-circle-outline"></ion-icon>
+        {{ messaggioErrore }}
+      </div>
+
+      <!-- Pulsante Salva -->
+      <ion-button expand="block" type="submit">Salva Modifiche</ion-button>
+    </form>
   </div>
 </ion-content>

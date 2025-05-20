@@ -1,104 +1,31 @@
 
-:host {
-  display: block;
-  background: linear-gradient(135deg, #3090dfe2, #8fb3fbe6);
-  color: #fff;
-  height: 100vh;
-  overflow: visible !important;
-  position: relative;
-  z-index: 1;
-}
-
-ion-content {
-  --background: transparent;
-  --overflow: visible;
-}
-
 .profile-container {
-  max-width: 400px;
-  margin: 5% auto;
-  padding: 2rem;
-  background: rgba(30, 161, 255, 0.584);
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  max-width: 500px;
+  margin: auto;
   text-align: center;
 }
 
-.profile-container h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: #efefef;
-  font-weight: 600;
+.profile-image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0;
 }
 
-.profile-picture-wrapper {
-  margin-bottom: 1.5rem;
-}
-
-.profile-picture {
+.profile-image {
   width: 120px;
   height: 120px;
+  border-radius: 50%;
   object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid #ffffffaa;
-  margin-bottom: 1rem;
-}
-
-.profile-placeholder {
-  width: 120px;
-  height: 120px;
-  line-height: 120px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  color: #fff;
-  margin: 0 auto 1rem;
-  font-size: 0.9rem;
-  border: 2px dashed #ffffff80;
-}
-
-input[type="file"] {
-  display: block;
-  margin: 0 auto 1rem;
-  color: #fff;
-  font-size: 0.85rem;
-}
-
-.user-info {
-  text-align: left;
-  padding-left: 1rem;
-}
-
-.user-info p {
-  margin: 0.5rem 0;
-  font-size: 1rem;
-  color: #ffffff;
-}
-
-ion-label {
-  margin-top: 1rem;
-  display: block;
-  font-weight: 500;
-  color: #ffffff;
-}
-
-ion-input,
-ion-select {
-  --background: rgba(255, 255, 255, 0.2);
-  --color: #ffffff;
-  --padding-start: 12px;
-  border-radius: 12px;
-  font-size: 1rem;
+  border: 2px solid #ccc;
   margin-bottom: 0.5rem;
 }
 
-.btnSave {
-  --background: rgba(35, 112, 255, 0.584);
-  margin-top: 1.5rem;
-  height: 3rem;
-  --border-radius: 100px;
+.errore {
+  color: red;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  justify-content: center;
 }
-
-
-
-
