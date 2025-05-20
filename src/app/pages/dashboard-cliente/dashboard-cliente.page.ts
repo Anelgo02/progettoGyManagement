@@ -58,17 +58,15 @@ export class DashboardClientePage implements OnInit {
   constructor(private workoutSvc: WorkoutService, private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
-    if (!this.auth.uid) {
-      this.router.navigate(['/login']);
-
-    }
-
-    this.auth.user$.subscribe(user => {
-    if (user) {
+  this.auth.user$.subscribe(user => {
+    if (user && user.uid) {
       this.allenamenti$ = this.workoutSvc.list(user.uid);
+    } else {
+      this.router.navigate(['/login']);
     }
   });
-  }
+}
+
 
   logout() {
     this.auth.logout();
