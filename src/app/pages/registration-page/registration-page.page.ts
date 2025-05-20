@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -19,11 +20,24 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class RegisterPage {
+  name: string = '';
+  surname: string = '';
+  phone: string = '';
+  username: string = '';
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+
   showPassword = false;
   showConfirmPassword = false;
+
+  isValidName = true;
+  isValidSurname = true;
+  isValidPassword: boolean = true;
+  isValidEmail: boolean = true;
+  isValidPhone = true;
+  isValidUsername = true;
+  isPasswordMatch = true;
 
   constructor(private auth: AuthService, private router: Router) {}
 
@@ -35,26 +49,55 @@ export class RegisterPage {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
 
+  validateFields(): boolean {
+  const nameRegex = /^[A-Za-zÀ-ÿ\s]+$/;
+  const phoneRegex = /^\d+$/;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  this.isValidName = nameRegex.test(this.name.trim());
+  this.isValidSurname = nameRegex.test(this.surname.trim());
+  this.isValidPhone = phoneRegex.test(this.phone.trim());
+  this.isValidUsername = this.username.trim().length > 0;
+  this.isValidPassword = passwordRegex.test(this.password);
+  this.isPasswordMatch = this.password === this.confirmPassword;
+  this.isValidEmail = emailRegex.test(this.email.trim());
+
+  return !!this.email && !!this.password && !!this.confirmPassword &&
+    this.isValidName && this.isValidSurname &&
+    this.isValidPhone && this.isValidUsername &&
+    this.isValidPassword && this.isPasswordMatch && this.isValidEmail;
+}
+
+
+
+
   register() {
-    if (!this.email || !this.password || !this.confirmPassword) {
+    if (!this.validateFields()) {
       Swal.fire({
         title: 'Errore',
-        text: 'Compila tutti i campi',
+        text: 'Controlla i campi evidenziati',
         icon: 'error',
         heightAuto: false
       });
       return;
     }
 
-    if (this.password !== this.confirmPassword) {
-      Swal.fire({
-        title: 'Errore',
-        text: 'Le password non coincidono',
-        icon: 'error',
-        heightAuto: false
-      });
-      return;
-    }
+    // Puoi aggiungere qui la chiamata al tuo AuthService
+    Swal.fire({
+      title: 'Registrazione riuscita!',
+      text: 'Ora puoi effettuare il login',
+      icon: 'success',
+      heightAuto: false
+    });
+
+    this.router.navigate(['/login']);
+  }
+}
+
+  
+
+
 
     //this.auth.register(this.email, this.password).subscribe(success => {
      /* if (success) {
@@ -73,6 +116,3 @@ export class RegisterPage {
         });
       }
     });*/
-  }
-}
-
