@@ -1,13 +1,14 @@
 import { BehaviorSubject, Observable, tap } from "rxjs";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { User } from '../models/user';
+import { User } from "../models/user";
+
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  /** Comportamento reattivo centralizzato per l'utente */
+  /** userSubject inizializzato vuoto */
   private userSubject = new BehaviorSubject<User | null>(null);
   readonly user$ = this.userSubject.asObservable(); // solo readonly esternamente
 

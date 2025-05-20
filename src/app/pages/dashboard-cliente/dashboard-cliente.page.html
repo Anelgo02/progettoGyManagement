@@ -44,7 +44,8 @@
 <ion-content id="main-content" fullscreen class="ion-padding">
 
   <!-- LISTA / LOADING / VUOTO con async pipe -->
-  <ng-container *ngIf="allenamenti$ | async as allenamenti; else loading">
+  <ng-container *ngIf="upcomingBookings$ | async as allenamenti">
+
     
     <ion-card *ngFor="let a of allenamenti">
       <ion-card-header>

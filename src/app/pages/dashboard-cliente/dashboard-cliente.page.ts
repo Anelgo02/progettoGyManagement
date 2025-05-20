@@ -1,80 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, AsyncPipe, NgIf, NgFor } from '@angular/common';
-
-import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonIcon,
-  IonLabel,
-  IonButtons,
-  IonButton,
-  IonAvatar,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardSubtitle,
-  IonCardContent,
-  IonChip,
-  IonMenu,
-  IonMenuButton,
-  IonList,
-  IonItem,
-  IonFooter,
-  IonTabBar,
-  IonTabButton,
-  IonSkeletonText
-} from '@ionic/angular/standalone';
-
-import { Observable } from 'rxjs';
-import { Allenamento } from '../../models/allenamento';
-import { WorkoutService } from '../../services/workout.service';
+import { CustomerService } from '../../services/customer.service';
 import { AuthService } from '../../core/auth.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+import {
+  IonHeader, IonItem, IonContent, IonToolbar, IonIcon, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonCard, IonSkeletonText,
+  IonFooter, IonCardContent, IonChip, IonTabBar, IonTabButton, IonCardHeader, IonButtons, IonCardTitle, IonCardSubtitle, IonMenuButton
+} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-dashboard-cliente',
   templateUrl: './dashboard-cliente.page.html',
   styleUrls: ['./dashboard-cliente.page.scss'],
   standalone: true,
-  imports: [
-    // Ionic UI
-    IonContent, IonHeader, IonTitle, IonToolbar, IonIcon, IonLabel, IonButtons,
-    IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle,
-    IonCardContent, IonChip, IonMenu, IonMenuButton, IonList, IonItem,
-    IonFooter, IonTabBar, IonTabButton, IonSkeletonText,
-    // Angular common
-    CommonModule, NgIf, NgFor, AsyncPipe
+  imports: [IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader, IonTabButton, IonTabBar, IonChip, IonIcon, IonToolbar, IonContent, IonItem, IonHeader, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonCard, IonSkeletonText, IonFooter
+    , IonCardContent, CommonModule
+    // Ionic UI + Angular
+    // ...come nel tuo esempio originale
   ]
 })
-
-
 export class DashboardClientePage implements OnInit {
+  upcomingBookings$!: Observable<any[]>;
 
-  /** Stream degli allenamenti (arriva dal service) */
-  allenamenti$!: Observable<Allenamento[]>;
-
-  constructor(private workoutSvc: WorkoutService, private auth: AuthService, private router: Router) { }
+  constructor(private customerSvc: CustomerService, private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
-  this.auth.user$.subscribe(user => {
-    if (user && user.uid) {
-      this.allenamenti$ = this.workoutSvc.list(user.uid);
-    } else {
-      this.router.navigate(['/login']);
-    }
-  });
-}
-
+    this.upcomingBookings$ = this.customerSvc.getUpcomingBookings();
+  }
 
   logout() {
     this.auth.logout();
     this.router.navigate(['/login']);
-    console.log('Logout eseguito');
   }
 
   recensisci() {
-
+    // apri pagina recensione
   }
 }

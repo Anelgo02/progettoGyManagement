@@ -21,7 +21,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
 })
 export class LoginPage{
-  email: string = '';
+  username: string = '';
   password: string = '';
   showPassword = false;
   
@@ -32,7 +32,7 @@ export class LoginPage{
   }
 
   login() {
-  this.auth.login(this.email, this.password).subscribe({
+  this.auth.login(this.username, this.password).subscribe({
     next: (res) => {
       if (res.status === 'success') {
         this.router.navigate(['/dashboard']);
