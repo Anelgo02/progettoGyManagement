@@ -4,7 +4,8 @@ import { AuthService } from '../../core/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
-import { MenuController,
+import {
+  MenuController,
   IonHeader, IonItem, IonContent, IonToolbar, IonIcon, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonCard, IonSkeletonText,
   IonFooter, IonCardContent, IonChip, IonTabBar, IonTabButton, IonCardHeader, IonButtons, IonCardTitle, IonCardSubtitle, IonMenuButton
 } from "@ionic/angular/standalone";
@@ -14,7 +15,7 @@ import { MenuController,
   templateUrl: './dashboard-cliente.page.html',
   styleUrls: ['./dashboard-cliente.page.scss'],
   standalone: true,
-  imports: [ IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader, IonTabButton, IonTabBar, IonChip, IonIcon, IonToolbar, IonContent, IonItem, IonHeader, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonCard, IonSkeletonText, IonFooter
+  imports: [IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader, IonTabButton, IonTabBar, IonChip, IonIcon, IonToolbar, IonContent, IonItem, IonHeader, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonCard, IonSkeletonText, IonFooter
     , IonCardContent, CommonModule
     // Ionic UI + Angular
     // ...come nel tuo esempio originale
@@ -26,7 +27,7 @@ export class DashboardClientePage implements OnInit {
   constructor(private menuCtrl: MenuController, private customerSvc: CustomerService, private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
-    
+
     this.auth.user$.subscribe(user => {
       if (!user) {
         this.router.navigate(['/login']);
@@ -41,8 +42,10 @@ export class DashboardClientePage implements OnInit {
   }
 
   logout() {
-    this.auth.logout().subscribe(() => {
-      this.router.navigate(['/login']);
+    this.menuCtrl.close().then(() => {
+      this.auth.logout().subscribe(() => {
+        this.router.navigate(['/login']);
+      });
     });
   }
 
@@ -50,6 +53,6 @@ export class DashboardClientePage implements OnInit {
     this.menuCtrl.close().then(() => {
       this.router.navigate(['/review-page']);
     }); // chiude il menu
-    
+
   }
 }
