@@ -32,24 +32,33 @@ export class LoginPage{
   }
 
   login() {
-
-    this.auth.login(this.email, this.password).subscribe(success => {
-      if (success) {
+  this.auth.login(this.email, this.password).subscribe({
+    next: (res) => {
+      if (res.status === 'success') {
         this.router.navigate(['/dashboard']);
       } else {
         Swal.fire({
-        title: 'Attenzione',
-        text: 'Email e password errate',
-        icon: 'warning',
+          title: 'Attenzione',
+          text: res.message || 'Credenziali non valide',
+          icon: 'warning',
+          heightAuto: false
+        });
+      }
+    },
+    error: (err) => {
+      Swal.fire({
+        title: 'Errore',
+        text: err.error?.message || 'Errore durante il login',
+        icon: 'error',
         heightAuto: false
       });
-      }
-    });
-  
-      
+    }
+  });
+}
+
+
     
 
   
 }
 
-}

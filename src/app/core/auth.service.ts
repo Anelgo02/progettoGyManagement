@@ -1,46 +1,47 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { map, shareReplay } from 'rxjs/operators';
+import { BehaviorSubject, Observable, tap } from "rxjs";
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 import { User } from '../models/user';
-
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  /** ⤵️  stato utente: null finché non “logghi” */
-  private currentUser$ = new BehaviorSubject<User | null>(null);
+  /** Comportamento reattivo centralizzato per l'utente */
+  private userSubject = new BehaviorSubject<User | null>(null);
+  readonly user$ = this.userSubject.asObservable(); // solo readonly esternamente
 
+  private readonly apiUrl = 'http://localhost:5000/api';
 
-  constructor(private http: HttpClient) {}
-  /** ←  hard-coded solo per i test 
-  readonly uid = 'u123';*/
-
-  // --- API pubblica ------------------------------------------------------
-
-  /** osservabile che puoi usare con async pipe per nascondere pulsanti, ecc. */
-  readonly user$: Observable<User | null> = this.currentUser$.asObservable();
-
-  /** UID rapido (getter): utile nei service */
-  get uid(): string {
-    return this.currentUser$.value?.uid ?? '';
+  constructor(private http: HttpClient) {
+    const saved = localStorage.getItem('user');
+    if (saved) {
+      this.userSubject.next(JSON.parse(saved));
+    }
   }
 
-  
-  login(email: string, password: string): Observable<boolean> {
-    
-    return this.http.get<User[]>(`http://localhost:3000/users?email=${email}&password=${password}`).pipe(
-      map(users => {
-        const found = users[0];
-        this.currentUser$.next(found ?? null);
-        return !!found;
+  /** Getter rapido per UID */
+  get uid(): string {
+    return this.userSubject.value?.uid ?? '';
+  }
+
+  login(username: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, { username, password }, { withCredentials: true }).pipe(
+      tap((res: any) => {
+        if (res.status === 'success') {
+          this.userSubject.next(res.data);
+          localStorage.setItem('user', JSON.stringify(res.data));
+        }
       })
     );
   }
 
-  /** Simula un logout */
-  logout(): void {
-    this.currentUser$.next(null);
+  logout(): Observable<any> {
+    return this.http.post(`${this.apiUrl}/logout`, {}, { withCredentials: true }).pipe(
+      tap(() => {
+        this.userSubject.next(null);
+        localStorage.removeItem('user');
+      })
+    );
   }
 }
