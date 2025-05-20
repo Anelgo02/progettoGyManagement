@@ -5,7 +5,7 @@ export const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'dashboard-cliente',    
     pathMatch: 'full',
   },
 
@@ -16,7 +16,7 @@ export const routes: Routes = [
   },
   
   {
-    path: 'dashboard',
+    path: 'dashboard-cliente',
     loadComponent: () => import('./pages/dashboard-cliente/dashboard-cliente.page').then( m => m.DashboardClientePage)
   },
   {

@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { ReviewService } from '../../services/review.service';
+import {
+  IonHeader, IonItem, IonContent, IonToolbar, IonIcon, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonCard, IonSkeletonText,
+  IonFooter, IonCardContent, IonChip, IonTabBar, IonTabButton, IonCardHeader, IonButtons, IonCardTitle, IonCardSubtitle, IonMenuButton, IonTextarea, IonDatetime
+} from "@ionic/angular/standalone";
+import { AuthService } from 'src/app/core/auth.service';
 
 @Component({
   selector: 'app-review-page',
@@ -12,7 +16,9 @@ import { ReviewService } from '../../services/review.service';
   styleUrls: ['./review-page.page.scss'],
   standalone: true,
   imports: [
-    IonicModule,
+    IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader, IonTabButton, IonTabBar, IonChip, IonIcon, IonToolbar,
+    IonContent, IonItem, IonHeader, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonCard, IonSkeletonText, IonFooter,
+    IonTextarea, IonDatetime,
     FormsModule,
     RouterModule,
     CommonModule,
@@ -24,11 +30,18 @@ export class ReviewPage {
   rating: number = 0;
   reviewText: string = '';
   reviewDate: string = ''; // formato ISO
+  
 
-  constructor(private reviewService: ReviewService) {}
+  constructor(private reviewService: ReviewService, private auth: AuthService, private router: Router) { }
 
   setRating(stars: number) {
     this.rating = stars;
+  }
+
+  logout() {
+    this.auth.logout().subscribe(() => {
+      this.router.navigate(['/login']);
+    });
   }
 
   isToday(dateStr: string): boolean {
@@ -104,5 +117,10 @@ export class ReviewPage {
         });
       }
     });
+
+    
   }
-}
+  }
+
+
+

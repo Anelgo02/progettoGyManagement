@@ -27,6 +27,12 @@ export class LoginPage{
   
   constructor(private auth: AuthService, private router: Router) {}
 
+  ngOnInit() {
+    if (this.auth.isLoggedIn()) {
+      this.router.navigate(['/dashboard-cliente']);
+    }
+  }
+
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
@@ -35,7 +41,7 @@ export class LoginPage{
   this.auth.login(this.username, this.password).subscribe({
     next: (res) => {
       if (res.status === 'success') {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard-cliente']);
       } else {
         Swal.fire({
           title: 'Attenzione',

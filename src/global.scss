@@ -61,3 +61,8 @@
 .label {
   font-weight: 400; // Regular
 }
+
+ion-content {
+  --background: none;
+  background: linear-gradient(135deg, #2370ff 0%, #00e0ff 100%);
+}

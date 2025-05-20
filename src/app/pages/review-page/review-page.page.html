@@ -1,5 +1,47 @@
+<!-- MENU LATERALE -------------------------------------------------------->
+<ion-menu side="start" menuId="main-menu" contentId="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title >Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div class="menu-flex-container">
+      <ion-list>
+        <ion-item routerLink="/review-page" class="recensisci-item">
+          <ion-icon name="star-outline" slot="start"></ion-icon>
+          <ion-label>Recensisci PT</ion-label>
+        </ion-item>
+      </ion-list>
+      <div class="menu-bottom">
+        <ion-button expand="block" color="danger" class="logoutBtn" (click)="logout()">
+          <ion-icon name="log-out-outline" slot="start"></ion-icon>
+          Logout
+        </ion-button>
+        <div class="menu-footer">
+          Gruppo studio Gulo-Cipo-Cost:<br>
+          Progetto Università degli Studi di Palermo
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-menu>
 
-<ion-content class="ion-padding" fullscreen="true">
+<!-- HEADER --------------------------------------------------------------->
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu" ></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color: aliceblue;" >GyManagement
+      <img src="../../../assets/icon/powerlifting.png" alt="Logo" style="height: 32px; width: auto; vertical-align: middle;" />
+    </ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content id="main-content" class="ion-padding" fullscreen="true">
   <div class="review-container">
     <h2>Recensisci il tuo Personal Trainer</h2>
 
@@ -33,3 +75,24 @@
     <ion-button class="btnPublish" expand="block" (click)="rate_trainer()">Pubblica</ion-button>
   </div>
 </ion-content>
+
+<!-- TAB BAR -------------------------------------------------------------->
+<ion-footer>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="home" routerLink="/dashboard-cliente"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="prenota">
+      <ion-icon name="calendar"></ion-icon>
+      <ion-label>Prenota</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profilo">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Profilo</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-footer>
+
