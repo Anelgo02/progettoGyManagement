@@ -1,36 +1,93 @@
+
 <ion-content class="ion-padding" fullscreen="true">
   <div class="register-container">
     <h2>Registrazione</h2>
 
-    <div class="email-wrapper">
-      <ion-label>Email</ion-label>
-      <ion-input type="email" placeholder="Inserisci la tua email" [(ngModel)]="email" required></ion-input>
+    <!-- Nome -->
+    <div class="input-wrapper" [class.invalid]="!isValidName">
+      <ion-label>Nome</ion-label>
+      <ion-input type="text" placeholder="Inserisci il nome" [(ngModel)]="name"></ion-input>
+      <ion-icon name="close-circle" *ngIf="!isValidName"></ion-icon>
+      <ion-text color="danger" *ngIf="!isValidName">
+        <p class="error-text">Il nome deve contenere solo lettere.</p>
+      </ion-text>
     </div>
 
-    <div class="password-wrapper">
+    <!-- Cognome -->
+    <div class="input-wrapper" [class.invalid]="!isValidSurname">
+      <ion-label>Cognome</ion-label>
+      <ion-input type="text" placeholder="Inserisci il cognome" [(ngModel)]="surname"></ion-input>
+      <ion-icon name="close-circle" *ngIf="!isValidSurname"></ion-icon>
+      <ion-text color="danger" *ngIf="!isValidSurname">
+        <p class="error-text">Il cognome deve contenere solo lettere.</p>
+      </ion-text>
+    </div>
+
+    <!-- Telefono -->
+    <div class="input-wrapper" [class.invalid]="!isValidPhone">
+      <ion-label>Telefono</ion-label>
+      <ion-input type="tel" placeholder="Inserisci il numero di telefono" [(ngModel)]="phone"></ion-input>
+      <ion-icon name="close-circle" *ngIf="!isValidPhone"></ion-icon>
+      <ion-text color="danger" *ngIf="!isValidPhone">
+        <p class="error-text">Il numero di telefono deve contenere solo cifre.</p>
+      </ion-text>
+    </div>
+
+    <!-- Username -->
+    <div class="input-wrapper" [class.invalid]="!isValidUsername">
+      <ion-label>Username</ion-label>
+      <ion-input type="text" placeholder="Inserisci uno username" [(ngModel)]="username"></ion-input>
+      <ion-icon name="close-circle" *ngIf="!isValidUsername"></ion-icon>
+      <ion-text color="danger" *ngIf="!isValidUsername">
+        <p class="error-text">Inserisci uno username valido.</p>
+      </ion-text>
+    </div>
+
+    <!-- Email -->
+    <div class="email-wrapper" [class.invalid]="!isValidEmail">
+      <ion-label>Email</ion-label>
+      <ion-input type="email" placeholder="Inserisci la tua email" [(ngModel)]="email"></ion-input>
+      <ion-icon name="close-circle" *ngIf="!isValidEmail"></ion-icon>
+      <ion-text color="danger" *ngIf="!isValidEmail">
+        <p class="error-text">Inserisci un'email valida.</p>
+      </ion-text>
+    </div>
+
+    <!-- Password -->
+    <div class="password-wrapper" [class.invalid]="!isValidPassword">
       <ion-label>Password</ion-label>
-      <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="Crea una password" [(ngModel)]="password" required>
+      <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="Crea una password" [(ngModel)]="password">
         <ion-button fill="clear" size="small" (click)="togglePasswordVisibility()" slot="end">
           <ion-icon class="pwdIcon" [name]="showPassword ? 'eye-off-outline' : 'eye-outline'" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-input>
+      <ion-icon name="close-circle" *ngIf="!isValidPassword"></ion-icon>
+      <ion-text color="danger" *ngIf="!isValidPassword">
+        <p class="error-text">Min 8 caratteri, 1 maiuscola, 1 minuscola, 1 numero e 1 simbolo.</p>
+      </ion-text>
     </div>
 
-    <div class="password-wrapper">
+    <!-- Conferma Password -->
+    <div class="password-wrapper" [class.invalid]="!isPasswordMatch">
       <ion-label>Conferma Password</ion-label>
-      <ion-input [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Ripeti la password" [(ngModel)]="confirmPassword" required>
+      <ion-input [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Conferma la password" [(ngModel)]="confirmPassword">
         <ion-button fill="clear" size="small" (click)="toggleConfirmPasswordVisibility()" slot="end">
           <ion-icon class="pwdIcon" [name]="showConfirmPassword ? 'eye-off-outline' : 'eye-outline'" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-input>
+      <ion-icon name="close-circle" *ngIf="!isPasswordMatch"></ion-icon>
+      <ion-text color="danger" *ngIf="!isPasswordMatch">
+        <p class="error-text">Le password non coincidono.</p>
+      </ion-text>
     </div>
 
-    <ion-button class="btnRegister" expand="block" (click)="register()">Registrati</ion-button>
+    <!-- Bottone Registrati -->
+    <ion-button expand="block" class="btnRegister" (click)="register()">Registrati</ion-button>
 
-    <p class="reg">
+    <div class="reg">
       Hai già un account?
       <a [routerLink]="['/login']">Accedi</a>
-    </p>
+    </div>
   </div>
 </ion-content>
 
