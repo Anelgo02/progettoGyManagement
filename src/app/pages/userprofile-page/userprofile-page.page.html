@@ -1,0 +1,32 @@
+<ion-content class="ion-padding" fullscreen="true">
+  <div class="profile-container">
+    <h2>Profilo Utente</h2>
+
+    <div class="profile-picture-wrapper">
+      <img *ngIf="user.foto; else placeholder" [src]="user.foto" alt="Foto profilo" class="profile-picture" />
+      <ng-template #placeholder>
+        <div class="profile-placeholder">Nessuna foto</div>
+      </ng-template>
+
+      <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+    </div>
+
+    <div class="user-info">
+      <ion-label>Nome</ion-label>
+      <ion-input [(ngModel)]="user.nome" placeholder="Nome"></ion-input>
+
+      <ion-label>Cognome</ion-label>
+      <ion-input [(ngModel)]="user.cognome" placeholder="Cognome"></ion-input>
+
+      <ion-label>Username</ion-label>
+      <ion-input [(ngModel)]="user.username" placeholder="Username"></ion-input>
+
+      <ion-label>Ruolo</ion-label>
+      <ion-select [(ngModel)]="user.ruolo">
+        <ion-select-option *ngFor="let ruolo of ruoliDisponibili" [value]="ruolo">{{ ruolo }}</ion-select-option>
+      </ion-select>
+    </div>
+
+    <ion-button class="btnSave" expand="block" (click)="salvaModifiche()">Salva Modifiche</ion-button>
+  </div>
+</ion-content>
