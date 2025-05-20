@@ -116,13 +116,18 @@ ion-card {
   margin: 0 8px 8px 8px;
 
   ion-icon {
+    cursor: pointer;
     color: #2370ff;
   }
   ion-label {
+    cursor: pointer;
     color: #2370ff;
     font-weight: 600;
   }
+
+
 }
+
 
 
 

@@ -1,10 +1,10 @@
-
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
+import { ReviewService } from '../../services/review.service';
 
 @Component({
   selector: 'app-review-page',
@@ -15,13 +15,17 @@ import { CommonModule } from '@angular/common';
     IonicModule,
     FormsModule,
     RouterModule,
-    CommonModule
-  ]
+    CommonModule,
+  ],
+  providers: [ReviewService]
 })
 export class ReviewPage {
+
   rating: number = 0;
   reviewText: string = '';
   reviewDate: string = ''; // formato ISO
+
+  constructor(private reviewService: ReviewService) {}
 
   setRating(stars: number) {
     this.rating = stars;
@@ -38,7 +42,7 @@ export class ReviewPage {
     );
   }
 
-  publishReview() {
+  rate_trainer() {
     if (!this.reviewDate) {
       Swal.fire({
         title: 'Errore',
@@ -72,17 +76,33 @@ export class ReviewPage {
       return;
     }
 
-    Swal.fire({
-      title: 'Pubblicazione riuscita',
-      text: 'Recensione inviata con successo!',
-      icon: 'success',
-      confirmButtonColor: '#28a745',
-      heightAuto: false
-    });
+    const trainerId = 1;
 
-    // Reset campi
-    this.rating = 0;
-    this.reviewText = '';
-    this.reviewDate = '';
+    this.reviewService.sendRating(trainerId, this.rating, this.reviewText).subscribe({
+      next: () => {
+        Swal.fire({
+          title: 'Pubblicazione riuscita',
+          text: 'Recensione inviata con successo!',
+          icon: 'success',
+          confirmButtonColor: '#28a745',
+          heightAuto: false
+        });
+
+        // Reset campi
+        this.rating = 0;
+        this.reviewText = '';
+        this.reviewDate = '';
+      },
+      error: (err: any) => {
+        console.error(err);
+        Swal.fire({
+          title: 'Errore',
+          text: err.error?.message || 'Errore durante l’invio della recensione',
+          icon: 'error',
+          confirmButtonColor: '#dc3545',
+          heightAuto: false
+        });
+      }
+    });
   }
 }
