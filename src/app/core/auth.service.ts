@@ -2,6 +2,7 @@ import { BehaviorSubject, Observable, tap } from "rxjs";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { User } from "../models/user";
+import { Router } from "@angular/router";
 
 
 
@@ -14,7 +15,7 @@ export class AuthService {
 
   private readonly apiUrl = 'http://localhost:5000/api';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     const saved = localStorage.getItem('user');
     if (saved) {
       this.userSubject.next(JSON.parse(saved));
@@ -32,6 +33,7 @@ export class AuthService {
         if (res.status === 'success') {
           this.userSubject.next(res.data);
           localStorage.setItem('user', JSON.stringify(res.data));
+          
         }
       })
     );
@@ -52,7 +54,5 @@ export class AuthService {
 }
 
 
-  isLoggedIn(): boolean {
-    return !!this.userSubject.value;
-  } 
+  
 }
