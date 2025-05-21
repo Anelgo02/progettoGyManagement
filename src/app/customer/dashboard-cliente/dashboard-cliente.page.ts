@@ -9,6 +9,7 @@ import {
   IonHeader, IonItem, IonContent, IonToolbar, IonIcon, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonCard, IonSkeletonText,
   IonFooter, IonCardContent, IonChip, IonTabBar, IonTabButton, IonCardHeader, IonButtons, IonCardTitle, IonCardSubtitle, IonMenuButton
 } from "@ionic/angular/standalone";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard-cliente',
@@ -26,15 +27,20 @@ export class DashboardClientePage {
   upcomingBookings$!: Observable<any[]>;
 
   constructor(private menuCtrl: MenuController, private customerSvc: CustomerService, private auth: AuthService, private router: Router) { 
-    this.auth.user$.pipe().subscribe(user => {
-      if (!user) {
-        this.router.navigate(['/login']);
-        
-      } else {
-        console.log(user.uid);
-        this.upcomingBookings$ = this.customerSvc.getUpcomingBookings();
-      }
-    });
+    
+    this.auth.user$.subscribe(user => {
+    if (!user || user.role?.toLowerCase() !== 'customer') {
+      this.router.navigate(['/login']);
+      Swal.fire({
+        title: 'Errore',
+        text: 'Non hai i permessi per accedere a questa pagina',
+        icon: 'error',
+        heightAuto: false
+      });
+    } else {
+      this.upcomingBookings$ = this.customerSvc.getUpcomingBookings();
+    }
+  });
   }
 
 

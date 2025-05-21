@@ -25,7 +25,32 @@ export class LoginPage{
   password: string = '';
   showPassword = false;
   
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) {
+    // Controlla se l'utente è già loggato
+    this.auth.user$.subscribe(user => {
+      if (user) {
+        const ruolo = user.role?.toLowerCase();
+        switch (ruolo) {
+          case 'customer':
+            this.router.navigate(['/customer/dashboard']);
+            break;
+          case 'trainer':
+            this.router.navigate(['dashboard-personal-trainer']);
+            break;
+          case 'admin':
+            this.router.navigate(['/admin/dashboard']);
+            break;
+          default:
+            Swal.fire({
+              title: 'Errore',
+              text: `Ruolo non riconosciuto: ${ruolo}`,
+              icon: 'error',
+              heightAuto: false
+            });
+        }
+      }
+    });
+  }
 
   ngOnInit() {
     
