@@ -1,0 +1,90 @@
+
+<!-- MENU LATERALE -------------------------------------------------------->
+<ion-menu side="start" menuId="main-menu-booking" contentId="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div class="menu-flex-container">
+      <ion-list>
+        <ion-item routerLink="/review-page" class="recensisci-item">
+          <ion-icon name="star-outline" slot="start"></ion-icon>
+          <ion-label>Recensisci PT</ion-label>
+        </ion-item>
+      </ion-list>
+      <div class="menu-bottom">
+        <ion-button expand="block" color="danger" class="logoutBtn" (click)="logout()">
+          <ion-icon name="log-out-outline" slot="start"></ion-icon>
+          Logout
+        </ion-button>
+        <div class="menu-footer">
+          Gruppo studio Gulo-Cipo-Cost:<br />
+          Progetto Università degli Studi di Palermo
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-menu>
+
+<!-- HEADER --------------------------------------------------------------->
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu-booking"></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color: aliceblue;">
+      GyManagement
+      <img src="../../../assets/icon/powerlifting.png" alt="Logo" style="height: 32px; width: auto; vertical-align: middle;" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- CONTENUTO ------------------------------------------------------------>
+<ion-content id="main-content" class="ion-padding" fullscreen="true">
+  <div class="review-container">
+    <h2>Prenota un Allenamento</h2>
+
+    <!-- Selezione data -->
+    <ion-label>Seleziona la data (entro 7 giorni)</ion-label>
+    <ion-datetime
+      presentation="date"
+      [(ngModel)]="selectedDate"
+      (ionChange)="onDateChange()"
+    ></ion-datetime>
+
+    <!-- Lista slot -->
+    <div *ngIf="availableSlots.length > 0" class="workouts-container">
+      <ion-card *ngFor="let slot of availableSlots">
+        <ion-label>{{ slot.start }} - {{ slot.end }}</ion-label>
+        <ion-button expand="block" (click)="bookSlot(slot)">Prenota</ion-button>
+      </ion-card>
+    </div>
+
+    <div *ngIf="errorMessage" class="no-workouts">
+      {{ errorMessage }}
+    </div>
+  </div>
+</ion-content>
+
+<!-- TAB BAR -------------------------------------------------------------->
+<ion-footer>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home" routerLink="/customer/dashboard">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="prenota">
+      <ion-icon name="calendar"></ion-icon>
+      <ion-label>Prenota</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profilo" routerLink="/customer/profile-page">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Profilo</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-footer>
+
