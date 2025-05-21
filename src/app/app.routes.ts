@@ -21,7 +21,7 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard-personal-trainer',
-    loadComponent: () => import('./pages/dashboard-personal-trainer/dashboard-personal-trainer.page').then( m => m.DashboardPersonalTrainerPage)
+    loadComponent: () => import('./pages/dashboard-personal-trainer/dashboard-personal-trainer.page').then( m => m.DashboardTrainerPage)
   },
   {
     path: 'registration-page',

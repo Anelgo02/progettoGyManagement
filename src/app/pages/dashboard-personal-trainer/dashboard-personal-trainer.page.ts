@@ -1,25 +1,76 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonTab, IonTabs, IonTabBar, IonIcon, IonLabel, IonTabButton, IonButton, IonButtons } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
+import { AuthService } from '../../core/auth.service';
+//import { TrainerService } from '../../services/trainer.service';
+import Swal from 'sweetalert2';
+import {
+  MenuController,
+  IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader,
+  IonTabButton, IonTabBar, IonChip, IonIcon, IonToolbar, IonContent,
+  IonItem, IonHeader, IonMenu, IonTitle, IonList, IonLabel,
+  IonButton, IonCard, IonSkeletonText, IonFooter, IonCardContent
+} from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-dashboard-personal-trainer',
+  selector: 'app-dashboard-trainer',
   templateUrl: './dashboard-personal-trainer.page.html',
   styleUrls: ['./dashboard-personal-trainer.page.scss'],
   standalone: true,
-  imports: [IonButtons, IonButton, IonIcon, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    RouterLink, IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader,
+    IonTabButton, IonTabBar, IonChip, IonIcon, IonToolbar, IonContent,
+    IonItem, IonHeader, IonMenu, IonTitle, IonList, IonLabel,
+    IonButton, IonCard, IonSkeletonText, IonFooter, IonCardContent, CommonModule
+  ]
 })
-export class DashboardPersonalTrainerPage implements OnInit {
+export class DashboardTrainerPage {
+  nextSessions$!: Observable<any[]>;
 
-  constructor(private router: Router) { }
-
-  vaiAlProfilo(){
-    this.router.navigate(['/profilo']);
+  constructor(
+    private menuCtrl: MenuController,
+    private auth: AuthService,
+    private router: Router,
+   // private trainerService: TrainerService
+  ) {
+    this.auth.user$.subscribe(user => {
+      if (!user || user.role?.toLowerCase() !== 'trainer') {
+        this.router.navigate(['/login']);
+        Swal.fire({
+          title: 'Errore',
+          text: 'Non hai i permessi per accedere a questa pagina',
+          icon: 'error',
+          heightAuto: false
+        });
+      } else {
+      //  this.nextSessions$ = this.trainerService.getNextSessions();
+      }
+    });
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
+    this.menuCtrl.close();
   }
 
+  logout() {
+    this.menuCtrl.close().then(() => {
+      this.auth.logout().subscribe(() => {
+        this.router.navigate(['/login']);
+      });
+    });
+  }
+
+  gestisciSlot() {
+    this.menuCtrl.close().then(() => {
+      this.router.navigate(['/trainer/manage-slots']);
+    });
+  }
+
+  vediClienti() {
+    this.menuCtrl.close().then(() => {
+      this.router.navigate(['/trainer/clients']);
+    });
+  }
 }
