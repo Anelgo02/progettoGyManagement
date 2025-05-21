@@ -5,7 +5,7 @@ export const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'dashboard-cliente',    
+    redirectTo: 'customer/dashboard',    
     pathMatch: 'full',
   },
 
@@ -16,8 +16,8 @@ export const routes: Routes = [
   },
   
   {
-    path: 'dashboard-cliente',
-    loadComponent: () => import('./pages/dashboard-cliente/dashboard-cliente.page').then( m => m.DashboardClientePage)
+    path: 'customer/dashboard',
+    loadComponent: () => import('./customer/dashboard-cliente/dashboard-cliente.page').then( m => m.DashboardClientePage)
   },
   {
     path: 'dashboard-personal-trainer',
@@ -28,12 +28,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/registration-page/registration-page.page').then( m => m.RegisterPage)
   },
   {
-    path: 'userprofile-page',
-    loadComponent: () => import('./pages/userprofile-page/userprofile-page.page').then( m => m.ProfilePage)
+    path: 'customer/profile-page',
+    loadComponent: () => import('./customer/userprofile-page/userprofile-page.page').then( m => m.ProfilePage)
   },
   {
-    path: 'review-page',
-    loadComponent: () => import('./pages/review-page/review-page.page').then( m => m.ReviewPage)
+    path: 'customer/review-page',
+    loadComponent: () => import('./customer/review-page/review-page.page').then( m => m.ReviewPage)
   }
 
 

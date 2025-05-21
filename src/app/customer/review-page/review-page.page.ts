@@ -5,8 +5,8 @@ import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { CustomerService } from '../../services/customer.service';
 import {
-  IonHeader, IonItem, IonContent, IonToolbar, IonIcon, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonCard, IonSkeletonText,
-  IonFooter, IonCardContent, IonChip, IonTabBar, IonTabButton, IonCardHeader, IonButtons, IonCardTitle, IonCardSubtitle, IonMenuButton, IonTextarea, IonDatetime
+  IonHeader, IonItem, IonContent, IonToolbar, IonIcon, IonMenu, IonTitle, IonList, IonLabel, IonButton,
+  IonFooter, IonTabBar, IonTabButton, IonButtons, IonMenuButton, IonTextarea, IonDatetime
 } from "@ionic/angular/standalone";
 import { AuthService } from 'src/app/core/auth.service';
 
@@ -16,8 +16,8 @@ import { AuthService } from 'src/app/core/auth.service';
   styleUrls: ['./review-page.page.scss'],
   standalone: true,
   imports: [
-    IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader, IonTabButton, IonTabBar, IonChip, IonIcon, IonToolbar,
-    IonContent, IonItem, IonHeader, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonCard, IonSkeletonText, IonFooter,
+    IonMenuButton, IonButtons, IonTabButton, IonTabBar,  IonIcon, IonToolbar,
+    IonContent, IonItem, IonHeader, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonFooter,
     IonTextarea, IonDatetime,
     FormsModule,
     RouterModule,

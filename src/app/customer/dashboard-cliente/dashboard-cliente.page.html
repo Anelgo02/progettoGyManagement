@@ -1,5 +1,5 @@
 <!-- MENU LATERALE -------------------------------------------------------->
-<ion-menu side="start" menuId="main-menu-review" contentId="main-content">
+<ion-menu side="start" menuId="main-menu" contentId="main-content">
   <ion-header>
     <ion-toolbar color="primary">
       <ion-title >Menu</ion-title>
@@ -8,7 +8,7 @@
   <ion-content>
     <div class="menu-flex-container">
       <ion-list>
-        <ion-item routerLink="/review-page" class="recensisci-item">
+        <ion-item (click)="recensisci()" class="recensisci-item">
           <ion-icon name="star-outline" slot="start"></ion-icon>
           <ion-label>Recensisci PT</ion-label>
         </ion-item>
@@ -31,7 +31,7 @@
 <ion-header translucent>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-menu-button menu="main-menu-review" ></ion-menu-button>
+      <ion-menu-button menu="main-menu" ></ion-menu-button>
     </ion-buttons>
     <ion-title style="color: aliceblue;" >GyManagement
       <img src="../../../assets/icon/powerlifting.png" alt="Logo" style="height: 32px; width: auto; vertical-align: middle;" />
@@ -40,46 +40,47 @@
   </ion-toolbar>
 </ion-header>
 
+<!-- CONTENUTO PRINCIPALE -------------------------------------------------->
+<ion-content id="main-content" fullscreen class="ion-padding">
 
-<ion-content id="main-content" class="ion-padding" fullscreen="true">
-  <div class="review-container">
-    <h2>Recensisci il tuo Personal Trainer</h2>
+  <!-- LISTA / LOADING / VUOTO con async pipe -->
+  <ng-container *ngIf="upcomingBookings$ | async as allenamenti; else loading">
 
-    <!-- Valutazione a stelle -->
-    <div class="star-rating">
-      <ion-icon
-        *ngFor="let star of [1, 2, 3, 4, 5]"
-        [name]="star <= rating ? 'star' : 'star-outline'"
-        (click)="setRating(star)"
-        class="star"
-      ></ion-icon>
+    <ion-card *ngFor="let a of allenamenti">
+      <ion-card-header>
+        <ion-card-title>allenamento con {{ a.trainer_name }}</ion-card-title>
+        <ion-card-subtitle>
+          {{ a.start_time | date:'dd/MM/yyyy' }} - {{ a.start_time | date:'HH:mm' }}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p><strong>Specializzazione:</strong> {{ a.specialization }}</p>
+        <ion-chip color="primary">
+          Slot #{{ a.id }}
+        </ion-chip>
+      </ion-card-content>
+    </ion-card>
+
+    <div *ngIf="!allenamenti.length" class="no-workouts">
+      Nessuna sessione prenotata.
     </div>
 
-    <!-- Campo recensione -->
-    <ion-label>Scrivi la tua recensione</ion-label>
-    <ion-textarea
-      auto-grow="true"
-      placeholder="Inserisci qui la tua recensione..."
-      [(ngModel)]="reviewText"
-    ></ion-textarea>
+  </ng-container>
 
-    <!-- Campo data recensione -->
-    <ion-label>Data della recensione</ion-label>
-    <ion-datetime
-      presentation="date"
-      display-format="DD/MM/YYYY"
-      [(ngModel)]="reviewDate"
-    ></ion-datetime>
+  <!-- scheletro mentre attende la risposta HTTP -->
+  <ng-template #loading>
+    <ion-skeleton-text animated style="width: 80%; height: 20px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 90%; height: 20px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 70%; height: 20px;"></ion-skeleton-text>
+  </ng-template>
 
-    <!-- Pulsante pubblica -->
-    <ion-button class="btnPublish" expand="block" (click)="rate_trainer()">Pubblica</ion-button>
-  </div>
 </ion-content>
 
 <!-- TAB BAR -------------------------------------------------------------->
 <ion-footer>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="home"  routerLink="/dashboard-cliente">
+    <ion-tab-button tab="home"  routerLink="/customer/dashboard">
       <ion-icon name="home"></ion-icon>
       <ion-label>Home</ion-label>
     </ion-tab-button>
@@ -89,10 +90,9 @@
       <ion-label>Prenota</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="profilo">
+    <ion-tab-button tab="profilo" routerLink="/customer/profile-page">
       <ion-icon name="person"></ion-icon>
       <ion-label>Profilo</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-footer>
-

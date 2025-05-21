@@ -1,0 +1,30 @@
+
+.profile-container {
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+  padding: 1rem;
+}
+
+.profile-image-wrapper {
+  display: none;
+}
+
+.profile-image {
+  display: none;
+}
+
+.profile-container{
+  border-radius: 20px;
+  background-color: rgba(16, 16, 16, 0.769);
+}
+
+ion-item {
+  --background: none;
+  --color: #ffffff;
+  padding: 0.5rem;
+}
+
+ion-button {
+  margin-top: 1rem;
+}

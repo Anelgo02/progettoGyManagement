@@ -1,5 +1,5 @@
 :host {
-  display: block;
+ 
   background: linear-gradient(135deg, #3090dfe2, #8fb3fbe6);
   color: #fff;
   height: 100vh;
@@ -9,14 +9,6 @@
 }
 
 
-ion-content {
-  --background: transparent;
-  --overflow: visible;
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 
 .review-container {
   max-width: 400px;

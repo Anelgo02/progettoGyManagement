@@ -41,7 +41,7 @@ export class LoginPage{
   this.auth.login(this.username, this.password).subscribe({
     next: (res) => {
       if (res.status === 'success') {
-        this.router.navigate(['/dashboard-cliente']);
+        this.router.navigate(['/customer/dashboard']);
       } else {
         Swal.fire({
           title: 'Attenzione',
