@@ -22,27 +22,26 @@ import {
   ]
 })
 
-export class DashboardClientePage implements OnInit {
+export class DashboardClientePage {
   upcomingBookings$!: Observable<any[]>;
 
-  constructor(private menuCtrl: MenuController, private customerSvc: CustomerService, private auth: AuthService, private router: Router) { }
+  constructor(private menuCtrl: MenuController, private customerSvc: CustomerService, private auth: AuthService, private router: Router) { 
+    this.auth.user$.pipe().subscribe(user => {
+      if (!user) {
+        this.router.navigate(['/login']);
+        
+      } else {
+        console.log(user.uid);
+        this.upcomingBookings$ = this.customerSvc.getUpcomingBookings();
+      }
+    });
+  }
 
-  ngOnInit() {
-  
-}
 
   ionViewWillEnter() {
     this.menuCtrl.close();
 
-    this.auth.user$.pipe().subscribe(user => {
-      if (!user) {
-        this.router.navigate(['/login']);
-      } else {
-        this.upcomingBookings$ = this.customerSvc.getUpcomingBookings();
-      }
-    });
-
-    this.menuCtrl.close();
+    
   }
 
   
