@@ -28,9 +28,7 @@ export class LoginPage{
   constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit() {
-    if (this.auth.isLoggedIn()) {
-      this.router.navigate(['/dashboard-cliente']);
-    }
+    
   }
 
   togglePasswordVisibility() {
@@ -41,7 +39,26 @@ export class LoginPage{
   this.auth.login(this.username, this.password).subscribe({
     next: (res) => {
       if (res.status === 'success') {
-        this.router.navigate(['/customer/dashboard']);
+        const ruolo = res.data?.role?.toLowerCase();
+
+        switch (ruolo) {
+          case 'customer':
+            this.router.navigate(['/customer/dashboard']);
+            break;
+          case 'trainer':
+            this.router.navigate(['dashboard-personal-trainer']);
+            break;
+          case 'admin':
+            this.router.navigate(['/admin/dashboard']);
+            break;
+          default:
+            Swal.fire({
+              title: 'Errore',
+              text: `Ruolo non riconosciuto: ${ruolo}`,
+              icon: 'error',
+              heightAuto: false
+            });
+        }
       } else {
         Swal.fire({
           title: 'Attenzione',
@@ -61,6 +78,7 @@ export class LoginPage{
     }
   });
 }
+
 
 
     

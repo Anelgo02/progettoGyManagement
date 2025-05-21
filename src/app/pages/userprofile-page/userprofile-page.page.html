@@ -1,0 +1,118 @@
+<!-- MENU LATERALE -------------------------------------------------------->
+<ion-menu side="start" menuId="main-menu-user" contentId="main-content-user-profile">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title >Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div class="menu-flex-container">
+      <ion-list>
+        <ion-item (click)="recensisci()" class="recensisci-item">
+          <ion-icon name="star-outline" slot="start"></ion-icon>
+          <ion-label>Recensisci PT</ion-label>
+        </ion-item>
+      </ion-list>
+      <div class="menu-bottom">
+        <ion-button expand="block" color="danger" class="logoutBtn" (click)="logout()">
+          <ion-icon name="log-out-outline" slot="start"></ion-icon>
+          Logout
+        </ion-button>
+        <div class="menu-footer">
+          Gruppo studio Gulo-Cipo-Cost:<br>
+          Progetto Università degli Studi di Palermo
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-menu>
+
+<!-- HEADER --------------------------------------------------------------->
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu-user" ></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color: aliceblue;" >GyManagement
+      <img src="../../../assets/icon/powerlifting.png" alt="Logo" style="height: 32px; width: auto; vertical-align: middle;" />
+    </ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+
+<ion-content class="ion-padding" fullscreen="true" id="main-content-user-profile">
+  <div class="profile-container">
+    <h2>Profilo Utente</h2>
+
+    <!-- Dati utente -->
+    <ion-item>
+      <ion-label position="stacked">Nome</ion-label>
+      <ion-input [value]="userData.nome" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Cognome</ion-label>
+      <ion-input [value]="userData.cognome" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Username</ion-label>
+      <ion-input [value]="userData.username" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input [value]="userData.email" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Numero di telefono</ion-label>
+      <ion-input [value]="userData.telefono" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Password</ion-label>
+      <ion-input
+        [type]="showPassword ? 'text' : 'password'"
+        [value]="userData.password"
+        readonly
+      ></ion-input>
+      <ion-button fill="clear" size="small" slot="end" (click)="togglePasswordVisibility()">
+        <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Ruolo</ion-label>
+      <ion-input [value]="userData.ruolo" readonly></ion-input>
+    </ion-item>
+
+    <!-- Pulsante Indietro -->
+    <ion-button expand="block" color="medium" (click)="tornaIndietro()">Indietro</ion-button>
+  </div>
+</ion-content>
+
+<!-- TAB BAR -->
+<ion-footer>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home"  routerLink="/customer/dashboard">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="prenota">
+      <ion-icon name="calendar"></ion-icon>
+      <ion-label>Prenota</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profilo" routerLink="/customer/profile-page">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Profilo</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-footer>
+
