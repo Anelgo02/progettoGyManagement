@@ -50,5 +50,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/dashboard-personal-trainer/dashboard-personal-trainer.page').then(m => m.DashboardTrainerPage),
     canActivate: [RoleGuard],
     data: { role: 'trainer' }
+  },
+  {
+    path: 'trainer-selection',
+    loadComponent: () => import('./pages/trainer-selection/trainer-selection.page').then( m => m.TrainerSelectionPage),
+    canActivate: [RoleGuard],
+    data: { role: 'customer' }
   }
+
 ];

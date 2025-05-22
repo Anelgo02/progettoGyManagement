@@ -34,21 +34,7 @@ export class DashboardTrainerPage {
     private auth: AuthService,
     private router: Router,
    // private trainerService: TrainerService
-  ) {
-    this.auth.user$.subscribe(user => {
-      if (!user || user.role?.toLowerCase() !== 'trainer') {
-        this.router.navigate(['/login']);
-        Swal.fire({
-          title: 'Errore',
-          text: 'Non hai i permessi per accedere a questa pagina',
-          icon: 'error',
-          heightAuto: false
-        });
-      } else {
-      //  this.nextSessions$ = this.trainerService.getNextSessions();
-      }
-    });
-  }
+  ) {}
 
   ionViewWillEnter() {
     this.menuCtrl.close();

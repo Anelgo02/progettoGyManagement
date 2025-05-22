@@ -5,5 +5,6 @@ export interface User {
   password: string;
   nome?: string;
   cognome?: string;
-  role?: string; // ad esempio: 'cliente', 'admin', ecc.
+  role?: string;
+  full_name: string; 
 }

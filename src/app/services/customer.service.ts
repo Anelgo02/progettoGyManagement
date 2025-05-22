@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Trainer } from '../models/Trainer';
 
 @Injectable({ providedIn: 'root' })
 export class CustomerService {
@@ -16,11 +17,15 @@ export class CustomerService {
   );
 }
 
-  getTrainers(): Observable<any[]> {
-    return this.http.get<any>(`${this.api}/trainers`, { withCredentials: true }).pipe(
-      map(res => res.data)
-    );
-  }
+  getTrainers(): Observable<Trainer[]> {
+  return this.http.get<{ status: string; data: Trainer[] }>(
+    'http://localhost:5000/api/customer/trainers',
+    { withCredentials: true }
+  ).pipe(
+    map(res => res.data)
+  );
+}
+
 
   getAvailableSlots(trainerId: number, date?: string): Observable<any[]> {
     const query = date ? `?trainer_id=${trainerId}&date=${date}` : `?trainer_id=${trainerId}`;

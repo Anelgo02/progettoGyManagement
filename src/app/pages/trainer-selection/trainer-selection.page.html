@@ -1,0 +1,51 @@
+<!--<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>trainer-selection</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">trainer-selection</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-content>
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-title>Seleziona Trainer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" fullscreen>
+
+  <h2 style="font-weight: bold; font-size: 1.5rem; margin-bottom: 1rem;">Lista Trainer:</h2>
+
+  <ng-container *ngIf="trainers$ | async as trainers">
+  <ion-card *ngFor="let trainer of trainers">
+    <ion-card-header>
+      <ion-card-title>{{ trainer.full_name }}</ion-card-title>
+      <ion-card-subtitle>{{ trainer.specialization }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Max per slot:</strong> {{ trainer.max_clients_per_slot }}</p>
+      <p><strong>Stelle medie:</strong> {{ trainer.avg_rating || "0" }} ⭐ ({{ trainer.rating_count }} recensioni)</p>
+    </ion-card-content>
+  </ion-card>
+</ng-container>
+
+  <ng-template #loading>
+    <ion-skeleton-text animated style="width: 80%; height: 20px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 90%; height: 20px;"></ion-skeleton-text>
+  </ng-template>
+
+  <ng-template #noTrainers>
+    <div class="no-workouts">
+      Nessun trainer disponibile al momento.
+    </div>
+  </ng-template>
+
+  <ion-button class="custom-home-button" expand="block" color="medium" (click)="goHome()" style="margin-top: 2rem;">
+    Torna alla Home
+  </ion-button>
+</ion-content>
