@@ -49,7 +49,7 @@ export class DashboardTrainerPage {
       }
     });
   }
-
+ 
   ionViewWillEnter() {
     this.menuCtrl.close();
   }
