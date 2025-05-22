@@ -1,47 +1,54 @@
 import { Routes } from '@angular/router';
+import { RoleGuard } from './guards/role.guard'; // importa la guard
 
 export const routes: Routes = [
- 
-
   {
     path: '',
-    redirectTo: 'customer/dashboard',    
+    redirectTo: 'login',
     pathMatch: 'full',
   },
 
- 
   {
     path: 'login',
     loadComponent: () => import('./pages/login-page/login-page').then((m) => m.LoginPage),
   },
-  
-  {
-    path: 'customer/dashboard',
-    loadComponent: () => import('./customer/dashboard-cliente/dashboard-cliente.page').then( m => m.DashboardClientePage)
-  },
-  {
-    path: 'dashboard-personal-trainer',
-    loadComponent: () => import('./pages/dashboard-personal-trainer/dashboard-personal-trainer.page').then( m => m.DashboardTrainerPage)
-  },
+
   {
     path: 'registration-page',
-    loadComponent: () => import('./pages/registration-page/registration-page.page').then( m => m.RegisterPage)
+    loadComponent: () => import('./pages/registration-page/registration-page.page').then((m) => m.RegisterPage),
+  },
+
+  // === ROTTE PROTETTE PER CUSTOMER ===
+  {
+    path: 'customer/dashboard',
+    loadComponent: () => import('./customer/dashboard-cliente/dashboard-cliente.page').then(m => m.DashboardClientePage),
+    canActivate: [RoleGuard],
+    data: { role: 'customer' }
   },
   {
     path: 'customer/profile-page',
-    loadComponent: () => import('./customer/userprofile-page/userprofile-page.page').then( m => m.ProfilePage)
+    loadComponent: () => import('./customer/userprofile-page/userprofile-page.page').then(m => m.ProfilePage),
+    canActivate: [RoleGuard],
+    data: { role: 'customer' }
   },
   {
     path: 'customer/review-page',
-    loadComponent: () => import('./customer/review-page/review-page.page').then( m => m.ReviewPage)
+    loadComponent: () => import('./customer/review-page/review-page.page').then(m => m.ReviewPage),
+    canActivate: [RoleGuard],
+    data: { role: 'customer' }
   },
   {
-    path: 'booking-page',
-    loadComponent: () => import('./customer/booking-page/booking-page.page').then( m => m.BookingPage)
+    path: 'customer/booking-page',
+    loadComponent: () => import('./customer/booking-page/booking-page.page').then(m => m.BookingPage),
+    canActivate: [RoleGuard],
+    data: { role: 'customer' }
+  },
+
+  // === ROTTA PER TRAINER ===
+  {
+    path: 'dashboard-personal-trainer',
+    loadComponent: () => import('./pages/dashboard-personal-trainer/dashboard-personal-trainer.page').then(m => m.DashboardTrainerPage),
+    canActivate: [RoleGuard],
+    data: { role: 'trainer' }
   }
-
-
-
-
 ];
-

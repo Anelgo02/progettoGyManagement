@@ -6,8 +6,9 @@ import { homeOutline, barbellOutline, searchOutline, notificationsOutline, setti
 import { InjectionToken } from '@angular/core';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { environment } from './environments/environment';
+import { authInterceptor } from './app/core/auth.interceptor';
 
 export const API_BASE = new InjectionToken<string>('API_BASE');
 
@@ -24,7 +25,7 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authInterceptor])),
     { provide: API_BASE, useValue: environment.apiBase }   // "http://localhost:3000"
   ],
 });

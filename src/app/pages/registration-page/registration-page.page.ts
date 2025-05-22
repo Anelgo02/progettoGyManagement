@@ -1,22 +1,20 @@
-
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
 import { RouterModule, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/core/auth.service';
 import { CommonModule } from '@angular/common';
+import { IonText, IonIcon, IonLabel, IonContent, IonButton, IonInput, IonItem, IonRadio, IonRadioGroup } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './registration-page.page.html',
   styleUrls: ['./registration-page.page.scss'],
   standalone: true,
-  imports: [
-    IonicModule,
+  imports: [IonRadio, IonItem, IonButton, IonContent, IonLabel, IonIcon, IonText, 
     FormsModule,
     RouterModule,
-    CommonModule
+    CommonModule, IonInput, IonRadioGroup 
   ]
 })
 export class RegisterPage {
@@ -27,6 +25,7 @@ export class RegisterPage {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+  specialization: string = '';
 
   showPassword = false;
   showConfirmPassword = false;
@@ -38,6 +37,11 @@ export class RegisterPage {
   isValidPhone = true;
   isValidUsername = true;
   isPasswordMatch = true;
+
+  selectedRole: 'customer' | 'trainer' = 'customer'; // valore di default
+
+
+
 
   constructor(private auth: AuthService, private router: Router) {}
 
@@ -71,48 +75,96 @@ export class RegisterPage {
 
 
 
-
-  register() {
-    if (!this.validateFields()) {
-      Swal.fire({
-        title: 'Errore',
-        text: 'Controlla i campi evidenziati',
-        icon: 'error',
-        heightAuto: false
-      });
-      return;
-    }
-
-    // Puoi aggiungere qui la chiamata al tuo AuthService
+register() {
+  if (!this.validateFields()) {
     Swal.fire({
-      title: 'Registrazione riuscita!',
-      text: 'Ora puoi effettuare il login',
-      icon: 'success',
+      title: 'Errore',
+      text: 'Controlla i campi evidenziati',
+      icon: 'error',
       heightAuto: false
     });
-
-    this.router.navigate(['/login']);
+    return;
   }
-}
 
-  
+  const userData: any = {
+    username: this.username.trim(),
+    password: this.password,
+    email: this.email.trim(),
+    full_name: `${this.name.trim()} ${this.surname.trim()}`,
+    phone: this.phone.trim(),
+    role: this.selectedRole
+  };
 
+  if (this.selectedRole === 'trainer' && !this.specialization.trim()) {
+    Swal.fire({
+      title: 'Errore',
+      text: 'La specializzazione è obbligatoria per i trainer.',
+      icon: 'error',
+      heightAuto: false
+    });
+    return;
+  }
 
+  if (this.selectedRole === 'trainer') {
+    userData.specialization = this.specialization.trim();
+  }
 
-    //this.auth.register(this.email, this.password).subscribe(success => {
-     /* if (success) {
-        Swal.fire({
-          title: 'Registrazione completata',
-          text: 'Ora puoi accedere con le tue credenziali',
-          icon: 'success',
-          heightAuto: false
-        }).then(() => this.router.navigate(['/login']));
+  this.auth.register(userData).subscribe({
+    next: (res) => {
+      if (res.status === 'success') {
+        // Login automatico dopo registrazione
+        this.auth.login(userData.username, userData.password).subscribe({
+          next: (loginRes) => {
+            if (loginRes.status === 'success') {
+              Swal.fire({
+                title: 'Benvenuto!',
+                text: 'Registrazione e login effettuati con successo!',
+                icon: 'success',
+                heightAuto: false
+              }).then(() => {
+                if (this.selectedRole === 'trainer') {
+                  this.router.navigate(['/trainer-dashboard']);
+                } else {
+                  this.router.navigate(['/customer/dashboard']);
+                }
+              });
+            } else {
+              Swal.fire({
+                title: 'Errore',
+                text: 'Login automatico fallito. Effettua il login manualmente.',
+                icon: 'warning',
+                heightAuto: false
+              }).then(() => this.router.navigate(['/login']));
+            }
+          },
+          error: () => {
+            Swal.fire({
+              title: 'Errore',
+              text: 'Login automatico fallito. Effettua il login manualmente.',
+              icon: 'warning',
+              heightAuto: false
+            }).then(() => this.router.navigate(['/login']));
+          }
+        });
       } else {
         Swal.fire({
           title: 'Errore',
-          text: 'Registrazione fallita',
+          text: res.message || 'Registrazione fallita',
           icon: 'error',
           heightAuto: false
         });
       }
-    });*/
+    },
+    error: (err) => {
+      Swal.fire({
+        title: 'Errore',
+        text: err.error?.message || 'Errore durante la registrazione',
+        icon: 'error',
+        heightAuto: false
+      });
+    }
+  });
+}
+
+}
+

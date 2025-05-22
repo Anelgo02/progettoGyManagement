@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
 import { AuthService } from '../../core/auth.service';
 import { Router, RouterLink } from '@angular/router';
@@ -16,41 +16,31 @@ import Swal from 'sweetalert2';
   templateUrl: './dashboard-cliente.page.html',
   styleUrls: ['./dashboard-cliente.page.scss'],
   standalone: true,
-  imports: [RouterLink,IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader, IonTabButton, IonTabBar, IonChip, IonIcon, IonToolbar, IonContent, IonItem, IonHeader, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonCard, IonSkeletonText, IonFooter
+  imports: [RouterLink, IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader, IonTabButton, IonTabBar, IonChip, IonIcon, IonToolbar, IonContent, IonItem, IonHeader, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonCard, IonSkeletonText, IonFooter
     , IonCardContent, CommonModule
-    // Ionic UI + Angular
-    // ...come nel tuo esempio originale
+
   ]
 })
 
 export class DashboardClientePage {
   upcomingBookings$!: Observable<any[]>;
 
-  constructor(private menuCtrl: MenuController, private customerSvc: CustomerService, private auth: AuthService, private router: Router) { 
-    
-    this.auth.user$.subscribe(user => {
-    if (!user || user.role?.toLowerCase() !== 'customer') {
-      this.router.navigate(['/login']);
-      Swal.fire({
-        title: 'Errore',
-        text: 'Non hai i permessi per accedere a questa pagina',
-        icon: 'error',
-        heightAuto: false
-      });
-    } else {
-      this.upcomingBookings$ = this.customerSvc.getUpcomingBookings();
-    }
-  });
+  constructor(private menuCtrl: MenuController, private customerSvc: CustomerService, private auth: AuthService, private router: Router) {
+
+    this.upcomingBookings$ = this.customerSvc.getUpcomingBookings();
+
+
   }
 
 
   ionViewWillEnter() {
     this.menuCtrl.close();
+    this.upcomingBookings$ = this.customerSvc.getUpcomingBookings();
 
-    
+
   }
 
-  
+
 
   logout() {
     this.menuCtrl.close().then(() => {

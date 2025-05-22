@@ -90,16 +90,42 @@ ion-input {
 .email-wrapper.invalid ion-input,
 .password-wrapper.invalid ion-input {
   border: 1px solid #f44336;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
-/* Icona errore */
-.input-wrapper.invalid ion-icon,
-.email-wrapper.invalid ion-icon,
-.password-wrapper.invalid ion-icon {
-  position: absolute;
-  right: 10px;
-  top: 36px;
-  font-size: 1.2rem;
-  color: #f44336;
+
+
+.custom-radio-group {
+  background: transparent;
+  border-radius: 16px;
+  padding: 1rem 0;
 }
+
+.custom-radio-item {
+  --background: transparent;
+  --color: #fff;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/* ✅ Disattiva ripple trasparente */
+ion-item.custom-radio-item::part(native) {
+  --background-focused: transparent;
+  --background-hover: transparent;
+}
+
+/* ✅ Solo pallino colorato */
+ion-radio {
+  --color: #ffffff;
+  --color-checked: #ffd700;
+}
+
+.custom-radio-item ion-label {
+  color: #ffffff;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+}
+
+

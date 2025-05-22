@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { User } from "../models/user";
 import { Router } from "@angular/router";
+import { RegistrationData } from "../models/RegistrationData";
 
 
 
@@ -52,6 +53,17 @@ export class AuthService {
   const user = localStorage.getItem('user');
   return user ? JSON.parse(user) : null;
 }
+
+register(data : RegistrationData): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, data, { withCredentials: true }).pipe(
+      tap((res: any) => {
+        if (res.status === 'success') {
+          this.userSubject.next(res.data);
+          localStorage.setItem('user', JSON.stringify(res.data));
+        }
+      })
+    );
+  }
 
 
   

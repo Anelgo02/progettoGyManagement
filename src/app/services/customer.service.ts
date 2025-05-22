@@ -11,10 +11,10 @@ export class CustomerService {
   constructor(private http: HttpClient) {}
 
   getUpcomingBookings(): Observable<any[]> {
-    return this.http.get<any>(`${this.api}/dashboard`, { withCredentials: true }).pipe(
-      map(res => res.data.upcoming_bookings)
-    );
-  }
+  return this.http.get<any>(`${this.api}/dashboard`, { withCredentials: true }).pipe(
+    map(res => res.data.upcoming_bookings || []) // <-- forza array vuoto se null/undefined
+  );
+}
 
   getTrainers(): Observable<any[]> {
     return this.http.get<any>(`${this.api}/trainers`, { withCredentials: true }).pipe(
