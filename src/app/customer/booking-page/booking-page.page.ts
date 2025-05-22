@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -24,17 +24,29 @@ import { AuthService } from 'src/app/core/auth.service';
     IonTabBar, IonTabButton, IonDatetime, IonCard
   ]
 })
-export class BookingPage {
+export class BookingPage implements OnInit {
   selectedDate: string = '';
-  availableSlots: { start: string; end: string }[] = [];
+  availableSlots: { start: string; end: string; available_spots?: number }[] = [];
   errorMessage: string = '';
   userBookings: { [date: string]: boolean } = {};
+  trainerId: number | null = null;
 
   constructor(
     private customerService: CustomerService,
     private auth: AuthService,
     private router: Router
-  ) {}
+  ) { }
+
+  ngOnInit() {
+    this.customerService.getCustomerInfo().subscribe({
+      next: (info) => {
+        this.trainerId = info.trainer_id;
+      },
+      error: () => {
+        this.errorMessage = 'Errore nel recupero del trainer associato.';
+      }
+    });
+  }
 
   logout() {
     this.auth.logout().subscribe(() => this.router.navigate(['/login']));
@@ -60,30 +72,27 @@ export class BookingPage {
       return;
     }
 
-    // Tutti gli slot possibili
-    const allSlots = [
-      { start: '08:00', end: '10:00' },
-      { start: '12:00', end: '14:00' },
-      { start: '18:00', end: '20:00' }
-    ];
-
-    if (diff === 0) {
-      // Giorno corrente → filtra solo gli slot futuri rispetto all’orario attuale
-      const now = new Date();
-      const nowMinutes = now.getHours() * 60 + now.getMinutes();
-
-      this.availableSlots = allSlots.filter(slot => {
-        const [hour, minute] = slot.start.split(':').map(Number);
-        const slotMinutes = hour * 60 + minute;
-        return slotMinutes > nowMinutes;
-      });
-
-      if (this.availableSlots.length === 0) {
-        this.errorMessage = 'Nessuno slot disponibile per oggi.';
-      }
-    } else {
-      this.availableSlots = allSlots;
+    if (!this.trainerId) {
+      this.errorMessage = 'Trainer non disponibile.';
+      return;
     }
+
+    this.customerService.getAvailableSlots(this.trainerId, selectedDateString).subscribe({
+      next: (slots) => {
+        if (slots.length === 0) {
+          this.errorMessage = 'Nessuno slot disponibile per questa data.';
+        } else {
+          this.availableSlots = slots.map(s => ({
+            start: s.start_time.substring(11, 16),
+            end: s.end_time.substring(11, 16),
+            available_spots: s.available_spots
+          }));
+        }
+      },
+      error: () => {
+        this.errorMessage = 'Errore durante il recupero degli slot.';
+      }
+    });
   }
 
   bookSlot(slot: { start: string; end: string }) {
@@ -99,21 +108,47 @@ export class BookingPage {
       return;
     }
 
-    // Qui dovresti chiamare il backend per salvare effettivamente la prenotazione
+    this.customerService.getAvailableSlots(this.trainerId!, selectedDateString).subscribe(slots => {
+      const targetSlot = slots.find(s =>
+        s.start_time.includes(slot.start) && s.end_time.includes(slot.end)
+      );
 
-    // Simulazione di prenotazione riuscita
-    Swal.fire({
-      icon: 'success',
-      title: 'Allenamento prenotato',
-      text: `Slot: ${slot.start} - ${slot.end}`,
-      heightAuto: false
+      if (!targetSlot) {
+        Swal.fire({ icon: 'error', title: 'Errore', text: 'Slot non più disponibile.', heightAuto: false });
+        return;
+      }
+
+      this.customerService.bookSlot(targetSlot.id).subscribe({
+        next: () => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Allenamento prenotato',
+            text: `Slot: ${slot.start} - ${slot.end}`,
+            heightAuto: false
+          });
+
+          this.userBookings[selectedDateString] = true;
+          this.availableSlots = [];
+        },
+        error: (err) => {
+          const msg = err.error?.message || 'Prenotazione fallita.';
+          Swal.fire({ icon: 'error', title: 'Errore', text: msg, heightAuto: false });
+        }
+      });
     });
+  }
 
-    // Registra internamente la prenotazione del giorno
-    const dateKey = new Date(this.selectedDate).toISOString().split('T')[0];
-    this.userBookings[dateKey] = true;
+  getSlotIcon(slot: any): string {
+    const availability = slot.available_spots ?? 1;
+    if (availability >= 2) return 'checkmark-circle-outline';
+    if (availability === 1) return 'alert-circle-outline';
+    return 'close-circle-outline';
+  }
 
-    // Pulisce gli slot per evitare doppie prenotazioni
-    this.availableSlots = [];
+  getSlotColor(slot: any): string {
+    const availability = slot.available_spots ?? 1;
+    if (availability >= 2) return '#2dd36f';      // verde
+    if (availability === 1) return '#ffc409';     // giallo
+    return '#eb445a';                             // rosso
   }
 }

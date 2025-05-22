@@ -35,7 +35,6 @@ export class DashboardTrainerPage {
     private router: Router,
    // private trainerService: TrainerService
   ) {}
-
   ionViewWillEnter() {
     this.menuCtrl.close();
   }

@@ -56,20 +56,12 @@
     </div>
 
     <!-- Campo recensione -->
-    <ion-label>Scrivi la tua recensione</ion-label>
+    <ion-label style="display: flex; align-items: center; justify-content: center;">Scrivi la tua recensione</ion-label>
     <ion-textarea
       auto-grow="true"
       placeholder="Inserisci qui la tua recensione..."
       [(ngModel)]="reviewText"
     ></ion-textarea>
-
-    <!-- Campo data recensione -->
-    <ion-label>Data della recensione</ion-label>
-    <ion-datetime
-      presentation="date"
-      display-format="DD/MM/YYYY"
-      [(ngModel)]="reviewDate"
-    ></ion-datetime>
 
     <!-- Pulsante pubblica -->
     <ion-button class="btnPublish" expand="block" (click)="rate_trainer()">Pubblica</ion-button>
@@ -84,7 +76,7 @@
       <ion-label>Home</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="prenota">
+    <ion-tab-button tab="prenota" routerLink="/customer/booking-page">
       <ion-icon name="calendar"></ion-icon>
       <ion-label>Prenota</ion-label>
     </ion-tab-button>

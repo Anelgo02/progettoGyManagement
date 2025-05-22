@@ -1,4 +1,4 @@
-
+<!-- booking-page.page.html -->
 <!-- MENU LATERALE -------------------------------------------------------->
 <ion-menu side="start" menuId="main-menu-booking" contentId="main-content">
   <ion-header>
@@ -9,7 +9,7 @@
   <ion-content>
     <div class="menu-flex-container">
       <ion-list>
-        <ion-item routerLink="/review-page" class="recensisci-item">
+        <ion-item routerLink="/customer/review-page" class="recensisci-item">
           <ion-icon name="star-outline" slot="start"></ion-icon>
           <ion-label>Recensisci PT</ion-label>
         </ion-item>
@@ -47,17 +47,26 @@
     <h2>Prenota un Allenamento</h2>
 
     <!-- Selezione data -->
-    <ion-label>Seleziona la data (entro 7 giorni)</ion-label>
+    <ion-label class="selData">Seleziona la data (entro 7 giorni)</ion-label>
     <ion-datetime
       presentation="date"
       [(ngModel)]="selectedDate"
       (ionChange)="onDateChange()"
     ></ion-datetime>
 
-    <!-- Lista slot -->
+    <!-- Lista slot scrollabile verticalmente -->
     <div *ngIf="availableSlots.length > 0" class="workouts-container">
-      <ion-card *ngFor="let slot of availableSlots">
-        <ion-label>{{ slot.start }} - {{ slot.end }}</ion-label>
+      <ion-card *ngFor="let slot of availableSlots" class="slot-card">
+        <ion-item lines="none">
+          <ion-icon
+            slot="start"
+            [name]="getSlotIcon(slot)"
+            [style.color]="getSlotColor(slot)"
+            style="font-size: 36px; opacity: 1; font-weight: bold;"
+            alt="disponibilità"
+          ></ion-icon>
+          <ion-label>{{ slot.start }} - {{ slot.end }}</ion-label>
+        </ion-item>
         <ion-button expand="block" (click)="bookSlot(slot)">Prenota</ion-button>
       </ion-card>
     </div>
@@ -87,4 +96,3 @@
     </ion-tab-button>
   </ion-tab-bar>
 </ion-footer>
-
