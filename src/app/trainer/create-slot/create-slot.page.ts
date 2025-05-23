@@ -44,9 +44,38 @@ export class CreateSlotPage {
 
   const { date, start_time, end_time, max_clients } = this.slotForm.value;
 
-  // Combina data + ora in formato completo ISO
+  const selectedDate = new Date(date);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // azzera orario per confronto solo su giorno
+
+  if (selectedDate < today) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Data non valida',
+      text: 'La data selezionata deve essere oggi o successiva',
+      confirmButtonText: 'OK',
+      heightAuto: false,
+    });
+    return;
+  }
+
+  // Combina data + orario nel formato ISO completo
   const formattedStart = `${date.substring(0, 10)}T${start_time.substring(11, 16)}:00`;
   const formattedEnd = `${date.substring(0, 10)}T${end_time.substring(11, 16)}:00`;
+
+  const start = new Date(formattedStart);
+  const end = new Date(formattedEnd);
+
+  if (start >= end) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Orari non validi',
+      text: 'L\'ora di inizio deve essere precedente a quello di fine',
+      confirmButtonText: 'OK',
+      heightAuto: false,
+    });
+    return;
+  }
 
   const payload = {
     start_time: formattedStart,
@@ -70,12 +99,13 @@ export class CreateSlotPage {
       Swal.fire({
         icon: 'error',
         title: 'Errore',
-        text: 'C\'è stato un errore nella creazione dello slot',
+        text: err.error?.message || 'C\'è stato un errore nella creazione dello slot',
         confirmButtonText: 'OK',
         heightAuto: false,
       });
     }
   });
 }
+
 
 }
