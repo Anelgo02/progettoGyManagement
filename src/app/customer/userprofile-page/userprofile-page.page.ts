@@ -1,29 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import {MenuController, IonInput } from '@ionic/angular/standalone';
+import { MenuController, IonInput } from '@ionic/angular/standalone';
 import { CustomerService } from '../../services/customer.service';
 import {
-  IonHeader, IonItem, IonContent, IonToolbar, IonIcon, IonMenu, IonTitle, IonLabel, IonButton,
-  IonFooter, IonTabBar, IonTabButton, IonButtons, IonMenuButton,
+  IonHeader, IonItem, IonContent, IonToolbar, IonIcon,  IonTitle, IonLabel, IonButton,
+   IonButtons, IonMenuButton,
 } from "@ionic/angular/standalone";
 import { AuthService } from 'src/app/core/auth.service';
+import { FooterComponent } from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-profile-page',
   templateUrl: './userprofile-page.page.html',
   styleUrls: ['./userprofile-page.page.scss'],
   standalone: true,
-  imports: [IonInput,  CommonModule, RouterLink, IonMenuButton, IonButtons, IonTabButton, IonTabBar,  IonIcon, IonToolbar,
-    IonContent, IonItem, IonHeader,  IonTitle,  IonLabel, IonButton, IonFooter,
-    CommonModule,],
+  imports: [IonInput, CommonModule,  IonMenuButton, IonButtons,  IonIcon, IonToolbar,
+    IonContent, IonItem, IonHeader, IonTitle, IonLabel, IonButton, 
+    CommonModule, FooterComponent],
 })
 export class ProfilePage implements OnInit {
 
   userData: any = {};
   showPassword = false;
 
-  constructor(private router: Router, private menuCtrl : MenuController, private auth : AuthService ) {}
+  constructor(private router: Router, private menuCtrl: MenuController, private auth: AuthService) { }
 
   ngOnInit() {
     const savedUser = localStorage.getItem('user');
@@ -35,7 +36,7 @@ export class ProfilePage implements OnInit {
         cognome: user.full_name?.split(' ')[1] || '',
         username: user.username,
         email: user.email,
-        telefono: user.phone ?? '-', // se presente nel backend
+
         password: user.password ?? '********',
         ruolo: user.role
       };
@@ -49,24 +50,19 @@ export class ProfilePage implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-  logout() {
-    this.menuCtrl.close().then(() => {
-      this.auth.logout().subscribe(() => {
-        this.router.navigate(['/login']);
-      });
-    });
-  }
 
-  recensisci() {
-    this.menuCtrl.close().then(() => {
-      this.router.navigate(['/customer/review-page']);
-    }); // chiude il menu
-
-  }
+  
 
   tornaIndietro() {
-    this.router.navigate(['/customer/dashboard']);
+    if (this.userData.ruolo === 'trainer') {
+      this.router.navigate(['/trainer/dashboard']);
+    }
+    else if (this.userData.ruolo === 'admin') {
+      this.router.navigate(['/admin/dashboard']);
+    }
+    else if (this.userData.ruolo === 'customer') {
+      this.router.navigate(['/customer/dashboard']);
+    }
   }
 
- 
 }

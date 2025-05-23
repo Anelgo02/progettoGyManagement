@@ -9,6 +9,7 @@ import {
   IonFooter, IonTabBar, IonTabButton, IonButtons, IonMenuButton, IonTextarea, 
 } from "@ionic/angular/standalone";
 import { AuthService } from 'src/app/core/auth.service';
+import { FooterComponent } from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-review-page',
@@ -16,13 +17,14 @@ import { AuthService } from 'src/app/core/auth.service';
   styleUrls: ['./review-page.page.scss'],
   standalone: true,
   imports: [
-    IonMenuButton, IonButtons, IonTabButton, IonTabBar,  IonIcon, IonToolbar,
-    IonContent, IonHeader,  IonTitle,  IonLabel, IonButton, IonFooter,
-    IonTextarea, 
+    IonMenuButton, IonButtons, IonIcon, IonToolbar,
+    IonContent, IonHeader, IonTitle, IonLabel, IonButton,
+    IonTextarea,
     FormsModule,
     RouterModule,
     CommonModule,
-  ]
+    FooterComponent
+]
 })
 export class ReviewPage {
   trainerId: number | null = null;

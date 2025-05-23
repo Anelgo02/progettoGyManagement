@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import {
    IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle,
-  IonContent, IonItem, IonLabel, IonIcon, IonButton, IonFooter,
-  IonTabBar, IonTabButton, IonDatetime, IonCard
+  IonContent, IonItem, IonLabel, IonIcon, IonButton, 
+   IonDatetime, IonCard
 } from '@ionic/angular/standalone';
 import { CustomerService } from '../../services/customer.service';
 import { AuthService } from 'src/app/core/auth.service';
+import { FooterComponent } from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-booking-page',
@@ -19,10 +20,11 @@ import { AuthService } from 'src/app/core/auth.service';
   standalone: true,
   imports: [
     CommonModule, FormsModule, RouterModule,
-     IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle,
-    IonContent,  IonItem, IonLabel, IonIcon, IonButton, IonFooter,
-    IonTabBar, IonTabButton, IonDatetime, IonCard
-  ]
+    IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle,
+    IonContent, IonItem, IonLabel, IonIcon, IonButton, 
+     IonDatetime, IonCard,
+    FooterComponent
+]
 })
 export class BookingPage implements OnInit {
   selectedDate: string = '';

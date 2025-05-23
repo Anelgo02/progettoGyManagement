@@ -9,10 +9,11 @@ import { TrainerService } from '../../services/trainer.service';
 import {
   MenuController,
   IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader,
-  IonTabButton, IonTabBar, IonChip, IonIcon, IonToolbar, IonContent,
-  IonHeader,  IonTitle, IonLabel,
-   IonCard, IonSkeletonText, IonFooter, IonCardContent
+  IonChip, IonToolbar, IonContent,
+  IonHeader,  IonTitle, 
+   IonCard, IonSkeletonText,  IonCardContent
 } from '@ionic/angular/standalone';
+import { FooterComponent } from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-dashboard-trainer',
@@ -20,11 +21,12 @@ import {
   styleUrls: ['./dashboard-personal-trainer.page.scss'],
   standalone: true,
   imports: [
-    RouterLink, IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader,
-    IonTabButton, IonTabBar, IonChip, IonIcon, IonToolbar, IonContent,
-     IonHeader,  IonTitle,  IonLabel,
-     IonCard, IonSkeletonText, IonFooter, IonCardContent, CommonModule
-  ]
+     IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader,
+     IonChip, IonToolbar, IonContent,
+    IonHeader, IonTitle, 
+    IonCard, IonSkeletonText,  IonCardContent, CommonModule,
+    FooterComponent
+]
 })
 export class DashboardTrainerPage {
   

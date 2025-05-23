@@ -4,11 +4,12 @@ import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonHeader, IonItem, IonContent, IonToolbar, IonIcon, IonMenu, IonTitle,
-  IonList, IonLabel, IonButton, IonFooter, IonTabBar, IonTabButton,
+  IonHeader, IonContent, IonToolbar, IonIcon, IonTitle,
+   IonLabel, 
   IonButtons, IonMenuButton, IonCard
 } from "@ionic/angular/standalone";
 import { AuthService } from 'src/app/core/auth.service';
+import { FooterComponent } from "../../components/footer/footer.component";
 //import { TrainerService } from 'src/app/services/trainer.service';
 
 @Component({
@@ -18,10 +19,11 @@ import { AuthService } from 'src/app/core/auth.service';
   standalone: true,
   imports: [
     CommonModule, FormsModule, RouterModule,
-    IonMenuButton, IonButtons, IonTabButton, IonTabBar, IonIcon, IonToolbar,
-    IonContent, IonItem, IonHeader, IonMenu, IonTitle, IonList, IonLabel,
-    IonButton, IonFooter, IonCard
-  ]
+    IonMenuButton, IonButtons, IonIcon, IonToolbar,
+    IonContent, IonHeader, IonTitle, IonLabel,
+    IonCard,
+    FooterComponent
+]
 })
 export class TrainerReviewsPage {
   reviews: { customerName: string, rating: number, comment: string, date: string }[] = [];

@@ -5,20 +5,21 @@ import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { CustomerService } from '../../services/customer.service';
-import { Trainer } from '../../models/Trainer'; // ✅ la tua interfaccia
+import { Trainer } from '../../models/Trainer';
+import { FooterComponent } from "../../components/footer/footer.component"; // 
 
 @Component({
   standalone: true,
   selector: 'app-trainer-selection',
   templateUrl: './trainer-selection.page.html',
   styleUrls: ['./trainer-selection.page.scss'],
-  imports: [CommonModule, IonicModule, RouterModule]
+  imports: [CommonModule, IonicModule, RouterModule, FooterComponent]
 })
 export class TrainerSelectionPage {
   private customerService = inject(CustomerService);
   private router = inject(Router);
 
-  // ✅ Tipizzata correttamente con Trainer[]
+  
   trainers$: Observable<Trainer[]> = this.customerService.getTrainers();
 
   goHome() {

@@ -42,11 +42,6 @@
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Numero di telefono</ion-label>
-      <ion-input [value]="userData.telefono" readonly></ion-input>
-    </ion-item>
-
-    <ion-item>
       <ion-label position="stacked">Password</ion-label>
       <ion-input
         [type]="showPassword ? 'text' : 'password'"
@@ -69,22 +64,5 @@
 </ion-content>
 
 <!-- TAB BAR -->
-<ion-footer>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="home"  routerLink="/customer/dashboard">
-      <ion-icon name="home"></ion-icon>
-      <ion-label>Home</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="prenota" routerLink="/customer/booking-page">
-      <ion-icon name="calendar"></ion-icon>
-      <ion-label>Prenota</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="profilo" routerLink="/customer/profile-page">
-      <ion-icon name="person"></ion-icon>
-      <ion-label>Profilo</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-footer>
+<app-footer></app-footer>
 

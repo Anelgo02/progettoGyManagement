@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { IonApp, IonRouterOutlet, IonMenu } from '@ionic/angular/standalone';
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from "./components/footer/footer.component";
 
 
 @Component({

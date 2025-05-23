@@ -62,8 +62,8 @@ export const routes: Routes = [
   },
  
   {
-    path: 'ptreview-page',
-    loadComponent: () => import('./pages/ptreview-page/ptreview-page.page').then( m => m.TrainerReviewsPage)
+    path: 'trainer/ptreview-page',
+    loadComponent: () => import('./trainer/ptreview-page/ptreview-page.page').then( m => m.TrainerReviewsPage)
   }
 
 ];
