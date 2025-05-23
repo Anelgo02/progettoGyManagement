@@ -26,6 +26,13 @@ export class CustomerService {
   );
 }
 
+setTrainer(trainerId: number): Observable<any> {
+  return this.http.post('http://localhost:5000/api/customer/set_trainer', {
+    trainer_id: trainerId
+  }, { withCredentials: true });
+}
+
+
 
   getAvailableSlots(trainerId: number, date?: string): Observable<any[]> {
     const query = date ? `?trainer_id=${trainerId}&date=${date}` : `?trainer_id=${trainerId}`;

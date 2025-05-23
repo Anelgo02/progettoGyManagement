@@ -24,8 +24,8 @@ export class AuthService {
   }
 
   /** Getter rapido per UID */
-  get uid(): string {
-    return this.userSubject.value?.uid ?? '';
+  get uid(): number|null {
+    return this.userSubject.value?.id ?? null;
   }
 
   login(username: string, password: string): Observable<any> {

@@ -24,6 +24,9 @@
     <ion-card-content>
       <p><strong>Max per slot:</strong> {{ trainer.max_clients_per_slot }}</p>
       <p><strong>Stelle medie:</strong> {{ trainer.avg_rating || "0" }} ⭐ ({{ trainer.rating_count }} recensioni)</p>
+      <ion-button expand="block" (click)="selectTrainer(trainer.id)">
+      Seleziona questo trainer
+      </ion-button>
     </ion-card-content>
   </ion-card>
 </ng-container>

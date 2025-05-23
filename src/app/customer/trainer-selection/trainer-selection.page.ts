@@ -22,6 +22,19 @@ export class TrainerSelectionPage {
   
   trainers$: Observable<Trainer[]> = this.customerService.getTrainers();
 
+  selectTrainer(trainerId: number) {
+  console.log('ID selezionato:', trainerId);
+  this.customerService.setTrainer(trainerId).subscribe({
+    next: (response) => {
+      this.router.navigate(['/customer/dashboard']);
+    },
+    error: (error) => {
+      console.error('Errore durante la selezione del trainer:', error);
+    }
+  });
+}
+
+
   goHome() {
     this.router.navigate(['/customer/dashboard']);
   }
