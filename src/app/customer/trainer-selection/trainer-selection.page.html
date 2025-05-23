@@ -1,19 +1,13 @@
-<!--<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>trainer-selection</ion-title>
-  </ion-toolbar>
-</ion-header>-->
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">trainer-selection</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<!-- HEADER --------------------------------------------------------------->
 <ion-header translucent>
   <ion-toolbar color="primary">
-    <ion-title>Seleziona Trainer</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color: aliceblue;" >GyManagement
+      <img src="../../../assets/icon/powerlifting.png" alt="Logo" style="height: 32px; width: auto; vertical-align: middle;" />
+    </ion-title>
+    
   </ion-toolbar>
 </ion-header>
 
@@ -45,7 +39,27 @@
     </div>
   </ng-template>
 
-  <ion-button class="custom-home-button" expand="block" color="medium" (click)="goHome()" style="margin-top: 2rem;">
+  <ion-button class="custom-home-button" expand="block" color="medium" (click)="goHome() ">
     Torna alla Home
   </ion-button>
 </ion-content>
+
+<!-- TAB BAR -->
+<ion-footer>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home"  routerLink="/customer/dashboard">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="prenota" routerLink="/customer/booking-page">
+      <ion-icon name="calendar"></ion-icon>
+      <ion-label>Prenota</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profilo" routerLink="/customer/profile-page">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Profilo</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-footer>

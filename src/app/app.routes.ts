@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { RoleGuard } from './guards/role.guard'; // importa la guard
+import { RoleGuard } from './guards/role.guard'; 
 
 export const routes: Routes = [
   {
@@ -29,7 +29,7 @@ export const routes: Routes = [
     path: 'customer/profile-page',
     loadComponent: () => import('./customer/userprofile-page/userprofile-page.page').then(m => m.ProfilePage),
     canActivate: [RoleGuard],
-    data: { role: 'customer' }
+    
   },
   {
     path: 'customer/review-page',
@@ -44,18 +44,22 @@ export const routes: Routes = [
     data: { role: 'customer' }
   },
 
+  {
+    path: 'customer/trainer-selection',
+    loadComponent: () => import('../app/customer/trainer-selection/trainer-selection.page').then( m => m.TrainerSelectionPage),
+    canActivate: [RoleGuard],
+    data: { role: 'customer' }
+  },
+
+  
+
   // === ROTTA PER TRAINER ===
   {
-    path: 'dashboard-personal-trainer',
-    loadComponent: () => import('./pages/dashboard-personal-trainer/dashboard-personal-trainer.page').then(m => m.DashboardTrainerPage),
+    path: 'trainer/dashboard',
+    loadComponent: () => import('./trainer/dashboard-personal-trainer/dashboard-personal-trainer.page').then(m => m.DashboardTrainerPage),
     canActivate: [RoleGuard],
     data: { role: 'trainer' }
   },
-  {
-    path: 'trainer-selection',
-    loadComponent: () => import('./pages/trainer-selection/trainer-selection.page').then( m => m.TrainerSelectionPage),
-    canActivate: [RoleGuard],
-    data: { role: 'customer' }
-  }
+  
 
 ];

@@ -1,42 +1,10 @@
 
-<!-- MENU LATERALE -->
-<ion-menu side="start" menuId="main-menu" contentId="main-content">
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <div class="menu-flex-container">
-      <ion-list>
-        <ion-item (click)="gestisciSlot()">
-          <ion-icon name="calendar-outline" slot="start"></ion-icon>
-          <ion-label>Gestisci slot</ion-label>
-        </ion-item>
-        <ion-item (click)="vediClienti()">
-          <ion-icon name="people-outline" slot="start"></ion-icon>
-          <ion-label>Lista clienti</ion-label>
-        </ion-item>
-      </ion-list>
-      <div class="menu-bottom">
-        <ion-button expand="block" color="danger" class="logoutBtn" (click)="logout()">
-          <ion-icon name="log-out-outline" slot="start"></ion-icon>
-          Logout
-        </ion-button>
-        <div class="menu-footer">
-          Gruppo studio Gulo-Cipo-Cost:<br>
-          Progetto Università degli Studi di Palermo
-        </div>
-      </div>
-    </div>
-  </ion-content>
-</ion-menu>
 
 <!-- HEADER -->
 <ion-header translucent>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-menu-button menu="main-menu"></ion-menu-button>
+      <ion-menu-button ></ion-menu-button>
     </ion-buttons>
     <ion-title style="color: aliceblue;">
       GyManagement
@@ -46,8 +14,8 @@
 </ion-header>
 
 <!-- CONTENUTO PRINCIPALE -->
-<ion-content id="main-content" fullscreen class="ion-padding">
-  <ng-container *ngIf="nextSessions$ | async as sessioni; else loading">
+<ion-content  fullscreen class="ion-padding">
+  <ng-container *ngIf=" upcomingSessions$ | async as sessioni; else loading">
     <ion-card *ngFor="let s of sessioni">
       <ion-card-header>
         <ion-card-title>Sessione con {{ s.customer_name }}</ion-card-title>

@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+ion-content {
+  --background: #000;
+  background: #000;
+  flex: 1;
+  overflow-y: auto;
+}
+
+ion-item {
+  cursor: pointer;
+}
+
+
+.menu-flex-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: auto;
+  height: 100%;
+}
+
+.menu-bottom {
+  margin-top: auto;
+  padding: 1rem;
+}
+
+.menu-flex-container ion-list {
+  flex: 1 1 auto;
+}

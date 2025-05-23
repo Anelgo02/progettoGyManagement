@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 import { CustomerService } from '../../services/customer.service';
 import {
-  IonHeader, IonItem, IonContent, IonToolbar, IonIcon, IonMenu, IonTitle, IonList, IonLabel, IonButton,
+  IonHeader, IonContent, IonToolbar, IonIcon, IonTitle, IonLabel, IonButton,
   IonFooter, IonTabBar, IonTabButton, IonButtons, IonMenuButton, IonTextarea, 
 } from "@ionic/angular/standalone";
 import { AuthService } from 'src/app/core/auth.service';
@@ -17,7 +17,7 @@ import { AuthService } from 'src/app/core/auth.service';
   standalone: true,
   imports: [
     IonMenuButton, IonButtons, IonTabButton, IonTabBar,  IonIcon, IonToolbar,
-    IonContent, IonItem, IonHeader, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonFooter,
+    IonContent, IonHeader,  IonTitle,  IonLabel, IonButton, IonFooter,
     IonTextarea, 
     FormsModule,
     RouterModule,

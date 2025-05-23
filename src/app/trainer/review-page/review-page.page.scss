@@ -1,4 +1,5 @@
 :host {
+ 
   background: linear-gradient(135deg, #3090dfe2, #8fb3fbe6);
   color: #fff;
   height: 100vh;
@@ -7,7 +8,9 @@
   z-index: 1;
 }
 
-.booking-container {
+
+
+.review-container {
   max-width: 400px;
   margin: 5% auto;
   padding: 2rem;
@@ -18,6 +21,7 @@
   text-align: center;
 }
 
+/* Swal compatibilità: centra e porta sopra il footer */
 .swal2-container {
   z-index: 20000 !important;
 }
@@ -28,15 +32,28 @@
   font-size: 1.1rem;
 }
 
-.booking-container h2 {
+.review-container h2 {
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
   color: #efefef;
   font-weight: 600;
 }
 
+.star-rating {
+  margin: 1rem 0 1.5rem;
+}
 
+.star-rating ion-icon.star {
+  font-size: 2rem;
+  color: #ffd700;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
 
+.star-rating ion-icon.star:hover {
+  transform: scale(1.2);
+}
 
 ion-label {
   display: block;
@@ -58,17 +75,18 @@ ion-datetime {
   width: 100%;
 }
 
-
-
-
-
-ion-datetime .calendar-body__message,
-ion-datetime .calendar-body__message * {
-  color: #fff !important;
-  opacity: 1 !important;
+ion-datetime {
+  min-height: auto;
+  padding: 0.5rem;
+  text-align: left;
 }
 
-
+.btnPublish {
+  --background: rgba(35, 112, 255, 0.584);
+  --border-radius: 100px;
+  height: 3rem;
+  font-weight: 600;
+}
 
 ion-title {
   flex: 1 1 auto !important;
@@ -87,8 +105,9 @@ ion-header {
   align-items: center;
 }
 
+
 ion-menu-button {
-  --icon-font-size: 2.2rem;
+  --icon-font-size: 2.2rem; /* aumenta la dimensione dell'icona */
   width: 48px;
   height: 48px;
 }
@@ -125,8 +144,8 @@ ion-item {
 }
 
 .no-workouts {
-  color: #fff !important;
   text-align: center;
+  color: #888;
   margin-top: 2rem;
 }
 
@@ -154,7 +173,7 @@ ion-content {
 ion-toolbar {
   display: flex;
   align-items: center;
-  min-height: 72px;
+  min-height: 72px; // o il valore che preferisci
 }
 
 ion-toolbar ion-title {
@@ -182,7 +201,7 @@ ion-card {
 }
 
 .recensisci-item {
-  --color: #2370ff;
+  --color: #2370ff; /* blu acceso della tua palette */
   --background: rgba(255, 255, 255, 0);
   border-radius: 16px;
   margin: 0 8px 8px 8px;
@@ -196,56 +215,7 @@ ion-card {
     color: #2370ff;
     font-weight: 600;
   }
-}
 
-ion-card.slot-card {
-  background: rgba(255, 255, 255, 0.07);
-  border-radius: 16px;
-  padding: 1.2rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
 }
-
-ion-card.slot-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-}
-
-ion-card.slot-card ion-item {
-  --background: transparent;
-  --color: #fff;
-  padding: 0.5rem 0;
-}
-
-ion-card.slot-card ion-label {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #ffffff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-ion-card.slot-card ion-button {
-  --background: #2370ff;
-  --border-radius: 20px;
-  font-weight: 600;
-  margin-top: 1rem;
-}
-
-ion-datetime {
-  margin-top: auto;
-  --background: rgba(28, 28, 28, 0.936);
-  --color: #ffffff !important;
-}
-
-.selData{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-
 
 

@@ -1,0 +1,61 @@
+
+
+<!-- HEADER -->
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color: aliceblue;">
+      GyManagement
+      <img src="../../../assets/icon/powerlifting.png" alt="Logo" style="height: 32px; width: auto; vertical-align: middle;" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- CONTENUTO PRINCIPALE -->
+<ion-content  fullscreen class="ion-padding">
+  <ng-container *ngIf=" upcomingSessions$ | async as sessioni; else loading">
+    <ion-card *ngFor="let s of sessioni">
+      <ion-card-header>
+        <ion-card-title>Sessione con {{ s.customer_name }}</ion-card-title>
+        <ion-card-subtitle>
+          {{ s.start_time | date:'dd/MM/yyyy' }} - {{ s.start_time | date:'HH:mm' }}
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Email cliente:</strong> {{ s.customer_email }}</p>
+        <ion-chip color="primary">
+          Slot #{{ s.id }}
+        </ion-chip>
+      </ion-card-content>
+    </ion-card>
+    <div *ngIf="!sessioni.length" class="no-workouts">
+      Nessuna sessione programmata.
+    </div>
+  </ng-container>
+ 
+  <ng-template #loading>
+    <ion-skeleton-text animated style="width: 80%; height: 20px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 90%; height: 20px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 70%; height: 20px;"></ion-skeleton-text>
+  </ng-template>
+</ion-content>
+
+<!-- TAB BAR -->
+<ion-footer>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home" routerLink="/trainer/dashboard">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="slots" routerLink="/trainer/manage-slots">
+      <ion-icon name="calendar"></ion-icon>
+      <ion-label>Slot</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="profilo" routerLink="/trainer/profile-page">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Profilo</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-footer>

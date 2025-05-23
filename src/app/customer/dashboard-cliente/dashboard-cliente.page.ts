@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import {
   MenuController,
-  IonHeader, IonItem, IonContent, IonToolbar, IonIcon, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonCard, IonSkeletonText,
+  IonHeader,  IonContent, IonToolbar, IonIcon, IonTitle,  IonLabel, IonCard, IonSkeletonText,
   IonFooter, IonCardContent, IonChip, IonTabBar, IonTabButton, IonCardHeader, IonButtons, IonCardTitle, IonCardSubtitle, IonMenuButton
 } from "@ionic/angular/standalone";
 import Swal from 'sweetalert2';
@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
   templateUrl: './dashboard-cliente.page.html',
   styleUrls: ['./dashboard-cliente.page.scss'],
   standalone: true,
-  imports: [RouterLink, IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader, IonTabButton, IonTabBar, IonChip, IonIcon, IonToolbar, IonContent, IonItem, IonHeader, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonCard, IonSkeletonText, IonFooter
+  imports: [RouterLink, IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader, IonTabButton, IonTabBar, IonChip, IonIcon, IonToolbar, IonContent, IonHeader, IonTitle,  IonLabel, IonCard, IonSkeletonText, IonFooter
     , IonCardContent, CommonModule
 
   ]

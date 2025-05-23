@@ -4,7 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import {MenuController, IonInput } from '@ionic/angular/standalone';
 import { CustomerService } from '../../services/customer.service';
 import {
-  IonHeader, IonItem, IonContent, IonToolbar, IonIcon, IonMenu, IonTitle, IonList, IonLabel, IonButton,
+  IonHeader, IonItem, IonContent, IonToolbar, IonIcon, IonMenu, IonTitle, IonLabel, IonButton,
   IonFooter, IonTabBar, IonTabButton, IonButtons, IonMenuButton,
 } from "@ionic/angular/standalone";
 import { AuthService } from 'src/app/core/auth.service';
@@ -15,7 +15,7 @@ import { AuthService } from 'src/app/core/auth.service';
   styleUrls: ['./userprofile-page.page.scss'],
   standalone: true,
   imports: [IonInput,  CommonModule, RouterLink, IonMenuButton, IonButtons, IonTabButton, IonTabBar,  IonIcon, IonToolbar,
-    IonContent, IonItem, IonHeader, IonMenu, IonTitle, IonList, IonLabel, IonButton, IonFooter,
+    IonContent, IonItem, IonHeader,  IonTitle,  IonLabel, IonButton, IonFooter,
     CommonModule,],
 })
 export class ProfilePage implements OnInit {

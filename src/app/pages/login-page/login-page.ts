@@ -35,7 +35,7 @@ export class LoginPage{
             this.router.navigate(['/customer/dashboard']);
             break;
           case 'trainer':
-            this.router.navigate(['dashboard-personal-trainer']);
+            this.router.navigate(['/trainer/dashboard']);
             break;
           case 'admin':
             this.router.navigate(['/admin/dashboard']);
@@ -71,7 +71,7 @@ export class LoginPage{
             this.router.navigate(['/customer/dashboard']);
             break;
           case 'trainer':
-            this.router.navigate(['dashboard-personal-trainer']);
+            this.router.navigate(['/trainer/dashboard']);
             break;
           case 'admin':
             this.router.navigate(['/admin/dashboard']);

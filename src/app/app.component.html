@@ -1,3 +1,12 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+
+  <ion-menu side="start" menuId="main-menu" contentId="main-content" *ngIf="showLayout">
+    <app-sidebar></app-sidebar>
+  </ion-menu>
+
+
+
+  <div id="main-content">
+    <ion-router-outlet></ion-router-outlet>
+  </div>
 </ion-app>

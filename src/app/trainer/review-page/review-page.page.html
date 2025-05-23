@@ -1,9 +1,10 @@
 
+
 <!-- HEADER --------------------------------------------------------------->
 <ion-header translucent>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-menu-button ></ion-menu-button>
+      <ion-menu-button menu="main-menu-review" ></ion-menu-button>
     </ion-buttons>
     <ion-title style="color: aliceblue;" >GyManagement
       <img src="../../../assets/icon/powerlifting.png" alt="Logo" style="height: 32px; width: auto; vertical-align: middle;" />
@@ -13,7 +14,7 @@
 </ion-header>
 
 
-<ion-content class="ion-padding" fullscreen="true">
+<ion-content id="main-content" class="ion-padding" fullscreen="true">
   <div class="review-container">
     <h2>Recensisci il tuo Personal Trainer</h2>
 
@@ -28,12 +29,20 @@
     </div>
 
     <!-- Campo recensione -->
-    <ion-label style="display: flex; align-items: center; justify-content: center;">Scrivi la tua recensione</ion-label>
+    <ion-label>Scrivi la tua recensione</ion-label>
     <ion-textarea
       auto-grow="true"
       placeholder="Inserisci qui la tua recensione..."
       [(ngModel)]="reviewText"
     ></ion-textarea>
+
+    <!-- Campo data recensione -->
+    <ion-label>Data della recensione</ion-label>
+    <ion-datetime
+      presentation="date"
+      display-format="DD/MM/YYYY"
+      [(ngModel)]="reviewDate"
+    ></ion-datetime>
 
     <!-- Pulsante pubblica -->
     <ion-button class="btnPublish" expand="block" (click)="rate_trainer()">Pubblica</ion-button>
@@ -48,7 +57,7 @@
       <ion-label>Home</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="prenota" routerLink="/customer/booking-page">
+    <ion-tab-button tab="prenota">
       <ion-icon name="calendar"></ion-icon>
       <ion-label>Prenota</ion-label>
     </ion-tab-button>
