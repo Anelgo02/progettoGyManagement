@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/trainer/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="display: flex; justify-content: center; align-self: center;">Crea Slot</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="container">
+  <form [formGroup]="slotForm" (ngSubmit)="creaSlot()">
+
+  <!-- Data -->
+   <div class="calendario">
+  <ion-item>
+    <ion-label>Data</ion-label>
+    <ion-datetime formControlName="date" presentation="date" displayFormat="DD MMM YYYY"></ion-datetime>
+  </ion-item>
+  </div>
+
+  <!-- Ora di inizio -->
+   <div class="inizio">
+  <ion-item>
+    <ion-label>Ora inizio</ion-label>
+    <ion-datetime formControlName="start_time" presentation="time" displayFormat="HH:mm"></ion-datetime>
+  </ion-item>
+  </div>
+
+  <!-- Ora di fine -->
+   <div class="fine">
+  <ion-item>
+    <ion-label>Ora fine</ion-label>
+    <ion-datetime formControlName="end_time" presentation="time" displayFormat="HH:mm"></ion-datetime>
+  </ion-item>
+  </div>
+
+  <!-- Max clienti -->
+  <ion-item>
+    <ion-label position="floating">Max clienti</ion-label>
+    <ion-input type="number" formControlName="max_clients"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" type="submit" [disabled]="slotForm.invalid">Crea Slot</ion-button>
+</form>
+
+  </div>
+</ion-content>

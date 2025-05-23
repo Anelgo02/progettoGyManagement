@@ -22,12 +22,12 @@
       <ion-label>Home</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="slots" routerLink="/trainer/manage-slots" *ngIf="userData?.role === 'trainer'">
+    <ion-tab-button tab="slots" routerLink="/trainer/create-slot" *ngIf="userData?.role === 'trainer'">
       <ion-icon name="calendar"></ion-icon>
-      <ion-label>Slot</ion-label>
+      <ion-label>Crea slot</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="profilo" routerLink="/trainer/profile-page" *ngIf="userData?.role === 'trainer'">
+    <ion-tab-button tab="profilo" routerLink="/customer/profile-page" *ngIf="userData?.role === 'trainer'">
       <ion-icon name="person"></ion-icon>
       <ion-label>Profilo</ion-label>
     </ion-tab-button>
