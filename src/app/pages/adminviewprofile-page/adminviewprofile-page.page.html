@@ -1,0 +1,42 @@
+
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color: aliceblue;">
+      GyManagement
+      <img src="../../../assets/icon/powerlifting.png" alt="Logo" style="height: 32px; width: auto; vertical-align: middle;" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" fullscreen id="main-content-admin-users">
+  <div class="profile-container">
+    <h2>Cosa vuoi visualizzare?</h2>
+
+    <ion-item lines="none">
+      <ion-checkbox [(ngModel)]="showCustomers" labelPlacement="end">Clienti</ion-checkbox>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-checkbox [(ngModel)]="showTrainers" labelPlacement="end">Personal Trainer</ion-checkbox>
+    </ion-item>
+
+    <ion-button expand="block" color="primary" (click)="mostraUtenti()">Mostra</ion-button>
+
+    <div *ngIf="utenti.length > 0">
+      <h3>Risultati:</h3>
+      <ion-list>
+        <ion-item *ngFor="let utente of utenti">
+          <ion-label>
+            <h2>{{ utente.nome }} {{ utente.cognome }}</h2>
+            <p>Email: {{ utente.email }}</p>
+            <p>Telefono: {{ utente.telefono }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>
+
+<app-footer></app-footer>

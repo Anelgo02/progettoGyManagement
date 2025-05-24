@@ -81,6 +81,10 @@ export const routes: Routes = [
     canActivate: [RoleGuard],
     data: { role: 'trainer' }
   },
+  {
+    path: 'adminviewprofile-page',
+    loadComponent: () => import('./pages/adminviewprofile-page/adminviewprofile-page.page').then( m => m.AdminService)
+  },
 
 
 
