@@ -35,6 +35,11 @@ export class TrainerSelectionPage {
 
     },
     error: (error) => {
+      Swal.fire({ 
+        title: 'Errore', 
+        text: 'Si è verificato un errore durante la selezione del trainer.', 
+        icon: 'error', 
+        heightAuto: false });
       console.error('Errore durante la selezione del trainer:', error);
     }
   });
