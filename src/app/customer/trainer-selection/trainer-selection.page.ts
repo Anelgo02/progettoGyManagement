@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
-
+import Swal from 'sweetalert2';
 import { CustomerService } from '../../services/customer.service';
 import { Trainer } from '../../models/Trainer';
 import { FooterComponent } from "../../components/footer/footer.component"; // 
@@ -23,10 +23,16 @@ export class TrainerSelectionPage {
   trainers$: Observable<Trainer[]> = this.customerService.getTrainers();
 
   selectTrainer(trainerId: number) {
-  console.log('ID selezionato:', trainerId);
+  console.log('ID selezionato:', trainerId);//per debuggare
   this.customerService.setTrainer(trainerId).subscribe({
     next: (response) => {
+      Swal.fire({ 
+        title: 'Scelta riuscita', 
+        text: 'Trainer selezionato con successo!', 
+        icon: 'success', 
+        heightAuto: false });
       this.router.navigate(['/customer/dashboard']);
+
     },
     error: (error) => {
       console.error('Errore durante la selezione del trainer:', error);
