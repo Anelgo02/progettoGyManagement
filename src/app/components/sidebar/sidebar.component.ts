@@ -47,4 +47,17 @@ export class SidebarComponent  implements OnInit {
 
   }
 
+  visualizzaClienti() {
+    this.menuCtrl.close().then(() => {
+      this.router.navigate(['/trainer/trainer-clients']);
+    });
+  }
+
+  visualizzaRecensioni() {
+    this.menuCtrl.close().then(() => {
+      this.router.navigate(['/trainer/trainer-reviews']);
+    }); 
+
+  }
+
 }

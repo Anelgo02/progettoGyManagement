@@ -31,6 +31,7 @@ import { FooterComponent } from "../../components/footer/footer.component";
 export class DashboardTrainerPage {
   
   upcomingSessions$!: Observable<any[]>;
+  trainerSpecialization: string = '';
 
   constructor(
     private menuCtrl: MenuController,
@@ -44,7 +45,10 @@ export class DashboardTrainerPage {
     this.menuCtrl.close();
 
     this.upcomingSessions$ = this.trainerService.getDashboard().pipe(
-      map(res => res.data?.upcoming_sessions || []),
+      map(res => {
+        this.trainerSpecialization = res.data?.trainer_info?.specialization || '';
+        return  res.data?.upcoming_sessions || []; 
+        }),
       catchError(err => {
         console.error('Errore nel recupero delle sessioni', err);
         Swal.fire({

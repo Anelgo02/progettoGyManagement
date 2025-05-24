@@ -8,6 +8,7 @@ import {
   IonInput, IonButton, IonLabel, IonItem, IonDatetime,
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-create-slot',
@@ -16,11 +17,11 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./create-slot.page.scss'],
   imports: [
     CommonModule,
-
     ReactiveFormsModule,
     IonContent, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle,
-    IonInput, IonButton, IonLabel, IonItem, IonDatetime
-  ]
+    IonInput, IonButton, IonLabel, IonItem, IonDatetime,
+    FooterComponent
+]
 })
 export class CreateSlotPage {
   slotForm: FormGroup;
@@ -39,6 +40,8 @@ export class CreateSlotPage {
 
   }
 
+  
+
   creaSlot() {
   if (this.slotForm.invalid) return;
 
@@ -46,7 +49,7 @@ export class CreateSlotPage {
 
   const selectedDate = new Date(date);
   const today = new Date();
-  today.setHours(0, 0, 0, 0); // azzera orario per confronto solo su giorno
+  today.setHours(0, 0, 0, 0);
 
   if (selectedDate < today) {
     Swal.fire({
@@ -59,7 +62,6 @@ export class CreateSlotPage {
     return;
   }
 
-  // Combina data + orario nel formato ISO completo
   const formattedStart = `${date.substring(0, 10)}T${start_time.substring(11, 16)}:00`;
   const formattedEnd = `${date.substring(0, 10)}T${end_time.substring(11, 16)}:00`;
 
@@ -70,7 +72,19 @@ export class CreateSlotPage {
     Swal.fire({
       icon: 'warning',
       title: 'Orari non validi',
-      text: 'L\'ora di inizio deve essere precedente a quello di fine',
+      text: 'L\'ora di inizio deve essere precedente a quella di fine',
+      confirmButtonText: 'OK',
+      heightAuto: false,
+    });
+    return;
+  }
+
+  const diffMinutes = (end.getTime() - start.getTime()) / (1000 * 60);
+  if (diffMinutes < 30) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Durata insufficiente',
+      text: 'Lo slot deve durare almeno 30 minuti',
       confirmButtonText: 'OK',
       heightAuto: false,
     });
@@ -106,6 +120,7 @@ export class CreateSlotPage {
     }
   });
 }
+
 
 
 }

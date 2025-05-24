@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-menu-button slot="start"></ion-menu-button>
+    <ion-title>I tuoi clienti</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" fullscreen>
+  <ng-container *ngIf="clients$ | async as clients; else loading">
+    <ion-card *ngFor="let c of clients">
+      <ion-card-header>
+        <ion-card-title>{{ c.full_name }}</ion-card-title>
+        <ion-card-subtitle>Iscritto il: {{ c.join_date | date:'dd/MM/yyyy' }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Email:</strong> {{ c.email }}</p>
+        <p><strong>Telefono:</strong> {{ c.phone }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <div *ngIf="clients.length === 0" class="ion-text-center">
+      <p>Nessun cliente assegnato.</p>
+    </div>
+  </ng-container>
+
+  <ng-template #loading>
+    <ion-skeleton-text animated style="width: 70%; height: 20px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 90%; height: 20px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 80%; height: 20px;"></ion-skeleton-text>
+  </ng-template>
+</ion-content>
+
+<app-footer></app-footer>

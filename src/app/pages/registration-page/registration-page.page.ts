@@ -4,14 +4,14 @@ import { RouterModule, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/core/auth.service';
 import { CommonModule } from '@angular/common';
-import { IonText, IonIcon, IonLabel, IonContent, IonButton, IonInput, IonItem, IonRadio, IonRadioGroup } from "@ionic/angular/standalone";
+import { IonText, IonIcon, IonLabel, IonContent, IonButton, IonInput, IonItem, IonRadio, IonRadioGroup, IonToolbar, IonTitle, IonHeader } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './registration-page.page.html',
   styleUrls: ['./registration-page.page.scss'],
   standalone: true,
-  imports: [IonRadio, IonItem, IonButton, IonContent, IonLabel, IonIcon, IonText, 
+  imports: [IonHeader, IonTitle, IonToolbar, IonRadio, IonItem, IonButton, IonContent, IonLabel, IonIcon, IonText, 
     FormsModule,
     RouterModule,
     CommonModule, IonInput, IonRadioGroup 

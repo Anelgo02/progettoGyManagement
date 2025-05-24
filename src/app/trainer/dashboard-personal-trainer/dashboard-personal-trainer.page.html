@@ -1,40 +1,40 @@
-
-
 <!-- HEADER -->
 <ion-header translucent>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-menu-button ></ion-menu-button>
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title style="color: aliceblue;">
       GyManagement
-      <img src="../../../assets/icon/powerlifting.png" alt="Logo" style="height: 32px; width: auto; vertical-align: middle;" />
+      <img src="../../../assets/icon/powerlifting.png" alt="Logo"
+        style="height: 32px; width: auto; vertical-align: middle;" />
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <!-- CONTENUTO PRINCIPALE -->
-<ion-content  fullscreen class="ion-padding">
+<ion-content fullscreen class="ion-padding">
   <ng-container *ngIf=" upcomingSessions$ | async as sessioni; else loading">
     <ion-card *ngFor="let s of sessioni">
       <ion-card-header>
-        <ion-card-title>Sessione con {{ s.customer_name }}</ion-card-title>
+        <ion-card-title>Slot di allenamento</ion-card-title>
         <ion-card-subtitle>
-          {{ s.start_time | date:'dd/MM/yyyy' }} - {{ s.start_time | date:'HH:mm' }}
+          {{ s.start_time | date:'dd/MM/yyyy' }}<br>
+          {{ s.start_time | date:'HH:mm' }} - {{ s.end_time | date:'HH:mm' }}
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <p><strong>Email cliente:</strong> {{ s.customer_email }}</p>
-        <ion-chip color="primary">
-          Slot #{{ s.id }}
-        </ion-chip>
+        <p><strong>Specializzazione:</strong> {{ trainerSpecialization }}</p>
+        <p><strong>Clienti prenotati:</strong> {{ s.booked_clients }}</p>
+        <ion-chip color="primary">Slot #{{ s.id }}</ion-chip>
       </ion-card-content>
     </ion-card>
+
     <div *ngIf="!sessioni.length" class="no-workouts">
       Nessuna sessione programmata.
     </div>
   </ng-container>
- 
+
   <ng-template #loading>
     <ion-skeleton-text animated style="width: 80%; height: 20px;"></ion-skeleton-text>
     <ion-skeleton-text animated style="width: 90%; height: 20px;"></ion-skeleton-text>

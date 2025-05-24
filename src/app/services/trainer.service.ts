@@ -14,12 +14,6 @@ export class TrainerService {
     });
   }
 
-  getSchedule(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/schedule`, {
-      withCredentials: true
-    });
-  }
-
   createSlot(payload: {
     start_time: string;
     end_time: string;

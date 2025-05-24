@@ -18,7 +18,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/registration-page/registration-page.page').then((m) => m.RegisterPage),
   },
 
-  // === ROTTE PROTETTE PER CUSTOMER ===
+  // === ROTTE PER CUSTOMER ===
   {
     path: 'customer/dashboard',
     loadComponent: () => import('./customer/dashboard-cliente/dashboard-cliente.page').then(m => m.DashboardClientePage),
@@ -53,7 +53,7 @@ export const routes: Routes = [
 
   
 
-  // === ROTTA PER TRAINER ===
+  // === ROTTE PER TRAINER ===
   {
     path: 'trainer/dashboard',
     loadComponent: () => import('./trainer/dashboard-personal-trainer/dashboard-personal-trainer.page').then(m => m.DashboardTrainerPage),
@@ -61,14 +61,28 @@ export const routes: Routes = [
     data: { role: 'trainer' }
   },
  
-  {
-    path: 'trainer/ptreview-page',
-    loadComponent: () => import('./trainer/ptreview-page/ptreview-page.page').then( m => m.TrainerReviewsPage)
-  },
+
   {
     path: 'trainer/create-slot',
-    loadComponent: () => import('./trainer/create-slot/create-slot.page').then( m => m.CreateSlotPage)
-  }
+    loadComponent: () => import('./trainer/create-slot/create-slot.page').then( m => m.CreateSlotPage),
+    canActivate: [RoleGuard],
+    data: { role: 'trainer' }
+  },
+  
+  {
+    path: 'trainer/trainer-reviews',
+    loadComponent: () => import('./trainer/trainer-reviews/trainer-reviews.page').then( m => m.TrainerReviewsPage),
+    canActivate: [RoleGuard],
+    data: { role: 'trainer' }
+  },
+  {
+    path: 'trainer/trainer-clients',
+    loadComponent: () => import('./trainer/trainer-clients/trainer-clients.page').then( m => m.TrainerClientsPage),
+    canActivate: [RoleGuard],
+    data: { role: 'trainer' }
+  },
+
+
 
 
 ];
