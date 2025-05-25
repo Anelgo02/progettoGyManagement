@@ -1,29 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, } from '@angular/router';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonIcon, IonLabel, IonButton,  } from "@ionic/angular/standalone";
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonIcon, IonLabel, IonButton } from "@ionic/angular/standalone";
 import { AuthService } from 'src/app/core/auth.service';
-import {MenuController} from '@ionic/angular/standalone';
+import { MenuController } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
-  imports: [ IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonIcon, IonLabel, IonButton, CommonModule],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonIcon, IonLabel, IonButton, CommonModule],
   standalone: true,
 })
-export class SidebarComponent  implements OnInit {
-  role: string = '';
+export class SidebarComponent {
+  user$: Observable<User | null>;
 
   constructor(private auth: AuthService, private router: Router, private menuCtrl: MenuController) {
-
-    this.role = this.auth.getUser()?.role?.toLowerCase() ?? '';
-
-
-
-   }
-
-  ngOnInit() {}
+    this.user$ = this.auth.user$;
+  }
 
   logout() {
     this.menuCtrl.close().then(() => {
@@ -33,18 +29,22 @@ export class SidebarComponent  implements OnInit {
     });
   }
 
+  visualizzaCronologia() {
+    this.menuCtrl.close().then(() => {
+      this.router.navigate(['/customer/booking-history']);
+    });
+  }
+
   recensisci() {
     this.menuCtrl.close().then(() => {
       this.router.navigate(['/customer/review-page']);
-    }); 
-
+    });
   }
 
   selezionaPt() {
     this.menuCtrl.close().then(() => {
       this.router.navigate(['/customer/trainer-selection']);
-    }); 
-
+    });
   }
 
   visualizzaClienti() {
@@ -56,8 +56,6 @@ export class SidebarComponent  implements OnInit {
   visualizzaRecensioni() {
     this.menuCtrl.close().then(() => {
       this.router.navigate(['/trainer/trainer-reviews']);
-    }); 
-
+    });
   }
-
 }

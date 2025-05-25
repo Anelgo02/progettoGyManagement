@@ -51,6 +51,13 @@ export const routes: Routes = [
     data: { role: 'customer' }
   },
 
+   {
+    path: 'customer/booking-history',
+    loadComponent: () => import('./customer/customer-booking-history/customer-booking-history.page').then( m => m.CustomerBookingHistoryPage),
+    canActivate: [RoleGuard],
+    data: { role: 'customer' }
+  },
+
   
 
   // === ROTTE PER TRAINER ===
@@ -89,6 +96,9 @@ export const routes: Routes = [
     canActivate: [RoleGuard],
     data: { role: 'admin' }
   },
+  
+ 
+
   
 
 
