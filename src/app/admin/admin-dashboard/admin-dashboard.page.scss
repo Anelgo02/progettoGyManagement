@@ -1,16 +1,16 @@
+ion-list{
+    --background: none;
+    --ion-item-background: rgba(8, 55, 212, 0);
+    --ion-item-border-radius: 20px;
+    
+    border-radius: 20px;
+}
+
+
+
 ion-label{
     background-color: rgba(16, 16, 16, 0.769);
     border-radius: 20px;
     padding: 1rem;
     margin: 0.5rem;
-}
-
-ion-list{
-    --background: none;
-}
-
-ion-item{
-    --background: none;
-    --border-radius: 20px;
- 
 }
