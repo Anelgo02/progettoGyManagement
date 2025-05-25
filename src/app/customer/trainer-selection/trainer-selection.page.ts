@@ -31,6 +31,7 @@ export class TrainerSelectionPage {
         text: 'Trainer selezionato con successo!', 
         icon: 'success', 
         heightAuto: false });
+        this.router.navigate(['/customer/dashboard']);
       
 
     },

@@ -29,6 +29,12 @@ export class SidebarComponent {
     });
   }
 
+  visualizzaCronologia() {
+    this.menuCtrl.close().then(() => {
+      this.router.navigate(['/customer/booking-history']);
+    });
+  }
+
   recensisci() {
     this.menuCtrl.close().then(() => {
       this.router.navigate(['/customer/review-page']);

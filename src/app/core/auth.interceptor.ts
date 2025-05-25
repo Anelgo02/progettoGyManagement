@@ -12,7 +12,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((error) => {
-      if (error.status === 403) {
+      // ⚠️ Intercetta solo se è davvero un errore di autenticazione
+      if (error.status === 403 && error.error?.code === 'UNAUTHORIZED') {
         auth.logout().subscribe(() => {
           Swal.fire({
             title: 'Sessione scaduta',
@@ -23,6 +24,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           router.navigate(['/login']);
         });
       }
+
+      //  In tutti gli altri casi, propaga normalmente l’errore
       return throwError(() => error);
     })
   );

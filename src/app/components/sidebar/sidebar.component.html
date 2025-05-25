@@ -15,6 +15,10 @@
         <ion-icon name="fitness-outline" slot="start"></ion-icon>
         <ion-label>Seleziona PT</ion-label>
       </ion-item>
+      <ion-item (click)="visualizzaCronologia()">
+        <ion-icon name="play-back-outline" slot="start"></ion-icon>
+        <ion-label>Cronologia prenotazioni</ion-label>
+      </ion-item>
     </ion-list>
 
     <ion-list *ngIf="(user$ | async)?.role === 'trainer'">

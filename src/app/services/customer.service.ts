@@ -17,6 +17,12 @@ export class CustomerService {
   );
 }
 
+getPastBookings(): Observable<any[]> {
+  return this.http.get<any>(`${this.api}/dashboard`, { withCredentials: true }).pipe(
+    map(res => res.data.past_bookings || [])
+  );
+}
+
   getTrainers(): Observable<Trainer[]> {
   return this.http.get<{ status: string; data: Trainer[] }>(
     'http://localhost:5000/api/customer/trainers',
