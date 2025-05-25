@@ -6,7 +6,7 @@
 
 <ion-content>
   <div class="menu-flex-container">
-    <ion-list *ngIf="role === 'customer'">
+    <ion-list *ngIf="(user$ | async)?.role === 'customer'">
       <ion-item (click)="recensisci()">
         <ion-icon name="star-outline" slot="start"></ion-icon>
         <ion-label>Recensisci PT</ion-label>
@@ -17,7 +17,7 @@
       </ion-item>
     </ion-list>
 
-    <ion-list *ngIf="role === 'trainer'">
+    <ion-list *ngIf="(user$ | async)?.role === 'trainer'">
       <ion-item>
         <ion-icon name="calendar-outline" slot="start"></ion-icon>
         <ion-label>Gestisci slot</ion-label>

@@ -55,14 +55,7 @@ export class AuthService {
 }
 
 register(data : RegistrationData): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, data, { withCredentials: true }).pipe(
-      tap((res: any) => {
-        if (res.status === 'success') {
-          this.userSubject.next(res.data);
-          localStorage.setItem('user', JSON.stringify(res.data));
-        }
-      })
-    );
+    return this.http.post(`${this.apiUrl}/register`, data, { withCredentials: true });
   }
 
 
