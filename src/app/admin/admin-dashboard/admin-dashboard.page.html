@@ -1,0 +1,34 @@
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-menu-button slot="start"></ion-menu-button>
+    <ion-title style="color: aliceblue;" >GyManagement
+      <img src="../../../assets/icon/powerlifting.png" alt="Logo" style="height: 32px; width: auto; vertical-align: middle;" />
+    </ion-title>  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h2>Allenatori</h2>
+  <ion-list>
+    <ion-item *ngFor="let t of trainers">
+      <ion-label>
+        <h3>{{ t.full_name }}</h3>
+        <p>Email: {{ t.email }}</p>
+        <p>Clienti assegnati: {{ t.client_count }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <h2 class="ion-margin-top">Clienti</h2>
+  <ion-list>
+    <ion-item *ngFor="let c of customers">
+      <ion-label>
+        <h3>{{ c.full_name }}</h3>
+        <p>Email: {{ c.email }}</p>
+        <p>Allenatore: {{ c.trainer_name || 'Non assegnato' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<app-footer></app-footer>

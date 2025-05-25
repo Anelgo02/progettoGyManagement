@@ -81,10 +81,15 @@ export const routes: Routes = [
     canActivate: [RoleGuard],
     data: { role: 'trainer' }
   },
+
+  // === ROTTE PER ADMIN ===
   {
-    path: 'adminviewprofile-page',
-    loadComponent: () => import('./pages/adminviewprofile-page/adminviewprofile-page.page').then( m => m.AdminService)
+    path: 'admin/dashboard',
+    loadComponent: () => import('./admin/admin-dashboard/admin-dashboard.page').then(m => m.AdminDashboardPage),
+    canActivate: [RoleGuard],
+    data: { role: 'admin' }
   },
+  
 
 
 
