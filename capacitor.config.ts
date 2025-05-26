@@ -5,8 +5,7 @@ const config: CapacitorConfig = {
   appName: 'Gymanagement',
   webDir: 'www',
   server: {
-    cleartext: true,
-    
+    cleartext: true,  
     url: 'http://192.168.1.101:8100', // Use your server's IP address and port
   },
   /*android: {

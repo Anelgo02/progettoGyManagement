@@ -1,23 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/services/customer.service';
-import { IonTitle, IonHeader, IonContent, IonToolbar, IonItem, IonLabel, IonList, IonMenuButton, IonButtons } from "@ionic/angular/standalone";
-import { FooterComponent } from "../../components/footer/footer.component";
-import { CommonModule } from "@angular/common";
+import { Observable } from 'rxjs';
+import {
+  IonTitle,
+  IonHeader,
+  IonContent,
+  IonToolbar,
+  IonMenuButton,
+  IonButtons, IonSkeletonText, IonCard, IonCardSubtitle, IonChip, IonCardContent } from '@ionic/angular/standalone';
+import { FooterComponent } from '../../components/footer/footer.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-customer-booking-history',
   templateUrl: './customer-booking-history.page.html',
   styleUrls: ['./customer-booking-history.page.scss'],
-  imports: [IonButtons, CommonModule, IonList, IonLabel, IonItem, IonToolbar, FooterComponent, IonTitle, IonHeader, IonContent, IonMenuButton, IonButtons],
+  standalone: true,
+  imports: [IonCardContent, IonChip, IonCardSubtitle, IonCard, IonSkeletonText, 
+    IonButtons,
+    CommonModule,
+    IonToolbar,
+    FooterComponent,
+    IonTitle,
+    IonHeader,
+    IonContent,
+    IonMenuButton,
+  ],
 })
 export class CustomerBookingHistoryPage implements OnInit {
-  bookings: any[] = [];
+  bookings$!: Observable<any[]>;
 
   constructor(private customerService: CustomerService) {}
 
   ngOnInit() {
-    this.customerService.getPastBookings().subscribe(res => {
-      this.bookings = res;
-    });
+    this.bookings$ = this.customerService.getPastBookings();
   }
 }
