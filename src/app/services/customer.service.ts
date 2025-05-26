@@ -26,7 +26,7 @@ getPastBookings(): Observable<any[]> {
 
   getTrainers(): Observable<Trainer[]> {
   return this.http.get<{ status: string; data: Trainer[] }>(
-    `${this.api}/customer/trainers`,
+    `${this.api}/trainers`,
     { withCredentials: true }
   ).pipe(
     map(res => res.data)
@@ -34,7 +34,7 @@ getPastBookings(): Observable<any[]> {
 }
 
 setTrainer(trainerId: number): Observable<any> {
-  return this.http.post(`${this.api}/api/customer/set_trainer`, {
+  return this.http.post(`${this.api}/set_trainer`, {
     trainer_id: trainerId
   }, { withCredentials: true });
 }
