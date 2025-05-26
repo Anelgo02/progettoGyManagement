@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-    /** URL del mock-server json-server oppure dell’API reale in locale */
-  apiBase: 'http://localhost:5000'
+  apiBase: 'http://192.168.1.101:5000'  
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
