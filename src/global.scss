@@ -107,14 +107,7 @@ ion-toolbar {
   min-height: 72px; // o il valore che preferisci
 }
 
-ion-toolbar ion-title {
-  flex: 1 1 auto !important;
-  text-align: center;
-  margin: 0 !important;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-}
+
 
 ion-menu ion-title {
   width: 100%;
@@ -135,7 +128,7 @@ ion-title {
   color: antiquewhite;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   display: block;
 }
 
