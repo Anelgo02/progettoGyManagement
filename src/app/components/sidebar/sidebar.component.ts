@@ -58,4 +58,11 @@ export class SidebarComponent {
       this.router.navigate(['/trainer/trainer-reviews']);
     });
   }
+
+  gestioneSlot(){
+    this.menuCtrl.close().then(() => {
+      this.router.navigate(['/gestione-slot']);
+      console.log("tasto premuto")
+    });
+  }
 }

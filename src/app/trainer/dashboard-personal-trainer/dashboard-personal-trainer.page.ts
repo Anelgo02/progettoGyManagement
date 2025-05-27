@@ -65,7 +65,7 @@ export class DashboardTrainerPage {
 
   
 
-  gestisciSlot() {
+  /*gestisciSlot() {
     this.menuCtrl.close().then(() => {
       this.router.navigate(['/trainer/manage-slots']);
     });
@@ -75,5 +75,6 @@ export class DashboardTrainerPage {
     this.menuCtrl.close().then(() => {
       this.router.navigate(['/trainer/clients']);
     });
-  }
+  }*/
+ 
 }
