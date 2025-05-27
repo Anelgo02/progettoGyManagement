@@ -4,10 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Trainer } from '../models/Trainer';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class CustomerService {
-  private readonly api = 'http://localhost:5000/api/customer';
+  private readonly api = `${environment.apiBase}/api/customer`;
 
   constructor(private http: HttpClient) {}
 
@@ -25,7 +26,7 @@ getPastBookings(): Observable<any[]> {
 
   getTrainers(): Observable<Trainer[]> {
   return this.http.get<{ status: string; data: Trainer[] }>(
-    'http://localhost:5000/api/customer/trainers',
+    `${this.api}/trainers`,
     { withCredentials: true }
   ).pipe(
     map(res => res.data)
@@ -33,7 +34,7 @@ getPastBookings(): Observable<any[]> {
 }
 
 setTrainer(trainerId: number): Observable<any> {
-  return this.http.post('http://localhost:5000/api/customer/set_trainer', {
+  return this.http.post(`${this.api}/set_trainer`, {
     trainer_id: trainerId
   }, { withCredentials: true });
 }

@@ -11,21 +11,48 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-list *ngIf="bookings.length > 0; else noData" style="background: none; border-radius: 16px;">
-    <ion-item *ngFor="let b of bookings">
-      <ion-label>
-        <h3>Trainer: {{ b.trainer_name }}</h3>
-        <p>Specializzazione: {{ b.specialization }}</p>
-        <p>Inizio: {{ b.start_time | date:'short' }}</p>
-        <p>Fine: {{ b.end_time | date:'short' }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <!-- 🧠 Caricamento o visualizzazione prenotazioni -->
+  <ng-container *ngIf="(bookings$ | async) as bookings; else loading" class="card-container">
+    <!-- 🧠 Mostra prenotazioni se presenti -->
+    <ng-container *ngIf="bookings.length > 0; else noData">     
+        <ion-card *ngFor="let b of bookings">
+          <div class="card-content">
+          <ion-card-subtitle>
+            <h3>Trainer: {{ b.trainer_name }}</h3>
+            <p>Inizio: {{ b.start_time | date:'short' }}</p>
+            <p>Fine: {{ b.end_time | date:'short' }}</p>
+          </ion-card-subtitle>
+          <ion-card-content>
+          <ion-chip color="primary"> Specializzazione: {{ b.specialization }} </ion-chip>
+        </ion-card-content>
+        </div>
+        </ion-card>
+      
+    </ng-container>
+  </ng-container>
 
+  <!-- 🆕 Nessuna prenotazione trovata -->
   <ng-template #noData>
-    <p>Nessuna prenotazione trovata.</p>
+    <div
+      style="
+        text-align: center;
+        color: #090909;
+        margin-top: 2rem;
+        font-size: 1.2rem;
+      "
+    >
+      Nessuna prenotazione trovata.
+    </div>
+  </ng-template>
+
+  <!-- ⌛ Skeleton di caricamento -->
+  <ng-template #loading>
+    <ion-skeleton-text animated style="width: 80%; height: 20px"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 90%; height: 20px"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 70%; height: 20px"></ion-skeleton-text>
   </ng-template>
 </ion-content>
+
 
 
 <app-footer></app-footer>

@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { User } from "../models/user";
 import { Router } from "@angular/router";
 import { RegistrationData } from "../models/RegistrationData";
+import { environment } from "../../environments/environment";
 
 
 
@@ -14,7 +15,8 @@ export class AuthService {
   private userSubject = new BehaviorSubject<User | null>(null);
   readonly user$ = this.userSubject.asObservable(); // solo readonly esternamente
 
-  private readonly apiUrl = 'http://localhost:5000/api';
+  private readonly apiUrl = `${environment.apiBase}/api`;
+
 
   constructor(private http: HttpClient, private router: Router) {
     const saved = localStorage.getItem('user');

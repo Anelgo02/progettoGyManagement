@@ -1,14 +1,17 @@
-import type { CapacitorConfig } from '@capacitor/cli';
+import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.Gymanagement.app',
   appName: 'Gymanagement',
   webDir: 'www',
   server: {
-    url: 'http://172.18.0.2:5000', // sostituisci con IP locale PC e porta backend
-    cleartext: true
-  }
+    cleartext: true,  
+    url: 'http://192.168.1.101:8100', // Use your server's IP address and port
+  },
+  /*android: {
+    allowMixedContent: true,
+    
+  }*/
 };
-
 
 export default config;
