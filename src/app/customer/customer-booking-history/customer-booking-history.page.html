@@ -5,12 +5,15 @@
     </ion-buttons>
     <ion-title style="color: aliceblue;" >GyManagement
       <img src="../../../assets/icon/powerlifting.png" alt="Logo" style="height: 32px; width: auto; vertical-align: middle;" />
-    </ion-title>
-    
+    </ion-title> 
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+
+  <h2 class="titolo" style="font-weight: bold; font-size: 1.5rem; margin-bottom: 1rem">
+    Prenotazioni passate:
+  </h2>
   <!-- 🧠 Caricamento o visualizzazione prenotazioni -->
   <ng-container *ngIf="(bookings$ | async) as bookings; else loading" class="card-container">
     <!-- 🧠 Mostra prenotazioni se presenti -->

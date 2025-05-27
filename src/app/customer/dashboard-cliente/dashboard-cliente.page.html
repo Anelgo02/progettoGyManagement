@@ -1,17 +1,12 @@
-
 <!-- HEADER --------------------------------------------------------------->
 <ion-header translucent>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons>
-    <ion-title style="color: aliceblue"
-      >GyManagement
-      <img
-        src="../../../assets/icon/powerlifting.png"
-        alt="Logo"
-        style="height: 32px; width: auto; vertical-align: middle"
-      />
+    <ion-title style="color: aliceblue">GyManagement
+      <img src="../../../assets/icon/powerlifting.png" alt="Logo"
+        style="height: 32px; width: auto; vertical-align: middle" />
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -19,14 +14,14 @@
 <!-- CONTENUTO PRINCIPALE -------------------------------------------------->
 <ion-content fullscreen class="ion-padding">
   <!-- 🆕 Titolo principale -->
-  <h2 style="font-weight: bold; font-size: 1.5rem; margin-bottom: 1rem">
-    Prenotazioni:
-  </h2>
+  <ion-title>
+    <h2 class="titolo" style="font-weight: bold; font-size: 1.5rem; margin-bottom: 1rem">
+      Prenotazioni:
+    </h2>
+  </ion-title>
 
   <!-- 🧠 Caricamento o visualizzazione lista -->
-  <ng-container
-    *ngIf="(upcomingBookings$ | async) as allenamenti; else loading"
-  >
+  <ng-container *ngIf="(upcomingBookings$ | async) as allenamenti; else loading">
     <!-- 🧠 Mostra prenotazioni se presenti -->
     <ng-container *ngIf="allenamenti.length > 0; else noResults">
       <ion-card *ngFor="let a of allenamenti">
@@ -49,33 +44,21 @@
 
   <!-- 🆕 Messaggio se array vuoto -->
   <ng-template #noResults>
-    <div
-      class="no-workouts"
-      style="
+    <div class="no-workouts" style="
         text-align: center;
         color: #090909;
         margin-top: 2rem;
         font-size: 1.2rem;
-      "
-    >
+      ">
       Nessun allenamento prenotato.
     </div>
   </ng-template>
 
   <!-- Skeleton di caricamento -->
   <ng-template #loading>
-    <ion-skeleton-text
-      animated
-      style="width: 80%; height: 20px"
-    ></ion-skeleton-text>
-    <ion-skeleton-text
-      animated
-      style="width: 90%; height: 20px"
-    ></ion-skeleton-text>
-    <ion-skeleton-text
-      animated
-      style="width: 70%; height: 20px"
-    ></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 80%; height: 20px"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 90%; height: 20px"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 70%; height: 20px"></ion-skeleton-text>
   </ng-template>
 </ion-content>
 

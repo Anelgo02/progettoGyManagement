@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-menu-button slot="start"></ion-menu-button>
-    <ion-title>I tuoi clienti</ion-title>
+    <ion-title style="align-content: start;">I tuoi clienti</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +9,7 @@
   <ng-container *ngIf="clients$ | async as clients; else loading">
     <ion-card *ngFor="let c of clients">
       <ion-card-header>
-        <ion-card-title>{{ c.full_name }}</ion-card-title>
+        <ion-card-title style="color: aliceblue;">{{ c.full_name }}</ion-card-title>
         <ion-card-subtitle>Iscritto il: {{ c.join_date | date:'dd/MM/yyyy' }}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>

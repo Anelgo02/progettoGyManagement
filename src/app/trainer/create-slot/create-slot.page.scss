@@ -6,7 +6,6 @@
   align-items: center;
   justify-content: center;
   margin-bottom: auto;
-
 }
 
 ion-toolbar ion-title {
@@ -20,50 +19,37 @@ ion-toolbar ion-title {
   font-weight: 600;
 }
 
+.calendario,
+.inizio,
+.fine, .clienti {
+  display: flex;
+  justify-content: center;
+  width: 100%; // forza la larghezza uniforme
+}
 
-.calendario, .inizio, .fine {
-  ion-item {
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
-    max-height: 350px;
-    justify-content: center;
-    align-self: center;
-   
-  }
+.calendario ion-item,
+.inizio ion-item,
+.fine ion-item, .clienti ion-item {
+  width: 90%;
+  max-width: 350px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
-    
-
-
-  
-
-  ion-datetime {
-    --background: transparent;
-    width: 100%;
-    padding: 0rem 0;
-    font-size: 1rem;
-    --wheel-fade-background-rgb: rgb(142, 12, 12);
-    --wheel-highlight-border-radius: 0px;
-  }
+.calendario ion-datetime,
+.inizio ion-datetime,
+.fine ion-datetime {
+  --background: transparent;
+  width: 100%;
+  font-size: 1rem;
+  --wheel-fade-background-rgb: rgb(142, 12, 12);
+  --wheel-highlight-border-radius: 0px;
 }
 
 ion-item {
-  
   border-radius: 12px;
   margin-top: 0.3rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --background: rgba(0, 0, 0, 0.66);
+  --background: rgba(0, 0, 0, 0.66);
 }
-
-.calendario {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 0.5rem;
-    font-size: 1.2rem;
-    color: #fff;
-  }
-
-
-

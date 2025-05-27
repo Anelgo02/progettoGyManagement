@@ -13,17 +13,17 @@
 
 <ion-content class="ion-padding" fullscreen>
 
-  <h2 style="font-weight: bold; font-size: 1.5rem; margin-bottom: 1rem;">Lista Trainer:</h2>
+  <ion-title><h2 style="font-weight: bold; font-size: 1.5rem; margin-bottom: 1rem;">Lista Trainer:</h2></ion-title>
 
   <ng-container *ngIf="trainers$ | async as trainers">
   <ion-card *ngFor="let trainer of trainers">
     <ion-card-header>
       <ion-card-title>{{ trainer.full_name }}</ion-card-title>
-      <ion-card-subtitle>{{ trainer.specialization }}</ion-card-subtitle>
+      <ion-card-subtitle>Specializzazione: {{ trainer.specialization }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <p><strong>Max per slot:</strong> {{ trainer.max_clients_per_slot }}</p>
-      <p><strong>Stelle medie:</strong> {{ trainer.avg_rating || "0" }} ⭐ ({{ trainer.rating_count }} recensioni)</p>
+      <p>Max clienti per slot: {{ trainer.max_clients_per_slot }}</p>
+      <p>Stelle medie: {{ trainer.avg_rating || "0" }} ⭐ ({{ trainer.rating_count }} recensioni)</p>
       <ion-button expand="block" (click)="selectTrainer(trainer.id)">
       Seleziona questo trainer
       </ion-button>
