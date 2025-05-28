@@ -15,6 +15,12 @@ export class TrainerService {
     });
   }
 
+   deleteSlot(id: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/delete_slot`, { slot_id: id }, {
+      withCredentials: true
+    });
+  }
+
   createSlot(payload: {
     start_time: string;
     end_time: string;

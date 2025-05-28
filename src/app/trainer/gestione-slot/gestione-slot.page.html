@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Gestione slot di allenamento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" fullscreen>
+  <ng-container *ngIf="slots$ | async as slots; else loading">
+    <ion-card *ngFor="let slot of slots">
+      <ion-card-header>
+        <ion-card-title>Slot #{{ slot.id }}</ion-card-title>
+        <ion-card-subtitle>
+          {{ slot.start_time | date: 'dd/MM/yyyy HH:mm' }} - {{ slot.end_time |
+          date: 'HH:mm' }}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p><strong>Capienza massima:</strong> {{ slot.max_clients }} clienti</p>
+        <ion-button
+          class="btn-elimina"
+          expand="block"
+          fill="outline"
+          color="danger"
+          (click)="deleteSlot(slot.id)"
+        >
+          Elimina
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <div
+      *ngIf="slots && slots.length === 0"
+      class="no-slots-message ion-text-center"
+    >
+      <p>Nessuno slot disponibile.</p>
+    </div>
+  </ng-container>
+
+  <ng-template #loading>
+    <ion-skeleton-text class="skeleton" animated></ion-skeleton-text>
+    <ion-skeleton-text class="skeleton" animated></ion-skeleton-text>
+    <ion-skeleton-text class="skeleton" animated></ion-skeleton-text>
+  </ng-template>
+</ion-content>
+
+<app-footer></app-footer>

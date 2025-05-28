@@ -89,6 +89,14 @@ export const routes: Routes = [
     data: { role: 'trainer' }
   },
 
+  {
+    path: 'gestione-slot',
+    loadComponent: () => import('./trainer/gestione-slot/gestione-slot.page').then( m => m.GestioneSlotPage),
+    canActivate: [RoleGuard],
+    data: { role: 'trainer' }
+  },
+
+
   // === ROTTE PER ADMIN ===
   {
     path: 'admin/dashboard',
@@ -96,6 +104,8 @@ export const routes: Routes = [
     canActivate: [RoleGuard],
     data: { role: 'admin' }
   },
+  
+
   
  
 

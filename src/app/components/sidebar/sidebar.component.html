@@ -22,7 +22,7 @@
     </ion-list>
 
     <ion-list *ngIf="(user$ | async)?.role === 'trainer'">
-      <ion-item>
+      <ion-item (click)="gestioneSlot()">
         <ion-icon name="calendar-outline" slot="start"></ion-icon>
         <ion-label>Gestisci slot</ion-label>
       </ion-item>
