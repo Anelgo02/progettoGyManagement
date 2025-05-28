@@ -26,7 +26,8 @@
       <ion-card-content>
         <p><strong>Specializzazione:</strong> {{ trainerSpecialization }}</p>
         <p><strong>Clienti prenotati:</strong> {{ s.booked_clients }}</p>
-        <ion-chip color="primary">Slot #{{ s.id }}</ion-chip>
+        <ion-chip color="primary" style="cursor: default; pointer-events: none; box-shadow: none !important;">
+          <ion-icon name="barbell-outline" style="margin-right: 0.5rem;"> </ion-icon> Slot #{{ s.id }}</ion-chip>
       </ion-card-content>
     </ion-card>
 

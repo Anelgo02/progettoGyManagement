@@ -7,8 +7,7 @@ import { Observable } from 'rxjs';
 import {
   MenuController,
   IonHeader, IonContent, IonToolbar, IonTitle, IonCard, IonSkeletonText,
-  IonCardContent, IonChip, IonCardHeader, IonButtons, IonCardTitle, IonCardSubtitle, IonMenuButton
-} from "@ionic/angular/standalone";
+  IonCardContent, IonChip, IonCardHeader, IonButtons, IonCardTitle, IonCardSubtitle, IonMenuButton, IonIcon } from "@ionic/angular/standalone";
 import Swal from 'sweetalert2';
 import { FooterComponent } from "../../components/footer/footer.component";
 
@@ -17,7 +16,7 @@ import { FooterComponent } from "../../components/footer/footer.component";
   templateUrl: './dashboard-cliente.page.html',
   styleUrls: ['./dashboard-cliente.page.scss'],
   standalone: true,
-  imports: [IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader, IonChip, IonToolbar, IonContent, IonHeader, IonTitle, IonCard, IonSkeletonText,
+  imports: [IonIcon, IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader, IonChip, IonToolbar, IonContent, IonHeader, IonTitle, IonCard, IonSkeletonText,
     IonCardContent, CommonModule, FooterComponent]
 })
 

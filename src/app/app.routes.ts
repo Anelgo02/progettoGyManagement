@@ -104,6 +104,12 @@ export const routes: Routes = [
     canActivate: [RoleGuard],
     data: { role: 'admin' }
   },
+
+  {
+    path: '**',
+    loadComponent: () => import('./pages/error-page/error-page.page').then(m => m.ErrorPagePage),
+    
+  }
   
 
   

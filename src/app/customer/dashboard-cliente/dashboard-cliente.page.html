@@ -36,7 +36,10 @@
 
         <ion-card-content>
           <p><strong>Specializzazione:</strong> {{ a.specialization }}</p>
-          <ion-chip color="primary"> Slot #{{ a.id }} </ion-chip>
+          <ion-chip color="primary" style="cursor: default; pointer-events: none; box-shadow: none;">
+          <ion-icon name="barbell-outline" style="margin-right: 0.5rem;"></ion-icon>
+          Slot #{{ a.id }}
+        </ion-chip>
         </ion-card-content>
       </ion-card>
     </ng-container>
