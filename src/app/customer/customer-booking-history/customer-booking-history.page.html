@@ -22,8 +22,8 @@
           <div class="card-content">
           <ion-card-subtitle>
             <h3>Trainer: {{ b.trainer_name }}</h3>
-            <p>Inizio: {{ b.start_time | date:'short' }}</p>
-            <p>Fine: {{ b.end_time | date:'short' }}</p>
+            <p>Inizio: {{ b.start_time | date:'dd/MM/yyyy HH:mm' }}</p>
+            <p>Fine: {{ b.end_time | date:'dd/MM/yyyy HH:mm' }}</p>
           </ion-card-subtitle>
           <ion-card-content>
           <ion-chip color="primary"> Specializzazione: {{ b.specialization }} </ion-chip>
