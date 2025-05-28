@@ -6,10 +6,11 @@ import { CommonModule } from '@angular/common';
 import { CustomerService } from '../../services/customer.service';
 import {
   IonHeader, IonContent, IonToolbar, IonIcon, IonTitle, IonLabel, IonButton,
-  IonFooter, IonTabBar, IonTabButton, IonButtons, IonMenuButton, IonTextarea, 
+  IonButtons, IonMenuButton, IonTextarea,
 } from "@ionic/angular/standalone";
 import { AuthService } from 'src/app/core/auth.service';
 import { FooterComponent } from "../../components/footer/footer.component";
+import { LoadingService } from 'src/app/core/loading.service';
 
 @Component({
   selector: 'app-review-page',
@@ -24,7 +25,7 @@ import { FooterComponent } from "../../components/footer/footer.component";
     RouterModule,
     CommonModule,
     FooterComponent
-]
+  ]
 })
 export class ReviewPage {
   trainerId: number | null = null;
@@ -35,7 +36,8 @@ export class ReviewPage {
   constructor(
     private customerService: CustomerService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService
   ) {
     this.customerService.getCustomerInfo().subscribe(info => {
       this.trainerId = info?.trainer_id || null;
@@ -46,7 +48,7 @@ export class ReviewPage {
     this.rating = 0;
     this.reviewText = '';
     this.reviewDate = '';
-    
+
   }
 
   setRating(stars: number) {
@@ -69,33 +71,37 @@ export class ReviewPage {
     });
   }
 
-  rate_trainer() {
-  // Imposta oggi come data automatica
-  const today = new Date();
-  this.reviewDate = today.toISOString();
+  async rate_trainer() {
+    const today = new Date();
+    this.reviewDate = today.toISOString();
 
-  if (this.rating === 0 || !this.reviewText.trim()) {
-    Swal.fire({ title: 'Errore', text: 'Valutazione e recensione obbligatorie.', icon: 'error', heightAuto: false });
-    return;
-  }
-
-  if (!this.trainerId) {
-    Swal.fire({ title: 'Errore', text: 'Trainer non assegnato.', icon: 'error', heightAuto: false });
-    return;
-  }
-
-  this.customerService.rateTrainer(this.trainerId, this.rating, this.reviewText).subscribe({
-    next: () => {
-      Swal.fire({ title: 'Pubblicazione riuscita', text: 'Recensione inviata con successo!', icon: 'success', heightAuto: false });
-      this.rating = 0;
-      this.reviewText = '';
-      this.reviewDate = '';
-    },
-    error: (err: any) => {
-      console.error(err);
-      Swal.fire({ title: 'Errore', text: err.error?.message || 'Errore durante l’invio.', icon: 'error', heightAuto: false });
+    if (this.rating === 0 || !this.reviewText.trim()) {
+      Swal.fire({ title: 'Errore', text: 'Valutazione e recensione obbligatorie.', icon: 'error', heightAuto: false });
+      return;
     }
-  });
-}
+
+    if (!this.trainerId) {
+      Swal.fire({ title: 'Errore', text: 'Trainer non assegnato.', icon: 'error', heightAuto: false });
+      return;
+    }
+
+    await this.loadingService.show('Invio recensione in corso...');
+
+    this.customerService.rateTrainer(this.trainerId, this.rating, this.reviewText).subscribe({
+      next: () => {
+        this.loadingService.hide();
+        Swal.fire({ title: 'Pubblicazione riuscita', text: 'Recensione inviata con successo!', icon: 'success', heightAuto: false });
+        this.rating = 0;
+        this.reviewText = '';
+        this.reviewDate = '';
+      },
+      error: (err: any) => {
+        this.loadingService.hide();
+        console.error(err);
+        Swal.fire({ title: 'Errore', text: err.error?.message || 'Errore durante l’invio.', icon: 'error', heightAuto: false });
+      }
+    });
+  }
+
 
 }

@@ -4,6 +4,7 @@ import { RouterModule, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/core/auth.service';
 import { CommonModule } from '@angular/common';
+import { LoadingService } from 'src/app/core/loading.service';
 import { IonText, IonIcon, IonLabel, IonContent, IonButton, IonInput, IonItem, IonRadio, IonRadioGroup, IonToolbar, IonTitle, IonHeader } from "@ionic/angular/standalone";
 
 @Component({
@@ -43,7 +44,7 @@ export class RegisterPage {
 
 
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router, private loadingService : LoadingService) {}
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
@@ -75,8 +76,11 @@ export class RegisterPage {
 
 
 
-register() {
+async register() {
+  await this.loadingService.show('Registrazione in corso...');
+
   if (!this.validateFields()) {
+    this.loadingService.hide();
     Swal.fire({
       title: 'Errore',
       text: 'Controlla i campi evidenziati',
@@ -96,6 +100,7 @@ register() {
   };
 
   if (this.selectedRole === 'trainer' && !this.specialization.trim()) {
+    this.loadingService.hide();
     Swal.fire({
       title: 'Errore',
       text: 'La specializzazione è obbligatoria per i trainer.',
@@ -111,10 +116,13 @@ register() {
 
   this.auth.register(userData).subscribe({
     next: (res) => {
+      this.loadingService.hide();
+
       if (res.status === 'success') {
-        // Login automatico dopo registrazione
         this.auth.login(userData.username, userData.password).subscribe({
           next: (loginRes) => {
+            this.loadingService.hide();
+
             if (loginRes.status === 'success') {
               Swal.fire({
                 title: 'Benvenuto!',
@@ -130,7 +138,7 @@ register() {
               });
             } else {
               Swal.fire({
-                title: 'Errore',
+                title: 'Attenzione',
                 text: 'Login automatico fallito. Effettua il login manualmente.',
                 icon: 'warning',
                 heightAuto: false
@@ -138,8 +146,9 @@ register() {
             }
           },
           error: () => {
+            this.loadingService.hide();
             Swal.fire({
-              title: 'Errore',
+              title: 'Attenzione',
               text: 'Login automatico fallito. Effettua il login manualmente.',
               icon: 'warning',
               heightAuto: false
@@ -156,6 +165,7 @@ register() {
       }
     },
     error: (err) => {
+      this.loadingService.hide();
       Swal.fire({
         title: 'Errore',
         text: err.error?.message || 'Errore durante la registrazione',
@@ -165,6 +175,7 @@ register() {
     }
   });
 }
+
 
 }
 
