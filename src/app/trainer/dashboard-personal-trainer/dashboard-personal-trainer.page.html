@@ -14,6 +14,13 @@
 
 <!-- CONTENUTO PRINCIPALE -->
 <ion-content fullscreen class="ion-padding">
+
+  <ion-title>
+    <h2 class="titolo" style="font-weight: bold; font-size: 1.5rem; margin-bottom: 1rem">
+      Slot attivi:
+    </h2>
+  </ion-title>
+
   <ng-container *ngIf=" upcomingSessions$ | async as sessioni; else loading">
     <ion-card *ngFor="let s of sessioni">
       <ion-card-header>
