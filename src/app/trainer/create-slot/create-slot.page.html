@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/trainer/dashboard"></ion-back-button>
     </ion-buttons>
-    <ion-title style="display: flex; justify-content: center; align-self: center;">Crea Slot</ion-title>
+    <ion-title >Crea Slot</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,7 +16,8 @@
       <div class="calendario">
         <ion-item>
           <ion-label style="color: aliceblue;">Data</ion-label>
-          <ion-datetime formControlName="date" presentation="date" displayFormat="DD MMM YYYY" style="color: aliceblue;"></ion-datetime>
+          <ion-datetime formControlName="date" presentation="date" displayFormat="DD MMM YYYY"
+            style="color: aliceblue;"></ion-datetime>
         </ion-item>
       </div>
 
@@ -24,7 +25,8 @@
       <div class="inizio">
         <ion-item>
           <ion-label style="color: aliceblue;">Ora inizio</ion-label>
-          <ion-datetime formControlName="start_time" presentation="time" displayFormat="HH:mm" style="color: aliceblue;"></ion-datetime>
+          <ion-datetime formControlName="start_time" presentation="time" displayFormat="HH:mm"
+            style="color: aliceblue;"></ion-datetime>
         </ion-item>
       </div>
 
@@ -32,7 +34,8 @@
       <div class="fine">
         <ion-item>
           <ion-label style="color: aliceblue;">Ora fine</ion-label>
-          <ion-datetime formControlName="end_time" presentation="time" displayFormat="HH:mm" style="color: aliceblue;"></ion-datetime>
+          <ion-datetime formControlName="end_time" presentation="time" displayFormat="HH:mm"
+            style="color: aliceblue;"></ion-datetime>
         </ion-item>
       </div>
 
@@ -44,9 +47,9 @@
         </ion-item>
       </div>
 
-      <ion-button expand="block" type="submit" [disabled]="slotForm.invalid" style="display: flex; margin-top: 1rem; height: 3rem; width: 90%;
-  max-width: 350px; border-radius: 16px; display: flex;
-  justify-content: center; width: 100%;">Crea Slot</ion-button>
+      <div class="bottone">
+      <ion-button class="myBtn" expand="block" type="submit" [disabled]="slotForm.invalid">Crea Slot</ion-button>
+      </div>
     </form>
 
   </div>

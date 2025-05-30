@@ -75,8 +75,8 @@ export class ReviewPage {
     const today = new Date();
     this.reviewDate = today.toISOString();
 
-    if (this.rating === 0 || !this.reviewText.trim()) {
-      Swal.fire({ title: 'Errore', text: 'Valutazione e recensione obbligatorie.', icon: 'error', heightAuto: false });
+    if (this.rating === 0) {
+      Swal.fire({ title: 'Errore', text: 'Valutazione obbligatoria.', icon: 'error', heightAuto: false });
       return;
     }
 

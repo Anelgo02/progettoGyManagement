@@ -12,7 +12,7 @@ export class RoleGuard implements CanActivate {
     const expectedRole = route.data['role']; // es. 'customer'
     const user = this.auth.getUser(); // dal localStorage
 
-    // 🔒 Controllo se loggato
+    //Controllo se loggato
     if (!user) {
       this.router.navigate(['/login']);
       Swal.fire({
@@ -24,7 +24,7 @@ export class RoleGuard implements CanActivate {
       return false;
     }
 
-    // 🔐 Controllo ruolo
+    //Controllo ruolo
     if (expectedRole && user.role?.toLowerCase() !== expectedRole.toLowerCase()) {
       this.router.navigate(['/login']);
       Swal.fire({

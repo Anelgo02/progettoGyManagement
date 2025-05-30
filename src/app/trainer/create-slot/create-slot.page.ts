@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import {
   IonContent, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle,
-  IonInput, IonButton, IonLabel, IonItem, IonDatetime,
-} from '@ionic/angular/standalone';
+  IonInput, IonButton, IonLabel, IonItem, IonDatetime, IonText } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from "../../components/footer/footer.component";
 import { LoadingService } from 'src/app/core/loading.service';
