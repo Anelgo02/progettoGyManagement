@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { TrainerService } from '../../services/trainer.service';
+import { TrainerService } from '../../../services/trainer.service';
 import { CommonModule } from '@angular/common';
 import { Observable, catchError, map, of } from 'rxjs';
 import Swal from 'sweetalert2';
-import { FooterComponent } from "../../components/footer/footer.component";
+import { FooterComponent } from "../../../components/footer/footer.component";
 import {
   IonContent, IonHeader, IonToolbar, IonTitle, IonCard, IonCardContent,
   IonCardHeader, IonCardSubtitle, IonCardTitle, IonSkeletonText,IonMenuButton

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TrainerService } from '../../services/trainer.service';
+import { TrainerService } from '../../../services/trainer.service';
 import { CommonModule } from '@angular/common';
 import { Observable, catchError, map, of } from 'rxjs';
 import Swal from 'sweetalert2';
@@ -7,7 +7,7 @@ import {
   IonContent, IonHeader, IonToolbar, IonTitle, IonCard, IonCardContent,
   IonCardHeader, IonCardSubtitle, IonCardTitle, IonSkeletonText, IonMenuButton
 } from '@ionic/angular/standalone';
-import { FooterComponent } from "../../components/footer/footer.component";
+import { FooterComponent } from "../../../components/footer/footer.component";
 
 @Component({
   selector: 'app-trainer-clients',

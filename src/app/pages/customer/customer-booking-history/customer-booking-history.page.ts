@@ -8,7 +8,7 @@ import {
   IonToolbar,
   IonMenuButton,
   IonButtons, IonSkeletonText, IonCard, IonCardSubtitle, IonChip, IonCardContent } from '@ionic/angular/standalone';
-import { FooterComponent } from '../../components/footer/footer.component';
+import { FooterComponent } from '../../../components/footer/footer.component';
 import { CommonModule } from '@angular/common';
 
 @Component({

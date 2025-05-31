@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 export class TrainerService {
   private readonly baseUrl = `${environment.apiBase}/api/trainer`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getDashboard(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/dashboard`, {
@@ -15,7 +15,7 @@ export class TrainerService {
     });
   }
 
-   deleteSlot(id: number): Observable<any> {
+  deleteSlot(id: number): Observable<any> {
     return this.http.post(`${this.baseUrl}/delete_slot`, { slot_id: id }, {
       withCredentials: true
     });

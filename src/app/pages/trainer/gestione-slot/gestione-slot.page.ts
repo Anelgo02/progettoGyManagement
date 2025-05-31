@@ -7,12 +7,12 @@ import {
   IonFab, IonFabButton, IonIcon,
   IonSkeletonText
 } from '@ionic/angular/standalone';
-import { FooterComponent } from '../../components/footer/footer.component';
+import { FooterComponent } from '../../../components/footer/footer.component';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { TrainingSlot } from '../../models/TrainingSlot';
-import { TrainerService } from '../../services/trainer.service';
+import { TrainingSlot } from '../../../models/TrainingSlot';
+import { TrainerService } from '../../../services/trainer.service';
 import Swal from 'sweetalert2';
 
 @Component({

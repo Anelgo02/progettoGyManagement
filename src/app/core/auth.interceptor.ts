@@ -12,7 +12,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((error) => {
-      // ⚠️ Intercetta solo se è davvero un errore di autenticazione
+      //Intercetta solo se è davvero un errore di autenticazione
       if (error.status === 403 && error.error?.code === 'UNAUTHORIZED') {
         auth.logout().subscribe(() => {
           Swal.fire({

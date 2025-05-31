@@ -16,12 +16,12 @@ ion-toolbar ion-title {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 600;
+ 
 }
 
 .calendario,
 .inizio,
-.fine, .clienti {
+.fine, .clienti, .bottone {
   display: flex;
   justify-content: center;
   width: 100%; // forza la larghezza uniforme
@@ -29,7 +29,7 @@ ion-toolbar ion-title {
 
 .calendario ion-item,
 .inizio ion-item,
-.fine ion-item, .clienti ion-item {
+.fine ion-item, .clienti ion-item, .bottone .myBtn {
   width: 90%;
   max-width: 350px;
   border-radius: 16px;
@@ -43,8 +43,8 @@ ion-toolbar ion-title {
   --background: transparent;
   width: 100%;
   font-size: 1rem;
-  --wheel-fade-background-rgb: rgb(142, 12, 12);
-  --wheel-highlight-border-radius: 0px;
+  --wheel-fade-background-rgb: rgb(135, 135, 135);
+  
 }
 
 ion-item {

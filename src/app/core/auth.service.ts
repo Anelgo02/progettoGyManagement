@@ -2,7 +2,6 @@ import { BehaviorSubject, Observable, tap } from "rxjs";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { User } from "../models/user";
-import { Router } from "@angular/router";
 import { RegistrationData } from "../models/RegistrationData";
 import { environment } from "../../environments/environment";
 
@@ -18,17 +17,17 @@ export class AuthService {
   private readonly apiUrl = `${environment.apiBase}/api`;
 
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient) {
     const saved = localStorage.getItem('user');
     if (saved) {
       this.userSubject.next(JSON.parse(saved));
     }
   }
 
-  /** Getter rapido per UID */
+  /** Getter rapido per UID 
   get uid(): number|null {
     return this.userSubject.value?.id ?? null;
-  }
+  }*/
 
   login(username: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { username, password }, { withCredentials: true }).pipe(

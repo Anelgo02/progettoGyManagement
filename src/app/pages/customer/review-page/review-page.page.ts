@@ -3,13 +3,13 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
-import { CustomerService } from '../../services/customer.service';
+import { CustomerService } from '../../../services/customer.service';
 import {
   IonHeader, IonContent, IonToolbar, IonIcon, IonTitle, IonLabel, IonButton,
   IonButtons, IonMenuButton, IonTextarea,
 } from "@ionic/angular/standalone";
 import { AuthService } from 'src/app/core/auth.service';
-import { FooterComponent } from "../../components/footer/footer.component";
+import { FooterComponent } from "../../../components/footer/footer.component";
 import { LoadingService } from 'src/app/core/loading.service';
 
 @Component({
@@ -75,8 +75,8 @@ export class ReviewPage {
     const today = new Date();
     this.reviewDate = today.toISOString();
 
-    if (this.rating === 0 || !this.reviewText.trim()) {
-      Swal.fire({ title: 'Errore', text: 'Valutazione e recensione obbligatorie.', icon: 'error', heightAuto: false });
+    if (this.rating === 0) {
+      Swal.fire({ title: 'Errore', text: 'Valutazione obbligatoria.', icon: 'error', heightAuto: false });
       return;
     }
 
