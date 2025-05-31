@@ -9,9 +9,9 @@ import {
   IonContent, IonItem, IonLabel, IonIcon, IonButton, 
    IonDatetime, IonCard
 } from '@ionic/angular/standalone';
-import { CustomerService } from '../../services/customer.service';
+import { CustomerService } from '../../../services/customer.service';
 import { AuthService } from 'src/app/core/auth.service';
-import { FooterComponent } from "../../components/footer/footer.component";
+import { FooterComponent } from "../../../components/footer/footer.component";
 import { LoadingService } from 'src/app/core/loading.service';
 
 @Component({

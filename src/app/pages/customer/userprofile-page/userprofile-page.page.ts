@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { MenuController, IonInput } from '@ionic/angular/standalone';
-import { CustomerService } from '../../services/customer.service';
+import { CustomerService } from '../../../services/customer.service';
 import {
   IonHeader, IonItem, IonContent, IonToolbar, IonIcon,  IonTitle, IonLabel, IonButton,
    IonButtons, IonMenuButton,
 } from "@ionic/angular/standalone";
 import { AuthService } from 'src/app/core/auth.service';
-import { FooterComponent } from "../../components/footer/footer.component";
+import { FooterComponent } from "../../../components/footer/footer.component";
 
 @Component({
   selector: 'app-profile-page',

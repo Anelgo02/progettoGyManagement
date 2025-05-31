@@ -4,9 +4,9 @@ import { IonicModule } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
-import { CustomerService } from '../../services/customer.service';
-import { Trainer } from '../../models/Trainer';
-import { FooterComponent } from "../../components/footer/footer.component"; // 
+import { CustomerService } from '../../../services/customer.service';
+import { Trainer } from '../../../models/Trainer';
+import { FooterComponent } from "../../../components/footer/footer.component"; // 
 
 @Component({
   standalone: true,

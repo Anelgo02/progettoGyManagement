@@ -2,16 +2,16 @@ import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Observable, catchError, map, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../core/auth.service';
+import { AuthService } from '../../../core/auth.service';
 import Swal from 'sweetalert2';
-import { TrainerService } from '../../services/trainer.service';
+import { TrainerService } from '../../../services/trainer.service';
 import {
   MenuController,
   IonMenuButton, IonCardSubtitle, IonCardTitle, IonButtons, IonCardHeader,
   IonChip, IonToolbar, IonContent,
   IonHeader,  IonTitle, 
    IonCard, IonSkeletonText,  IonCardContent, IonIcon } from '@ionic/angular/standalone';
-import { FooterComponent } from "../../components/footer/footer.component";
+import { FooterComponent } from "../../../components/footer/footer.component";
 
 @Component({
   selector: 'app-dashboard-trainer',
