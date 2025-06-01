@@ -1,7 +1,7 @@
 <ion-header translucent>
   <ion-toolbar color="primary">
     <ion-menu-button slot="start"></ion-menu-button>
-    <ion-title style="color: aliceblue;">
+    <ion-title>
       GyManagement
       <img src="../../../assets/icon/powerlifting.png" alt="Logo" style="height: 32px; width: auto; vertical-align: middle;" />
     </ion-title>  
@@ -10,7 +10,7 @@
 
 <ion-content class="ion-padding">
 
-  <!-- 👨‍🏫 Allenatori -->
+  <!-- Trainer -->
   <h2>Allenatori</h2>
   <ng-container *ngIf="(trainers$ | async) as trainers; else loadingTrainers">
     <ng-container *ngIf="trainers.length > 0; else noTrainers">
@@ -26,7 +26,7 @@
     </ng-container>
   </ng-container>
 
-  <!-- 🧍 Clienti -->
+  <!-- Clienti -->
   <h2 class="ion-margin-top">Clienti</h2>
   <ng-container *ngIf="(customers$ | async) as customers; else loadingCustomers">
     <ng-container *ngIf="customers.length > 0; else noCustomers">

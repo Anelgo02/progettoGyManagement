@@ -90,8 +90,8 @@ export class BookingPage implements OnInit {
         this.errorMessage = 'Nessuno slot disponibile per questa data.';
       } else {
         this.availableSlots = slots.map(s => ({
-          start: s.start_time.substring(11, 16),
-          end: s.end_time.substring(11, 16),
+          start: s.start_time.substring(11, 16),//prendiamo solamente l'orario
+          end: s.end_time.substring(11, 16),//anche qui prendiamo solamente l'orario da mostrare
           available_spots: s.available_spots
         }));
       }
