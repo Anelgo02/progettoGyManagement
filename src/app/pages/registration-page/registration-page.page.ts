@@ -36,10 +36,10 @@ export class RegisterPage {
       phone: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]], // Min 8 caratteri, almeno una lettera e un numero
       confirmPassword: ['', Validators.required],
       role: ['customer'],
-      specialization: ['']
+      specialization: ['', Validators.required]
     });
   }
 
