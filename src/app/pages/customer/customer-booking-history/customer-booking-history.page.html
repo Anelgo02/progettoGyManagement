@@ -14,9 +14,9 @@
   <h2 class="titolo" style="font-weight: bold; font-size: 1.5rem; margin-bottom: 1rem">
     Prenotazioni passate:
   </h2>
-  <!-- 🧠 Caricamento o visualizzazione prenotazioni -->
+  <!-- Caricamento o visualizzazione prenotazioni -->
   <ng-container *ngIf="(bookings$ | async) as bookings; else loading" class="card-container">
-    <!-- 🧠 Mostra prenotazioni se presenti -->
+    <!-- Mostra prenotazioni se presenti -->
     <ng-container *ngIf="bookings.length > 0; else noData">     
         <ion-card *ngFor="let b of bookings">
           <div class="card-content">

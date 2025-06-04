@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { MenuController, IonInput } from '@ionic/angular/standalone';
-import { CustomerService } from '../../../services/customer.service';
+import { IonInput } from '@ionic/angular/standalone';
+
 import {
   IonHeader, IonItem, IonContent, IonToolbar, IonIcon,  IonTitle, IonLabel, IonButton,
    IonButtons, IonMenuButton,
 } from "@ionic/angular/standalone";
-import { AuthService } from 'src/app/core/auth.service';
+
 import { FooterComponent } from "../../../components/footer/footer.component";
 
 @Component({
@@ -24,7 +24,7 @@ export class ProfilePage implements OnInit {
   userData: any = {};
   showPassword = false;
 
-  constructor(private router: Router, private menuCtrl: MenuController, private auth: AuthService) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     const savedUser = localStorage.getItem('user');
