@@ -1,0 +1,69 @@
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-menu-button slot="start"></ion-menu-button>
+    <ion-title>
+      GyManagement
+      <img src="../../../assets/icon/powerlifting.png" alt="Logo" style="height: 32px; width: auto; vertical-align: middle;" />
+    </ion-title>  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Trainer -->
+  <h2>Allenatori</h2>
+  <ng-container *ngIf="(trainers$ | async) as trainers; else loadingTrainers">
+    <ng-container *ngIf="trainers.length > 0; else noTrainers">
+      <ion-card *ngFor="let t of trainers">
+        <ion-card-header>
+          <ion-card-title>{{ t.full_name }}</ion-card-title>
+          <ion-card-subtitle>Email: {{ t.email }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          Clienti assegnati: {{ t.client_count }}
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+  </ng-container>
+
+  <!-- Clienti -->
+  <h2 class="ion-margin-top">Clienti</h2>
+  <ng-container *ngIf="(customers$ | async) as customers; else loadingCustomers">
+    <ng-container *ngIf="customers.length > 0; else noCustomers">
+      <ion-card *ngFor="let c of customers">
+        <ion-card-header>
+          <ion-card-title>{{ c.full_name }}</ion-card-title>
+          <ion-card-subtitle>Email: {{ c.email }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          Allenatore: {{ c.trainer_name || 'Non assegnato' }}
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+  </ng-container>
+
+  <!-- Skeleton Allenatori -->
+  <ng-template #loadingTrainers>
+    <ion-skeleton-text animated style="width: 90%; height: 20px; margin-bottom: 10px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 80%; height: 20px;"></ion-skeleton-text>
+  </ng-template>
+
+  <!-- Skeleton Clienti -->
+  <ng-template #loadingCustomers>
+    <ion-skeleton-text animated style="width: 85%; height: 20px; margin-bottom: 10px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 75%; height: 20px;"></ion-skeleton-text>
+  </ng-template>
+
+  <!-- Nessun Allenatore -->
+  <ng-template #noTrainers>
+    <div style="text-align: center; color: #666; margin-top: 1rem;">Nessun allenatore disponibile.</div>
+  </ng-template>
+
+  <!-- Nessun Cliente -->
+  <ng-template #noCustomers>
+    <div style="text-align: center; color: #666; margin-top: 1rem;">Nessun cliente registrato.</div>
+  </ng-template>
+
+</ion-content>
+
+<app-footer></app-footer>

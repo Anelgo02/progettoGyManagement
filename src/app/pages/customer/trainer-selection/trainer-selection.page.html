@@ -1,0 +1,56 @@
+<!-- HEADER --------------------------------------------------------------->
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color: aliceblue;">GyManagement
+      <img src="../../../assets/icon/powerlifting.png" alt="Logo"
+        style="height: 32px; width: auto; vertical-align: middle;" />
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" fullscreen>
+
+  <ion-title>
+    <h2 style="font-weight: bold; font-size: 1.5rem; margin-bottom: 1rem;">Lista Trainer:</h2>
+  </ion-title>
+
+  <ng-container *ngIf="trainers$ | async as trainers; else loading">
+    <ng-container *ngIf="trainers.length > 0; else noTrainers">
+      <ion-card *ngFor="let trainer of trainers">
+        <ion-card-header>
+          <ion-card-title>{{ trainer.full_name }}</ion-card-title>
+          <ion-card-subtitle>Specializzazione: {{ trainer.specialization }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Max clienti per slot: {{ trainer.max_clients_per_slot }}</p>
+          <p>Stelle medie: {{ trainer.avg_rating || "0" }} ⭐ ({{ trainer.rating_count }} recensioni)</p>
+          <ion-button expand="block" (click)="selectTrainer(trainer.id)">
+            Seleziona questo trainer
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #loading>
+    <ion-skeleton-text animated style="width: 80%; height: 20px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 90%; height: 20px;"></ion-skeleton-text>
+  </ng-template>
+
+  <ng-template #noTrainers>
+    <div class="no-workouts">
+      Nessun trainer disponibile al momento.
+    </div>
+  </ng-template>
+
+  <ion-button class="custom-home-button" expand="block" color="medium" (click)="goHome() ">
+    Torna alla Home
+  </ion-button>
+</ion-content>
+
+<!-- TAB BAR -->
+<app-footer></app-footer>

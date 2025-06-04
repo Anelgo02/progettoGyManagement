@@ -1,0 +1,69 @@
+<!-- HEADER --------------------------------------------------------------->
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color: aliceblue">GyManagement
+      <img src="../../../assets/icon/powerlifting.png" alt="Logo"
+        style="height: 32px; width: auto; vertical-align: middle" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- CONTENUTO PRINCIPALE -------------------------------------------------->
+<ion-content fullscreen class="ion-padding">
+  <!-- 🆕 Titolo principale -->
+  <ion-title>
+    <h2 class="titolo" style="font-weight: bold; font-size: 1.5rem; margin-bottom: 1rem">
+      Prenotazioni:
+    </h2>
+  </ion-title>
+
+  <!-- 🧠 Caricamento o visualizzazione lista -->
+  <ng-container *ngIf="(upcomingBookings$ | async) as allenamenti; else loading">
+    <!-- 🧠 Mostra prenotazioni se presenti -->
+    <ng-container *ngIf="allenamenti.length > 0; else noResults">
+      <ion-card *ngFor="let a of allenamenti">
+        <ion-card-header>
+          <ion-card-title>Allenamento con {{ a.trainer_name }}</ion-card-title>
+          <ion-card-subtitle>
+            Data: {{ a.start_time | date:'dd/MM/yyyy' }} <br> Orario: {{ a.start_time |
+            date:'HH:mm' }} - {{ a.end_time |
+            date:'HH:mm' }}
+          </ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <p><strong>Specializzazione:</strong> {{ a.specialization }}</p>
+          <ion-chip color="primary" style="cursor: default; pointer-events: none; box-shadow: none;">
+          <ion-icon name="barbell-outline" style="margin-right: 0.5rem;"></ion-icon>
+          Slot #{{ a.id }}
+        </ion-chip>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+  </ng-container>
+
+  <!-- 🆕 Messaggio se array vuoto -->
+  <ng-template #noResults>
+    <div class="no-workouts" style="
+        text-align: center;
+        color: #090909;
+        margin-top: 2rem;
+        font-size: 1.2rem;
+      ">
+      Nessun allenamento prenotato.
+    </div>
+  </ng-template>
+
+  <!-- Skeleton di caricamento -->
+  <ng-template #loading>
+    <ion-skeleton-text animated style="width: 80%; height: 20px"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 90%; height: 20px"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 70%; height: 20px"></ion-skeleton-text>
+  </ng-template>
+</ion-content>
+
+<!-- TAB BAR -------------------------------------------------------------->
+<app-footer></app-footer>

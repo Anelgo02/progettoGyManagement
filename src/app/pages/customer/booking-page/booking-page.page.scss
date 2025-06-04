@@ -1,0 +1,87 @@
+
+
+.booking-container {
+  max-width: 400px;
+  margin: 5% auto;
+  padding: 2rem;
+  background: rgba(30, 161, 255, 0.584);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  text-align: center;
+}
+
+.booking-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #efefef;
+  font-weight: 600;
+}
+
+ion-label.selData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  color: #ffffff;
+  text-align: left;
+  width: 100%;
+}
+
+ion-datetime {
+  --background: rgba(28, 28, 28, 0.936);
+  --padding-start: 12px;
+  border-radius: 20px;
+  font-size: 1rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.workouts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+ion-card.slot-card {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 1.2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+ion-card.slot-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+ion-card.slot-card ion-item {
+  --background: transparent;
+  --color: #fff;
+  padding: 0.5rem 0;
+}
+
+ion-card.slot-card ion-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+ion-card.slot-card ion-button {
+  --background: #2370ff;
+  --border-radius: 20px;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.no-workouts {
+  color: #fff !important;
+  text-align: center;
+  margin-top: 2rem;
+}
