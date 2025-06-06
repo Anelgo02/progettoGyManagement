@@ -11,7 +11,7 @@
 <ion-content class="ion-padding">
 
   <!-- Trainer -->
-  <h2>Allenatori</h2>
+  <ion-title><h2>Allenatori</h2></ion-title> 
   <ng-container *ngIf="(trainers$ | async) as trainers; else loadingTrainers">
     <ng-container *ngIf="trainers.length > 0; else noTrainers">
       <ion-card *ngFor="let t of trainers">
@@ -27,7 +27,7 @@
   </ng-container>
 
   <!-- Clienti -->
-  <h2 class="ion-margin-top">Clienti</h2>
+  <ion-title><h2 class="ion-margin-top">Clienti</h2></ion-title> 
   <ng-container *ngIf="(customers$ | async) as customers; else loadingCustomers">
     <ng-container *ngIf="customers.length > 0; else noCustomers">
       <ion-card *ngFor="let c of customers">

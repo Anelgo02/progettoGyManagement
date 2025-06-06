@@ -23,9 +23,18 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           });
           router.navigate(['/login']);
         });
+      } else {
+        Swal.fire({
+          title: 'C\'è stato un errore',
+          text: error.error?.message || 'Si è verificato un errore imprevisto',
+          icon: 'error',
+          heightAuto: false
+          
+        });
+
       }
 
-      //  In tutti gli altri casi, propaga normalmente l’errore
+    
       return throwError(() => error);
     })
   );

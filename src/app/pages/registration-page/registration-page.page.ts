@@ -12,7 +12,7 @@ import { IonText, IonIcon, IonLabel, IonContent, IonButton, IonInput, IonItem, I
   templateUrl: './registration-page.page.html',
   styleUrls: ['./registration-page.page.scss'],
   standalone: true,
- imports: [
+  imports: [
     IonHeader, IonTitle, IonToolbar, IonRadio, IonItem, IonButton, IonContent, IonLabel, IonIcon, IonText,
     ReactiveFormsModule,
     RouterModule,
@@ -36,12 +36,37 @@ export class RegisterPage {
       phone: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]], // Min 8 caratteri, almeno una lettera e un numero
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/)]], // Min 8 caratteri, almeno una lettera e un numero
       confirmPassword: ['', Validators.required],
       role: ['customer'],
-      specialization: ['', Validators.required]
+      specialization: [''],
+    });
+
+    // Forza la validazione iniziale in base al ruolo predefinito
+    const specializationCtrl = this.registerForm.get('specialization');
+    const roleValue = this.registerForm.get('role')?.value;
+
+    if (roleValue === 'trainer') {
+      specializationCtrl?.setValidators([Validators.required]);
+    } else {
+      specializationCtrl?.clearValidators();
+      specializationCtrl?.setValue('');
+    }
+
+    specializationCtrl?.updateValueAndValidity();
+
+    // Gestione dinamica in caso cambi il ruolo dopo
+    this.registerForm.get('role')?.valueChanges.subscribe(role => {
+      if (role === 'trainer') {
+        specializationCtrl?.setValidators([Validators.required]);
+      } else {
+        specializationCtrl?.clearValidators();
+        specializationCtrl?.setValue('');
+      }
+      specializationCtrl?.updateValueAndValidity();
     });
   }
+
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
