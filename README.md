@@ -3,6 +3,8 @@
 **GyManagement** è un'applicazione mobile sviluppata con **Ionic + Angular** per la gestione di una palestra con più personal trainer e clienti.  
 Supporta autenticazione con ruoli (admin, trainer, customer), prenotazione di sessioni di allenamento, valutazioni dei trainer e gestione degli slot.
 
+Per scaricare il docker e la documentazione: https://unipa-my.sharepoint.com/:f:/g/personal/angelo_gulotta01_you_unipa_it/EklnEC5buAhCqPkLD2gkXacBo2bRTA7M9zaBthidqsZGSA?e=FvMYvH
+
 ## Funzionalità principali
 - Login e registrazione utenti con ruoli distinti
 - Dashboard personalizzate per trainer e clienti
