@@ -66,6 +66,8 @@ export class CreateSlotPage {
     const formattedStart = `${date.substring(0, 10)}T${start_time.substring(11, 16)}:00`;
     const formattedEnd = `${date.substring(0, 10)}T${end_time.substring(11, 16)}:00`;
 
+    //creo oggetti Date per validare gli orari
+
     const start = new Date(formattedStart);
     const end = new Date(formattedEnd);
 

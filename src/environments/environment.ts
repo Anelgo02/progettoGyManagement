@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiBase: 'http://192.168.1.101:5000'  
+  // apiBase: 'http://localhost:5000' // Use this if you are running the backend locally
 };
 
 

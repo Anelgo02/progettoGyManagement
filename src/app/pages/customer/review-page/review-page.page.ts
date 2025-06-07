@@ -8,7 +8,6 @@ import {
   IonHeader, IonContent, IonToolbar, IonIcon, IonTitle, IonLabel, IonButton,
   IonButtons, IonMenuButton, IonTextarea,
 } from "@ionic/angular/standalone";
-import { AuthService } from 'src/app/core/auth.service';
 import { FooterComponent } from "../../../components/footer/footer.component";
 import { LoadingService } from 'src/app/core/loading.service';
 
@@ -35,7 +34,6 @@ export class ReviewPage {
 
   constructor(
     private customerService: CustomerService,
-    private auth: AuthService,
     private router: Router,
     private loadingService: LoadingService
   ) {
@@ -65,11 +63,7 @@ export class ReviewPage {
     );
   }
 
-  logout() {
-    this.auth.logout().subscribe(() => {
-      this.router.navigate(['/login']);
-    });
-  }
+ 
 
   async rate_trainer() {
     const today = new Date();
