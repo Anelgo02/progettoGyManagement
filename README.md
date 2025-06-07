@@ -19,6 +19,7 @@ Supporta autenticazione con ruoli (admin, trainer, customer), prenotazione di se
 
 ## Avvio rapido(istruzioni per l'uso)
 ```bash
+
 # Avvia il backend
 (Nel caso in cui sia il primo avvio: docker compose up --build)
 docker compose up
@@ -29,8 +30,14 @@ docker compose up
 modificare nei file enviroment l'URL per comunicare con l'API
 poi fare ionic serve
 
-nel caso in cui si voglia iniettare l'apk in un dispositivo android e testare l'app:
+# Qualora si voglia iniettare l'apk in un dispositivo android e testare l'app:
 modificare nel file capacitor l'url con quello del computer (dispositivo e computer devono essere collegati alla stessa rete)
 dopodichè:
+
 ionic build
-npx cap sync 
+npx cap sync
+npx cap open android
+
+Infine fare il debug sul dispositivo ricordando di:
+-usare il comando ionic serve --external --host:indirizzo_ip del pc --port:8000
+-aggiungere l'indirizzo ip del pc nella sezione origins del file server.py per accettare come origine, così il backend utilizzerà autorizzerà i cookies
