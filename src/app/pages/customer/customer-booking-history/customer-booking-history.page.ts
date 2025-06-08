@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CustomerService } from 'src/app/services/customer.service';
 import { Observable } from 'rxjs';
 import {
@@ -27,12 +27,13 @@ import { CommonModule } from '@angular/common';
     IonMenuButton,
   ],
 })
-export class CustomerBookingHistoryPage implements OnInit {
+export class CustomerBookingHistoryPage {
   bookings$!: Observable<any[]>;
 
   constructor(private customerService: CustomerService) {}
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.bookings$ = this.customerService.getPastBookings();
   }
 }
+

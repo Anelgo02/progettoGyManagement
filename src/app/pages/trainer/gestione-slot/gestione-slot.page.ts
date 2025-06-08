@@ -3,10 +3,8 @@ import { CommonModule } from '@angular/common';
 import {
   IonContent, IonHeader, IonTitle, IonToolbar,
   IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent,
-  IonButton, IonRow, IonCol, IonGrid,
-  IonFab, IonFabButton, IonIcon,
-  IonSkeletonText
-} from '@ionic/angular/standalone';
+  IonButton, IonMenuButton,
+  IonSkeletonText } from '@ionic/angular/standalone';
 import { FooterComponent } from '../../../components/footer/footer.component';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -15,12 +13,14 @@ import { TrainingSlot } from '../../../models/TrainingSlot';
 import { TrainerService } from '../../../services/trainer.service';
 import Swal from 'sweetalert2';
 
+
+
 @Component({
   selector: 'app-gestione-slot',
   templateUrl: './gestione-slot.page.html',
   styleUrls: ['./gestione-slot.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonMenuButton,
     CommonModule,
     IonContent, IonHeader, IonTitle, IonToolbar,
     IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent,
@@ -31,15 +31,19 @@ import Swal from 'sweetalert2';
 })
 export class GestioneSlotPage {
 
-  slots$: Observable<TrainingSlot[]>;
+  slots$!: Observable<TrainingSlot[]>;
+
   trainerSpecialization: string = '';
 
   constructor(
     private slotService: TrainerService,
     private router: Router
-  ) {
+  ) {}
+  
+  ionViewWillEnter() {
     this.slots$ = this.slotService.getDashboard().pipe(
       map(res => {
+        this.trainerSpecialization = res.data?.trainer_info?.specialization || '';
         return res.data?.upcoming_sessions || [];
       })
     );

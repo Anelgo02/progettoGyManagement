@@ -18,8 +18,14 @@ ion-content {
 .register-container h2 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  color: #efefef;
+  color: #ffffff;
   font-weight: 600;
+}
+
+.register-container .radio-label {
+  font-size: 1.1rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
 }
 
 .input-wrapper,
@@ -100,13 +106,13 @@ ion-input {
   padding-right: 8px;
 }
 
-/* ✅ Disattiva ripple trasparente */
+/* Disattiva ripple trasparente */
 ion-item.custom-radio-item::part(native) {
   --background-focused: transparent;
   --background-hover: transparent;
 }
 
-/* ✅ Solo pallino colorato */
+/*Solo pallino colorato */
 ion-radio {
   --color: #ffffff;
   --color-checked: #ffd700;

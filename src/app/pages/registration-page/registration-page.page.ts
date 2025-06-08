@@ -120,7 +120,7 @@ export class RegisterPage {
                   icon: 'success',
                   heightAuto: false
                 }).then(() => {
-                  this.router.navigate([userData.role === 'trainer' ? '/trainer-dashboard' : '/customer/dashboard']);
+                  this.router.navigate([userData.role === 'trainer' ? '/trainer/dashboard' : '/customer/dashboard']);
                 });
               }
             },

@@ -106,10 +106,22 @@ export const routes: Routes = [
   },
 
   {
+    path: 'customer/notifications',
+    loadComponent: () => import('./pages/notifications/notifications.page').then( m => m.NotificationsPage),
+    canActivate: [RoleGuard],
+    data: { role: 'customer' }
+  },
+
+  {
     path: '**',
     loadComponent: () => import('./pages/error-page/error-page.page').then(m => m.ErrorPagePage),
     
-  }
+  },
+  
+ 
+  
+
+
   
 
   

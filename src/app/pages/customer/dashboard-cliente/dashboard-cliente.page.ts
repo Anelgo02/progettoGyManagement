@@ -24,18 +24,12 @@ export class DashboardClientePage {
   upcomingBookings$!: Observable<any[]>;
 
   constructor(private menuCtrl: MenuController, private customerSvc: CustomerService, private auth: AuthService, private router: Router) {
-
-    this.upcomingBookings$ = this.customerSvc.getUpcomingBookings();
-
-
   }
 
 
   ionViewWillEnter() {
     this.menuCtrl.close();
     this.upcomingBookings$ = this.customerSvc.getUpcomingBookings();
-
-
   }
 
 

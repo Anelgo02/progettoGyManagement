@@ -26,7 +26,6 @@
           <ion-card-subtitle>Specializzazione: {{ trainer.specialization }}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-          <p>Max clienti per slot: {{ trainer.max_clients_per_slot }}</p>
           <p>Stelle medie: {{ trainer.avg_rating || "0" }} ⭐ ({{ trainer.rating_count }} recensioni)</p>
           <ion-button expand="block" (click)="selectTrainer(trainer.id)">
             Seleziona questo trainer

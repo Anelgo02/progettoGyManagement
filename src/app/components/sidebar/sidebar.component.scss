@@ -16,6 +16,8 @@ ion-item {
 }
 
 
+
+
 .menu-flex-container {
   display: flex;
   flex-direction: column;
@@ -30,4 +32,30 @@ ion-item {
 
 .menu-flex-container ion-list {
   flex: 1 1 auto;
+}
+
+.notification-icon-wrapper {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2rem;
+}
+
+.notification-icon-wrapper ion-icon {
+  font-size: 24px;
+  color: rgb(162, 162, 162); // 
+}
+
+.notification-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+  z-index: 10;
 }

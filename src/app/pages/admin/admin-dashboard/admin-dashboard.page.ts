@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 import { Observable, map } from 'rxjs';
 import {
@@ -29,13 +29,13 @@ import { CommonModule } from "@angular/common";
     IonMenuButton
   ]
 })
-export class AdminDashboardPage implements OnInit {
+export class AdminDashboardPage {
   trainers$!: Observable<any[]>;
   customers$!: Observable<any[]>;
 
   constructor(private adminService: AdminService) {}
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.trainers$ = this.adminService.getAllTrainers().pipe(
       map(res => res.status === 'success' ? res.data : [])
     );
