@@ -54,7 +54,7 @@ ionic serve
 
 ---
 
-### 📱 Deploy su dispositivo Android
+## 📱 Deploy su dispositivo Android
 
 1. Assicurati che **PC e dispositivo Android siano sulla stessa rete Wi-Fi**
 2. Modifica il file `capacitor.config.ts`:
@@ -66,7 +66,30 @@ server: {
 }
 ```
 
-3. Costruisci e sincronizza il progetto:
+3. Modifica anche il file `network_security_config.xml` per abilitare il traffico HTTP in chiaro.  
+   Il file si trova in `android/app/src/main/res/network_security_config.xml`:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+  <domain-config cleartextTrafficPermitted="true">
+    <domain includeSubdomains="true">192.168.1.101</domain>
+  </domain-config>
+</network-security-config>
+```
+
+⚠️ Sostituisci `192.168.1.101` con l'indirizzo IP reale del tuo PC.
+
+4. Assicurati che l’IP del PC sia incluso tra gli `origins` nel file `server.py`, altrimenti il backend rifiuterà i cookie di sessione:
+
+```python
+CORS(app, supports_credentials=True, origins=[
+    "http://INDIRIZZO_IP_DEL_PC:8000",
+    "http://INDIRIZZO_IP_DEL_PC"
+])
+```
+
+5. Ora puoi eseguire la build e avviare l'app su Android:
 
 ```bash
 ionic build
@@ -74,22 +97,13 @@ npx cap sync
 npx cap open android
 ```
 
-4. Avvia con:
+6. Avvia il frontend da terminale per il testing reale su dispositivo:
 
 ```bash
 ionic serve --external --host=INDIRIZZO_IP_DEL_PC --port=8000
 ```
 
-5. Assicurati che l’IP del PC sia incluso tra gli `origins` nel file `server.py`, altrimenti il backend rifiuterà i cookie di sessione:
-
-```python
-CORS(app, supports_credentials=True, origins=[
-    "http://INDIRIZZO_IP_DEL_PC:8000"
-    "http://INDIRIZZO_IP_DEL_PC"
-])
-```
-
 ---
 
 ✅ Progetto sviluppato per uso didattico nell’ambito universitario.
-```
+
