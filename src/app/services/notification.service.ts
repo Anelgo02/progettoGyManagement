@@ -18,7 +18,7 @@ export class NotificationService {
     return this.http.get(`${this.api}/notifications`, { withCredentials: true }).pipe(
       tap((res: any) => {
         const count = res.data.filter((n: any) => !n.is_read).length;
-        this.unreadCountSubject.next(count); // aggiorna automaticamente
+        this.unreadCountSubject.next(count); // aggiorna il numero di notifiche non lette
       })
     );
   }
@@ -26,7 +26,7 @@ export class NotificationService {
   markAsRead(id: number): Observable<any> {
     return this.http.post(`${this.api}/notifications/${id}/read`, {}, { withCredentials: true }).pipe(
       tap(() => {
-        // Decremento ottimistico locale (facoltativo)
+        // Decremento del conteggio delle notifiche non lette 
         const current = this.unreadCountSubject.value;
         this.unreadCountSubject.next(Math.max(current - 1, 0));
       })

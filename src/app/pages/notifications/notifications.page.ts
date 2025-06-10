@@ -23,7 +23,7 @@ export class NotificationsPage {
 
     const unread = res.data.filter((n: any) => !n.is_read);
     if (unread.length > 0) {
-      unread.forEach((n: { id: number })  => {
+      unread.forEach((n: { id: number })  => {// aggiorna come letto ogni notifica visualizzata
         this.notificationService.markAsRead(n.id).subscribe(); // aggiorna anche count
       });
     }

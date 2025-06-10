@@ -1,45 +1,109 @@
-# GyManagement App
 
-**GyManagement** è un'applicazione mobile sviluppata con **Ionic + Angular** per la gestione di una palestra con più personal trainer e clienti.  
-Supporta autenticazione con ruoli (admin, trainer, customer), prenotazione di sessioni di allenamento, valutazioni dei trainer e gestione degli slot.
+# 💪 GyManagement App
 
-Per scaricare il docker e la documentazione: https://unipa-my.sharepoint.com/:f:/g/personal/angelo_gulotta01_you_unipa_it/EklnEC5buAhCqPkLD2gkXacBo2bRTA7M9zaBthidqsZGSA?e=FvMYvH
+**GyManagement** è un'app mobile sviluppata con **Ionic + Angular** per la gestione di una palestra con più personal trainer e clienti.  
+Include autenticazione con ruoli (admin, trainer, customer), gestione slot di allenamento, prenotazioni, valutazioni e dashboard personalizzate.
 
-## Funzionalità principali
-- Login e registrazione utenti con ruoli distinti
-- Dashboard personalizzate per trainer e clienti
-- Creazione, visualizzazione ed eliminazione degli slot di allenamento
-- Sistema di valutazione dei trainer
+🔗 **[Scarica Docker + Documentazione](https://unipa-my.sharepoint.com/:f:/g/personal/angelo_gulotta01_you_unipa_it/EklnEC5buAhCqPkLD2gkXacBo2bRTA7M9zaBthidqsZGSA?e=FvMYvH)**
+
+---
+
+## 🚀 Funzionalità principali
+
+- Autenticazione e registrazione utenti con ruoli distinti
+- Dashboard per ogni tipo di utente
+- Creazione, visualizzazione ed eliminazione degli slot (trainer)
+- Prenotazione sessioni (customer)
+- Sistema di valutazione per i trainer
 - Interfaccia responsive e moderna
-- Backend in Flask con SQLite (via Docker)
+- Backend Flask (Python) con SQLite, containerizzato via Docker
 
-## Tecnologie
-- Ionic + Angular
-- Flask (Python)
-- SQLite
-- Docker
+---
 
-## Avvio rapido(istruzioni per l'uso)
+## 🧰 Tecnologie utilizzate
+
+- **Frontend:** Ionic + Angular  
+- **Backend:** Flask (Python)  
+- **Database:** SQLite  
+- **Containerizzazione:** Docker
+
+---
+
+## ⚡ Avvio rapido
+
+### ▶️ Backend
+
 ```bash
+# Solo al primo avvio
+docker compose up --build
 
-# Avvia il backend
-(Nel caso in cui sia il primo avvio: docker compose up --build)
+# Avvii successivi
 docker compose up
+```
 
+---
 
+### 💻 Frontend (modalità sviluppo)
 
-# Avvia il frontend (modalità sviluppo)
-modificare nei file enviroment l'URL per comunicare con l'API
-poi fare ionic serve
+1. Modifica i file `environment.ts` e `environment.prod.ts` con l’URL del backend
+2. Avvia l’app in modalità sviluppo:
 
-# Qualora si voglia iniettare l'apk in un dispositivo android e testare l'app:
-modificare nel file capacitor l'url con quello del computer (dispositivo e computer devono essere collegati alla stessa rete)
-dopodichè:
+```bash
+ionic serve
+```
 
+---
+
+## 📱 Deploy su dispositivo Android
+
+1. Assicurati che **PC e dispositivo Android siano sulla stessa rete Wi-Fi**
+2. Modifica il file `capacitor.config.ts`:
+
+```ts
+server: {
+  url: 'http://INDIRIZZO_IP_DEL_PC:8000',
+  cleartext: true
+}
+```
+
+3. Modifica anche il file `network_security_config.xml` per abilitare il traffico HTTP in chiaro.  
+   Il file si trova in `android/app/src/main/res/network_security_config.xml`:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+  <domain-config cleartextTrafficPermitted="true">
+    <domain includeSubdomains="true">192.168.1.101</domain>
+  </domain-config>
+</network-security-config>
+```
+
+⚠️ Sostituisci `192.168.1.101` con l'indirizzo IP reale del tuo PC.
+
+4. Assicurati che l’IP del PC sia incluso tra gli `origins` nel file `server.py`, altrimenti il backend rifiuterà i cookie di sessione:
+
+```python
+CORS(app, supports_credentials=True, origins=[
+    "http://INDIRIZZO_IP_DEL_PC:8000",
+    "http://INDIRIZZO_IP_DEL_PC"
+])
+```
+
+5. Ora puoi eseguire la build e avviare l'app su Android:
+
+```bash
 ionic build
 npx cap sync
 npx cap open android
+```
 
-Infine fare il debug sul dispositivo ricordando di:
--usare il comando ionic serve --external --host:indirizzo_ip del pc --port:8000
--aggiungere l'indirizzo ip del pc nella sezione origins del file server.py per accettare come origine, così il backend utilizzerà autorizzerà i cookies
+6. Avvia il frontend da terminale per il testing reale su dispositivo:
+
+```bash
+ionic serve --external --host=INDIRIZZO_IP_DEL_PC --port=8000
+```
+
+---
+
+✅ Progetto sviluppato per uso didattico nell’ambito universitario.
+
