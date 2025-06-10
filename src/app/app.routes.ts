@@ -58,6 +58,13 @@ export const routes: Routes = [
     data: { role: 'customer' }
   },
 
+  {
+    path: 'customer/notifications',
+    loadComponent: () => import('./pages/notifications/notifications.page').then( m => m.NotificationsPage),
+    canActivate: [RoleGuard],
+    data: { role: 'customer' }
+  },
+
   
 
   // === ROTTE PER TRAINER ===
@@ -103,13 +110,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/admin/admin-dashboard/admin-dashboard.page').then(m => m.AdminDashboardPage),
     canActivate: [RoleGuard],
     data: { role: 'admin' }
-  },
-
-  {
-    path: 'customer/notifications',
-    loadComponent: () => import('./pages/notifications/notifications.page').then( m => m.NotificationsPage),
-    canActivate: [RoleGuard],
-    data: { role: 'customer' }
   },
 
   {

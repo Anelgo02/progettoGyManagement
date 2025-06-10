@@ -13,16 +13,16 @@
 
 <!-- CONTENUTO PRINCIPALE -------------------------------------------------->
 <ion-content fullscreen class="ion-padding">
-  <!-- 🆕 Titolo principale -->
+  <!-- Titolo principale -->
   <ion-title>
     <h2 class="titolo" style="font-weight: bold; font-size: 1.5rem; margin-bottom: 1rem">
       Prenotazioni:
     </h2>
   </ion-title>
 
-  <!-- 🧠 Caricamento o visualizzazione lista -->
+  <!--Caricamento o visualizzazione lista -->
   <ng-container *ngIf="(upcomingBookings$ | async) as allenamenti; else loading">
-    <!-- 🧠 Mostra prenotazioni se presenti -->
+    <!--Mostra prenotazioni se presenti -->
     <ng-container *ngIf="allenamenti.length > 0; else noResults">
       <ion-card *ngFor="let a of allenamenti">
         <ion-card-header>
@@ -45,7 +45,7 @@
     </ng-container>
   </ng-container>
 
-  <!-- 🆕 Messaggio se array vuoto -->
+  <!-- Messaggio se array vuoto -->
   <ng-template #noResults>
     <div class="no-workouts" style="
         text-align: center;

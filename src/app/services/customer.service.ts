@@ -14,7 +14,7 @@ export class CustomerService {
 
   getUpcomingBookings(): Observable<any[]> {
   return this.http.get<any>(`${this.api}/dashboard`, { withCredentials: true }).pipe(
-    map(res => res.data.upcoming_bookings || []) // <-- forza array vuoto se null/undefined
+    map(res => res.data.upcoming_bookings || []) //forza array vuoto se null/undefined
   );
 }
 

@@ -28,7 +28,7 @@ export class TrainerSelectionPage {
   }
 
   selectTrainer(trainerId: number) {
-    console.log('ID selezionato:', trainerId);//per debuggare
+    console.log('ID selezionato:', trainerId);
     this.customerService.setTrainer(trainerId).subscribe({
       next: (response) => {
         Swal.fire({

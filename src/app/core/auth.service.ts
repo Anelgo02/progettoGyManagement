@@ -10,7 +10,7 @@ import { environment } from "../../environments/environment";
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  /** userSubject inizializzato vuoto */
+   //userSubject inizializzato vuoto
   private userSubject = new BehaviorSubject<User | null>(null);
   readonly user$ = this.userSubject.asObservable(); // solo readonly esternamente
 
@@ -23,11 +23,6 @@ export class AuthService {
       this.userSubject.next(JSON.parse(saved));
     }
   }
-
-  /** Getter rapido per UID 
-  get uid(): number|null {
-    return this.userSubject.value?.id ?? null;
-  }*/
 
   login(username: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { username, password }, { withCredentials: true }).pipe(
