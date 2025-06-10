@@ -36,11 +36,7 @@ export class AdminDashboardPage {
   constructor(private adminService: AdminService) {}
 
   ionViewWillEnter() {
-    this.trainers$ = this.adminService.getAllTrainers().pipe(
-      map(res => res.status === 'success' ? res.data : [])
-    );
-    this.customers$ = this.adminService.getAllCustomers().pipe(
-      map(res => res.status === 'success' ? res.data : [])
-    );
+    this.trainers$ = this.adminService.getAllTrainers();
+    this.customers$ = this.adminService.getAllCustomers();
   }
 }
